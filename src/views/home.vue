@@ -2,7 +2,7 @@
   <Layout class="layout">
     <Sider hide-trigger collapsible ref="vueside" :collapsed-width="78" v-model="isCollapsed" class="left">
       <div class="logo" @click="goHome">
-        <p v-if="isCollapsed">{{siteName.small}}</p>
+        <img v-if="isCollapsed" src="./../assets/img/logo-small.png" alt="">
         <p v-else>{{siteName.big}}</p>
       </div>
       <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
@@ -37,7 +37,7 @@
         </Dropdown>
       </div>
 
-      <tab-page :list="tabList" :active="nowTab"  @on-click="addTabs" @on-close="closeTab"></tab-page>
+      <label-box :list="tabList" :active="nowTab"  @on-click="addTabs" @on-close="closeTab"></label-box>
 
       <div class="content">
         <div class="main-box">
@@ -81,9 +81,7 @@ export default {
       'User'
     ]),
     collapsedSider () {
-      setTimeout(() => {
-        this.$refs.vueside.toggleCollapse()
-      }, 200)
+      this.$refs.vueside.toggleCollapse()
     },
     // 默认效果
     init () {
@@ -99,10 +97,12 @@ export default {
       }
     },
     refresh () {
-      this.$nextTick(() => {
-        this.$refs.vueadmin.updateOpened()
-        this.$refs.vueadmin.updateActiveName()
-      })
+      if (!this.isCollapsed) {
+        this.$nextTick(() => {
+          this.$refs.vueadmin.updateOpened()
+          this.$refs.vueadmin.updateActiveName()
+        })
+      }
     },
     closeTab (item) {
       if (item.length) {
@@ -114,7 +114,7 @@ export default {
   },
   created () {
     document.title = '管理平台'
-    // this.init()
+    this.init()
     // 获取用户信息
     this.User()
   },
@@ -160,7 +160,7 @@ export default {
     font-weight: bold;
   }
   img{
-    width: 80%;
+    width: 60%;
     height: auto;
   }
   .small{

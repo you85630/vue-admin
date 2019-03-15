@@ -12,10 +12,9 @@ dudao
 │ │ ├── img                       // 图片库
 │ │ ├── css                       // css库
 │ │ └── js                        // js库
-│ ├── components                  // vue公共组件目录
+│ ├── components                  // 公共组件目录
 │ │ ├── common                    // 全局组件目录
 │ │ │ └── modules                 // 全局组件碎片库
-│ │ ├── modules                   // 单一组件碎片库
 │ │ └── pages                     // 子页面目录
 │ ├──views                        // 主页面目录
 │ ├──store                        // vuex目录
@@ -38,6 +37,10 @@ dudao
 ### vuex
   * 事件以页面为标准，在vuex/modules下新建JS文件，文件名为页面名
 
+## 公共组件
+* 存放位置：`src/components/common/modules/`
+* 命名规则：以中划线-分割,例:`label-box`
+
 ## 公用事件
 
 ###  子页面添加Tab标签/子页面跳转Tab标签
@@ -54,9 +57,11 @@ this._vm.utils.addNewTabs(key)
 * 所需字段
 ```
 key: {
+  breadcrumb:['第一级','第二级'],
+  open:[menu类别索引],
   title: '标签名',
   link: '完整路由',
-  key_object: '路由需要传递的参数'
+  options: '路由需要传递的参数'
 }
 ```
 ### 子页面关闭Tab标签(只限关闭当前页面)

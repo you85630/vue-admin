@@ -12,7 +12,7 @@ const state = {
         {
           path: '/home/page1',
           name: 'page1',
-          component: 'components/page/page1',
+          component: 'components/pages/page1',
           meta: {
             title: 'page1'
           }
@@ -20,7 +20,7 @@ const state = {
         {
           path: '/home/page2',
           name: 'page2',
-          component: 'components/page/page2',
+          component: 'components/pages/page2',
           meta: {
             title: 'page2'
           }
@@ -28,7 +28,7 @@ const state = {
         {
           path: '/home/page3',
           name: 'page3',
-          component: 'components/page/page3',
+          component: 'components/pages/page3',
           meta: {
             title: 'page3'
           }
@@ -36,7 +36,7 @@ const state = {
         {
           path: '/home/page4',
           name: 'page4',
-          component: 'components/page/page4',
+          component: 'components/pages/page4',
           meta: {
             title: 'page4'
           }

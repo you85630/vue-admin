@@ -170,6 +170,7 @@ export default {
         display: flex;
         flex-direction: row;
         align-items: center;
+        height: 22px;
         span{
           display: flex;
           margin: 0 6px;
@@ -180,7 +181,7 @@ export default {
         }
         p{
           overflow: hidden;
-          margin: 0 4px;
+          padding: 0 6px;
           max-width: 300px;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -189,7 +190,7 @@ export default {
         }
       }
       .icon{
-        margin: 0 6px;
+        margin-right: 6px;
         font-size: 22px;
         line-height: 1;
       }
