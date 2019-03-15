@@ -1,28 +1,54 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" v-cloak>
+    <router-view />
+    <!-- 返回顶部 -->
+    <BackTop></BackTop>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { mapActions } from 'vuex'
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  mounted () {
+    this.getRouter()
+  },
+  methods: {
+    ...mapActions([
+      'getRouter'
+    ]),
+    change (val) {
+      // let name = val.name
+      // let router = this.$router
+      // // 如果路由内无此名字，跳转到404
+      // if (!name) {
+      //   router.push('/404')
+      // }
+      // let token = JSON.parse(this.VueCookie.get('SYS-PSYLIFE-USER'))
+      // // 如果无token，跳转登录页
+      // if (!token) {
+      //   router.push('/login')
+      // } else {
+      //   // 如果已登录，不允许跳转到登录页
+      //   if (router.currentRoute.path === '/login') {
+      //     router.go(-1)
+      //   }
+      // }
+    }
+  },
+  watch: {
+    '$route': 'change'
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  line-height: 1.5;
+}
+[v-cloak] {
+  display: none;
 }
 </style>
