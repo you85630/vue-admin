@@ -59,8 +59,6 @@ export default {
         }
       })
     },
-    // 默认事件
-    init () {},
     // 全局提示
     getMessage (val) {
       if (val) {
@@ -83,9 +81,6 @@ export default {
         }
       }
     }
-  },
-  created () {
-    this.init()
   },
   watch: {
     'Message': 'getMessage'
