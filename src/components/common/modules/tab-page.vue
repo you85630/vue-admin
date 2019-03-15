@@ -67,7 +67,8 @@ export default {
     },
     next () {
       let wid = document.getElementById('navbox').offsetWidth
-      let all = document.getElementById('tabbox').offsetWidth
+      let all = document.getElementById('tabbox').offsetWidth + 10
+
       let len = (all - wid) / this.multiple
 
       if (this.here < len - 1) {
@@ -79,7 +80,7 @@ export default {
           this.here = 0
         }
       }
-      this.mleft = -this.here * this.multiple - 10
+      this.mleft = -this.here * this.multiple
     },
     // 关闭全部
     closeAll () {
