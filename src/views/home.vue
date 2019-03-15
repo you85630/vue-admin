@@ -1,11 +1,11 @@
 <template>
   <Layout class="layout">
-    <Sider hide-trigger collapsible ref="sysSide" :collapsed-width="78" v-model="isCollapsed" class="left">
+    <Sider hide-trigger collapsible ref="vueside" :collapsed-width="78" v-model="isCollapsed" class="left">
       <div class="logo" @click="goHome">
         <p v-if="isCollapsed">{{siteName.small}}</p>
         <p v-else>{{siteName.big}}</p>
       </div>
-      <Menu theme="dark" accordion ref="sysPsylife" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
+      <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
         <Submenu v-for="li in Menu" :key="li.id" :name="li.id">
           <template slot="title"><Icon :type="li.icon" />{{li.title}}</template>
           <MenuItem v-for="(i,val) in li.nameBox" :key="val" :name="i.link"><Icon :type="i.icon" />{{i.title}}</MenuItem>
@@ -82,13 +82,13 @@ export default {
     ]),
     collapsedSider () {
       setTimeout(() => {
-        this.$refs.sysSide.toggleCollapse()
+        this.$refs.vueside.toggleCollapse()
       }, 200)
     },
     // 默认效果
     init () {
-      let tabList = JSON.parse(this.VueCookie.get('SYS-PSYLIFE-TABLIST'))
-      let active = JSON.parse(this.VueCookie.get('SYS-PSYLIFE-LINK'))
+      let tabList = JSON.parse(this.VueCookie.get('tablist'))
+      let active = JSON.parse(this.VueCookie.get('link'))
       if (tabList) {
         this.defaultTabList(tabList)
         if (active) {
@@ -100,8 +100,8 @@ export default {
     },
     refresh () {
       this.$nextTick(() => {
-        this.$refs.sysPsylife.updateOpened()
-        this.$refs.sysPsylife.updateActiveName()
+        this.$refs.vueadmin.updateOpened()
+        this.$refs.vueadmin.updateActiveName()
       })
     },
     closeTab (item) {
@@ -113,7 +113,8 @@ export default {
     }
   },
   created () {
-    this.init()
+    document.title = '管理平台'
+    // this.init()
     // 获取用户信息
     this.User()
   },
@@ -121,7 +122,7 @@ export default {
     nowOpen: 'refresh',
     tabList: {
       handler: function (val) {
-        this.VueCookie.set('SYS-PSYLIFE-TABLIST', JSON.stringify(val))
+        this.VueCookie.set('tablist', JSON.stringify(val))
       },
       deep: true
     }

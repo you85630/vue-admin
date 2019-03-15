@@ -32,6 +32,14 @@ const state = {
           meta: {
             title: 'page3'
           }
+        },
+        {
+          path: '/home/page4',
+          name: 'page4',
+          component: 'components/page/page4',
+          meta: {
+            title: 'page4'
+          }
         }
       ]
     }
@@ -119,21 +127,21 @@ const mutations = {
   // 登录
   login (state, key) {
     // 存储用户信息
-    this._vm.VueCookie.set('SYS-PSYLIFE-USER', JSON.stringify(state.user))
+    this._vm.VueCookie.set('user', JSON.stringify(state.user))
     router.push('/home')
   },
   // 退出
   exit (state) {
     state.user = {}
     router.push('/login')
-    this._vm.VueCookie.delete('SYS-PSYLIFE-USER')
-    this._vm.VueCookie.delete('SYS-PSYLIFE-LINK')
-    this._vm.VueCookie.delete('SYS-PSYLIFE-TABLIST')
+    this._vm.VueCookie.delete('user')
+    this._vm.VueCookie.delete('link')
+    this._vm.VueCookie.delete('tablist')
   },
 
   // 获取用户信息
   User (state) {
-    state.user = JSON.parse(this._vm.VueCookie.get('SYS-PSYLIFE-USER'))
+    state.user = JSON.parse(this._vm.VueCookie.get('user'))
   }
 }
 

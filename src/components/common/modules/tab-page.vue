@@ -5,8 +5,10 @@
         <div class="direction" @click="prev"><Icon type="ios-arrow-back" /></div>
         <div class="tab-box" :style="{marginLeft:mleft+'px'}" id="tabbox">
           <div class="tab" v-for="(li,index) in list" :key="index" :class="{active:li.link===active}">
-            <span></span>
-            <p @click="linkTab(li)">{{li.title}}</p>
+            <div class="add" @click="linkTab(li)">
+              <span></span>
+              <p>{{li.title}}</p>
+            </div>
             <Icon class="icon" type="ios-close" @click="removeTab(li)" />
           </div>
         </div>
@@ -101,7 +103,7 @@ export default {
     },
     // 切换tab
     linkTab (key) {
-      this.$emit('on-click', key.link)
+      this.$emit('on-click', key)
     },
     // 删除tab
     removeTab (now) {
@@ -163,22 +165,27 @@ export default {
       box-shadow: 0 0 2px #ccc;
       font-size: 12px;
       cursor: pointer;
-      span{
+      .add{
         display: flex;
-        margin: 0 6px;
-        width: 12px;
-        height: 12px;
-        border-radius: 100%;
-        background-color: #e3e3e3;
-      }
-      p{
-        overflow: hidden;
-        margin: 0 4px;
-        max-width: 300px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        word-spacing: nowrap;
-        line-height: 1;
+        flex-direction: row;
+        align-items: center;
+        span{
+          display: flex;
+          margin: 0 6px;
+          width: 12px;
+          height: 12px;
+          border-radius: 100%;
+          background-color: #e3e3e3;
+        }
+        p{
+          overflow: hidden;
+          margin: 0 4px;
+          max-width: 300px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          word-spacing: nowrap;
+          line-height: 1;
+        }
       }
       .icon{
         margin: 0 6px;
