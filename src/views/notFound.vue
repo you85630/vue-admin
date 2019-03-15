@@ -8,12 +8,11 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
   methods: {
-    ...mapActions([
-      'goHome'
-    ])
+    goHome () {
+      this.utils.closeTabs()
+    }
   }
 }
 </script>

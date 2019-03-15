@@ -195,8 +195,10 @@ export default {
     }
     .active{
       color: #2d8cf0;
-      span{
-        background-color: #2d8cf0;
+      .add{
+        span{
+            background-color: #2d8cf0;
+        }
       }
       .icon{
         color: #666;

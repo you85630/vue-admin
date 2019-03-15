@@ -22,7 +22,7 @@ export default {
     }
   },
 
-  closeTabs (key) {
+  closeTabs () {
     let list = []
     let tab = store
     let path = tab.getters.nowTab
@@ -37,10 +37,6 @@ export default {
       tab.dispatch('removeTabs', list)
     } else {
       tab.dispatch('goHome')
-    }
-
-    if (key) {
-      tab.dispatch('addTabs', key)
     }
   }
 }
