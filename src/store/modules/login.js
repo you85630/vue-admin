@@ -128,10 +128,14 @@ const mutations = {
   login (state, key) {
     // 存储用户信息
     this._vm.VueCookie.set('user', JSON.stringify(state.user))
+    this.state.utils.Message = {
+      code: 200
+    }
     router.push('/home')
   },
   // 退出
   exit (state) {
+    this.state.utils.Message = {}
     state.user = {}
     router.push('/login')
     this._vm.VueCookie.delete('user')
