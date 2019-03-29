@@ -1,5 +1,5 @@
-// import api from '../../assets/js/api'
-import router from './../../router'
+// import api from 'assets/js/api'
+import router from 'src/router'
 
 const state = {
   // 路由

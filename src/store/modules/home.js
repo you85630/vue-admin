@@ -1,4 +1,4 @@
-import router from './../../router'
+import router from 'src/router'
 
 const state = {
   // tab导航
@@ -65,6 +65,15 @@ const mutations = {
                 open: [i + 1],
                 link: e.link,
                 title: e.title
+              }
+            } else {
+              let active = JSON.parse(this._vm.VueCookie.get('link'))
+              let tablist = JSON.parse(this._vm.VueCookie.get('tablist'))
+              for (let j = 0; j < tablist.length; j++) {
+                const element = tablist[j]
+                if (element.link === active) {
+                  nowKey = element
+                }
               }
             }
           }
