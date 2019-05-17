@@ -19,6 +19,10 @@ const getters = {
 }
 
 const actions = {
+  // 判断页面是否是移动端
+  judge ({ commit }) {
+    commit('judge')
+  },
   // 跳转主页
   goHome ({ commit }) {
     commit('goHome')
@@ -38,6 +42,45 @@ const actions = {
 }
 
 const mutations = {
+  judge (state) {
+    let wid = document.body.clientWidth
+    let userAgentInfo = navigator.userAgent
+    let Agents = [
+      'Android',
+      'iPhone',
+      'SymbianOS',
+      'Windows Phone',
+      'iPad',
+      'iPod'
+    ]
+    let flag = true
+
+    for (const key in Agents) {
+      if (Agents.hasOwnProperty(key)) {
+        const element = Agents[key]
+        if (userAgentInfo.indexOf(element) > 0) {
+          flag = false
+          break
+        }
+      }
+    }
+
+    // PC端
+    if (flag) {
+      if (wid <= 920) {
+        state.mobile = true
+      } else {
+        state.mobile = false
+      }
+    } else {
+      // 移动端
+      if (wid <= 414) {
+        state.mobile = true
+      } else {
+        state.mobile = false
+      }
+    }
+  },
   goHome (state) {
     state.tabList = []
     state.breadcrumb = []
@@ -65,15 +108,6 @@ const mutations = {
                 open: [i + 1],
                 link: e.link,
                 title: e.title
-              }
-            } else {
-              let active = JSON.parse(this._vm.VueCookie.get('link'))
-              let tablist = JSON.parse(this._vm.VueCookie.get('tablist'))
-              for (let j = 0; j < tablist.length; j++) {
-                const element = tablist[j]
-                if (element.link === active) {
-                  nowKey = element
-                }
               }
             }
           }
@@ -105,7 +139,6 @@ const mutations = {
           options: JSON.stringify(nowKey.options)
         }
       })
-      nowKey.link = router.currentRoute.fullPath
     } else {
       router.push(nowKey.link)
     }
@@ -114,15 +147,16 @@ const mutations = {
     state.breadcrumb = nowKey.breadcrumb
     state.nowOpen = nowKey.open
     state.nowTab = nowKey.link
+    document.title = nowKey.title
 
     // 存储当前选中
-    this._vm.VueCookie.set('link', JSON.stringify(nowKey.link))
+    this._vm.VueCookie.set('link', JSON.stringify(nowKey))
   },
 
   removeTabs (state, item) {
     state.tabList = item
     let isBool = true
-    let active = JSON.parse(this._vm.VueCookie.get('link'))
+    let active = JSON.parse(this._vm.VueCookie.get('link')).link
     item.forEach(element => {
       if (element.link === active) {
         isBool = false

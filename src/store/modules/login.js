@@ -1,4 +1,4 @@
-// import api from 'assets/js/api'
+// import api from 'src/assets/js/api'
 import router from 'src/router'
 
 const state = {
@@ -9,37 +9,18 @@ const state = {
       name: 'home',
       component: 'views/home',
       children: [
+        // 演示
         {
           path: '/home/page1',
-          name: 'page1',
-          component: 'components/pages/page1',
-          meta: {
-            title: 'page1'
-          }
+          component: 'components/pages/demo/page1'
         },
         {
           path: '/home/page2',
-          name: 'page2',
-          component: 'components/pages/page2',
-          meta: {
-            title: 'page2'
-          }
+          component: 'components/pages/demo/page2'
         },
         {
           path: '/home/page3',
-          name: 'page3',
-          component: 'components/pages/page3',
-          meta: {
-            title: 'page3'
-          }
-        },
-        {
-          path: '/home/page4',
-          name: 'page4',
-          component: 'components/pages/page4',
-          meta: {
-            title: 'page4'
-          }
+          component: 'components/pages/demo/page3'
         }
       ]
     }
@@ -48,35 +29,13 @@ const state = {
   Menu: [
     {
       id: 1,
-      icon: 'logo-buffer',
-      title: '页面结构说明',
+      icon: 'md-bulb',
+      title: '全局事件',
       nameBox: [
         {
           icon: 'ios-albums',
-          title: '布局',
+          title: '事件',
           link: '/home/page1'
-        }
-      ]
-    }, {
-      id: 2,
-      icon: 'ios-cog',
-      title: '自定义组件',
-      nameBox: [
-        {
-          icon: 'md-bulb',
-          title: '通告栏',
-          link: '/home/page2'
-        }
-      ]
-    }, {
-      id: 3,
-      icon: 'md-cube',
-      title: '项目',
-      nameBox: [
-        {
-          icon: 'md-list-box',
-          title: '项目清单',
-          link: '/home/page3'
         }
       ]
     }

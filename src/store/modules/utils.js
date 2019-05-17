@@ -1,4 +1,4 @@
-// import api from 'assets/js/api'
+// import api from '../../assets/js/api'
 
 const state = {
   Message: {}

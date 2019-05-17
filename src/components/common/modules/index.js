@@ -4,9 +4,21 @@ let modules = {}
 files.keys().forEach(key => {
   let pathName = key.replace(/(\.\/|\.vue)/g, '')
   let arr = pathName.split('-')
-  arr[1] = arr[1].slice(0, 1).toUpperCase() + arr[1].slice(1)
-  let name = arr[0] + arr[1]
-  modules[name] = pathName
+
+  let nowArr = []
+  arr.slice(1).forEach(element => {
+    element = element.slice(0, 1).toUpperCase() + element.slice(1)
+    nowArr.push(element)
+  })
+
+  let name = ''
+  nowArr.forEach(element => {
+    name += element
+  })
+
+  let keyName = arr.slice(0, 1) + name
+
+  modules[keyName] = pathName
   return modules
 })
 

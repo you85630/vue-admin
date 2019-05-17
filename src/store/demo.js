@@ -1,4 +1,5 @@
-// import api from '../../assets/js/api'
+// import api from 'src/assets/js/api'
+// import router from 'src/router'
 
 const state = {}
 

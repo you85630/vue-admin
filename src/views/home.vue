@@ -6,7 +6,7 @@
         <p v-else>{{siteName.big}}</p>
       </div>
       <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
-        <Submenu v-for="li in Menu" :key="li.id" :name="li.id">
+        <Submenu v-for="(li,index) in Menu" :key="index" :name="li.id">
           <template slot="title"><Icon :type="li.icon" />{{li.title}}</template>
           <MenuItem v-for="(i,val) in li.nameBox" :key="val" :name="i.link"><Icon :type="i.icon" />{{i.title}}</MenuItem>
         </Submenu>
@@ -31,9 +31,11 @@
             <BreadcrumbItem v-for="li in breadcrumb" :key="li">{{li}}</BreadcrumbItem>
           </Breadcrumb>
         </div>
-        <Dropdown @on-click="exit" class="namebox">
+        <Dropdown @on-click="sysClick" class="namebox">
           <div class="name"><Icon class="icon" type="ios-contact"></Icon>{{user.name}}</div>
-          <DropdownMenu slot="list"><DropdownItem class="box">退出</DropdownItem></DropdownMenu>
+          <DropdownMenu slot="list">
+            <DropdownItem class="box" v-for="li in dropdownList" :key="li.id" :name="li.key">{{li.title}}</DropdownItem>
+          </DropdownMenu>
         </Dropdown>
       </div>
 
@@ -58,6 +60,13 @@ export default {
         big: '管理平台',
         small: '管'
       },
+      dropdownList: [
+        {
+          id: 1,
+          key: 'exit',
+          title: '退出'
+        }
+      ],
       isCollapsed: false
     }
   },
@@ -96,6 +105,7 @@ export default {
         this.goHome()
       }
     },
+    // 切换左道航
     refresh () {
       if (!this.isCollapsed) {
         this.$nextTick(() => {
@@ -104,11 +114,21 @@ export default {
         })
       }
     },
+    // 关闭
     closeTab (item) {
       if (item.length) {
         this.removeTabs(item)
       } else {
         this.goHome()
+      }
+    },
+    // 系统设置
+    sysClick (e) {
+      if (e == 'exit') {
+        this.exit()
+      }
+      if (e == 'revamp') {
+        this.$router.push('/revamp')
       }
     }
   },
@@ -149,8 +169,15 @@ export default {
   height: 60px;
   font-size: 22px;
   cursor: pointer;
-
   user-select: none;
+
+  img{
+    width: 60%;
+    height: auto;
+  }
+  .small{
+    width: 50%;
+  }
   p{
     padding: 2px 10px;
     border-radius: 10px;
@@ -158,13 +185,6 @@ export default {
     background-color: #2d8cf0;
     color:#fff;
     font-weight: bold;
-  }
-  img{
-    width: 60%;
-    height: auto;
-  }
-  .small{
-    width: 50%;
   }
 }
 .left{

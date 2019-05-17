@@ -67,14 +67,11 @@ key: {
 ### 子页面关闭Tab标签(只限关闭当前页面)
 * 页面内使用
 ```
-this.utils.closeTabs(key)
+this.utils.closeTabs()
 ```
 
 * vuex内使用
 ```
-this._vm.utils.closeTabs(key)
+this._vm.utils.closeTabs()
 ```
-* 所需字段
-```
-key='/home'
-```
+

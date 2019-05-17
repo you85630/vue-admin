@@ -11,10 +11,13 @@ import { mapActions } from 'vuex'
 export default {
   mounted () {
     this.getRouter()
+    this.judge()
+    window.addEventListener('resize', this.judge)
   },
   methods: {
     ...mapActions([
-      'getRouter'
+      'getRouter',
+      'judge'
     ]),
     change (val) {
       let name = val.name

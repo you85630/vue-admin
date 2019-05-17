@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <Card class="card">
-      <p class="title" slot="title"><img src="./../assets/img/logo-small.png" alt="">管理平台</p>
+      <p class="title" slot="title"><img src="./../assets/img/logo-small.png" alt="">小思管理平台</p>
       <Form class="form" ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
           <Input type="text" size="large" v-model="formInline.user" placeholder="请填写用户名"></Input>
@@ -108,7 +108,7 @@ export default {
     justify-content: center;
     font-size: 20px;
     img{
-      height: 38px;
+      height: 30px;
       width: auto;
       margin-right: 10px;
     }
