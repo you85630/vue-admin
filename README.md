@@ -41,7 +41,7 @@ dudao
 * 存放位置：`src/components/common/modules/`
 * 命名规则：以中划线-分割,例:`label-box`
 
-## 公用事件asasss
+## 公用事件
 
 ###  子页面添加Tab标签/子页面跳转Tab标签
 * 页面内使用
