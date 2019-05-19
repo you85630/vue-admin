@@ -24,7 +24,7 @@ export default {
       let router = this.$router
       // 如果路由内无此名字，跳转到404
       if (!name) {
-        router.push('/404')
+        // router.push('/404')
       }
       let token = JSON.parse(this.VueCookie.get('user'))
       // 如果无token，跳转登录页
