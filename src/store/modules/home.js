@@ -19,10 +19,6 @@ const getters = {
 }
 
 const actions = {
-  // 判断页面是否是移动端
-  judge ({ commit }) {
-    commit('judge')
-  },
   // 跳转主页
   goHome ({ commit }) {
     commit('goHome')
@@ -42,54 +38,14 @@ const actions = {
 }
 
 const mutations = {
-  judge (state) {
-    let wid = document.body.clientWidth
-    let userAgentInfo = navigator.userAgent
-    let Agents = [
-      'Android',
-      'iPhone',
-      'SymbianOS',
-      'Windows Phone',
-      'iPad',
-      'iPod'
-    ]
-    let flag = true
-
-    for (const key in Agents) {
-      if (Agents.hasOwnProperty(key)) {
-        const element = Agents[key]
-        if (userAgentInfo.indexOf(element) > 0) {
-          flag = false
-          break
-        }
-      }
-    }
-
-    // PC端
-    if (flag) {
-      if (wid <= 920) {
-        state.mobile = true
-      } else {
-        state.mobile = false
-      }
-    } else {
-      // 移动端
-      if (wid <= 414) {
-        state.mobile = true
-      } else {
-        state.mobile = false
-      }
-    }
-  },
-
   goHome (state) {
     state.tabList = []
     state.breadcrumb = []
     state.nowOpen = []
     state.nowTab = '/home'
     router.push('/home')
-    this._vm.VueCookie.delete('link')
-    this._vm.VueCookie.delete('tablist')
+    this._vm.VueCookie.remove('link')
+    this._vm.VueCookie.remove('tablist')
     document.title = '管理平台'
   },
 
@@ -152,13 +108,13 @@ const mutations = {
     document.title = nowKey.title
 
     // 存储当前选中
-    this._vm.VueCookie.set('link', JSON.stringify(nowKey))
+    this._vm.VueCookie.set('link', nowKey)
   },
 
   removeTabs (state, item) {
     state.tabList = item
     let isBool = true
-    let active = JSON.parse(this._vm.VueCookie.get('link')).link
+    let active = this._vm.VueCookie.get('link').link
     item.forEach(element => {
       if (element.link === active) {
         isBool = false

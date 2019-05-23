@@ -1,4 +1,4 @@
-# vue3-admin
+# vue-admin
 
 # 目录结构
 ```

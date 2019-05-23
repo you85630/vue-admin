@@ -98,7 +98,7 @@ export default {
     // 默认效果
     init () {
       let tabList = JSON.parse(this.VueCookie.get('tablist'))
-      let active = JSON.parse(this.VueCookie.get('link'))
+      let active = this.VueCookie.get('link')
       if (tabList) {
         this.defaultTabList(tabList)
         if (active) {

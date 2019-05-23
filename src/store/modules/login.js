@@ -76,8 +76,8 @@ const mutations = {
   // 登录
   login (state, key) {
     // 存储用户信息
-    this._vm.VueCookie.set('token', JSON.stringify('token'))
-    this._vm.VueCookie.set('user', JSON.stringify(state.user))
+    this._vm.VueCookie.set('token', 'token')
+    this._vm.VueCookie.set('user', state.user)
     this.state.utils.Message = {
       code: 200
     }
@@ -89,14 +89,14 @@ const mutations = {
     this.state.utils.Message = {}
     state.user = {}
     router.push('/login')
-    this._vm.VueCookie.delete('user')
-    this._vm.VueCookie.delete('link')
-    this._vm.VueCookie.delete('tablist')
+    this._vm.VueCookie.remove('user')
+    this._vm.VueCookie.remove('link')
+    this._vm.VueCookie.remove('tablist')
   },
 
   // 获取用户信息
   User (state) {
-    state.user = JSON.parse(this._vm.VueCookie.get('user'))
+    state.user = this._vm.VueCookie.get('user')
   }
 }
 

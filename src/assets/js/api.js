@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import VueCookie from 'vue-cookie'
+// import VueCookie from 'vue-cookies'
 import env from './../../../vue.config.js'
 
 let baseURL

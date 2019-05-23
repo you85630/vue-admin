@@ -14,7 +14,7 @@ import 'assets/css/reset.css'
 // 引入echarts
 import echarts from 'echarts'
 // 引入存储组件
-import VueCookie from 'vue-cookie'
+import VueCookie from 'vue-cookies'
 // 全局事件
 import utils from 'assets/js/utils.js'
 // 全局引用自定义模板
