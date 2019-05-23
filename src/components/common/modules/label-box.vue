@@ -186,13 +186,15 @@ export default {
           text-overflow: ellipsis;
           white-space: nowrap;
           word-spacing: nowrap;
-          line-height: 1;
         }
       }
       .icon{
         margin-right: 6px;
         font-size: 22px;
-        line-height: 1;
+        &:hover{
+          color: #ed4014;
+          font-weight: bold;
+        }
       }
     }
     .active{

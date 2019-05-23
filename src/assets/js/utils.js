@@ -7,6 +7,7 @@ export default {
       const item = data[i]
       let now = Object.assign({}, item)
       now.component = () => import(`src/${item.component}`)
+      now.meta = item.meta
       if (now.children) {
         now.children = []
         this.addNewRouter(item.children, now.children)

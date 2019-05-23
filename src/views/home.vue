@@ -1,7 +1,7 @@
 <template>
   <Layout class="layout">
     <Sider hide-trigger collapsible ref="vueside" :collapsed-width="78" v-model="isCollapsed" class="left">
-      <div class="logo" @click="goHome">
+      <div class="logo" @click="goHomes">
         <img v-if="isCollapsed" src="./../assets/img/logo-small.png" alt="">
         <p v-else>{{siteName.big}}</p>
       </div>
@@ -43,7 +43,9 @@
 
       <div class="content">
         <div class="main-box">
-          <router-view/>
+          <keep-alive :include="keepAlive">
+            <router-view />
+          </keep-alive>
         </div>
       </div>
     </Content>
@@ -67,7 +69,8 @@ export default {
           title: '退出'
         }
       ],
-      isCollapsed: false
+      isCollapsed: false,
+      keepAlive: []
     }
   },
   computed: {
@@ -114,22 +117,58 @@ export default {
         })
       }
     },
+    goHomes () {
+      this.goHome()
+      this.keepAlive = []
+    },
     // 关闭
     closeTab (item) {
       if (item.length) {
         this.removeTabs(item)
       } else {
         this.goHome()
+        this.keepAlive = []
       }
     },
     // 系统设置
     sysClick (e) {
-      if (e == 'exit') {
+      if (e === 'exit') {
         this.exit()
       }
-      if (e == 'revamp') {
+      if (e === 'revamp') {
         this.$router.push('/revamp')
       }
+    },
+    keepInclude (val) {
+      this.keepAlive = []
+      this.VueCookie.set('tablist', JSON.stringify(val))
+
+      let loseList = []
+      let routeList = []
+      let route = this.$router.options.routes
+      for (let i = 0; i < route.length; i++) {
+        const element = route[i]
+        if (element.name === 'home') {
+          routeList = element.children
+        }
+      }
+      for (let i = 0; i < routeList.length; i++) {
+        const element = routeList[i]
+        if (element.meta) {
+          if (element.meta.keepAlive) {
+            loseList.push(element.name)
+          }
+        }
+      }
+
+      for (let i = 0; i < val.length; i++) {
+        const element = val[i].name
+        if (loseList.indexOf(element) === -1) {
+          this.keepAlive.push(element)
+        }
+      }
+      let list = Array.from(new Set(this.keepAlive))
+      this.keepAlive = list
     }
   },
   created () {
@@ -141,9 +180,7 @@ export default {
   watch: {
     nowOpen: 'refresh',
     tabList: {
-      handler: function (val) {
-        this.VueCookie.set('tablist', JSON.stringify(val))
-      },
+      handler: 'keepInclude',
       deep: true
     }
   }

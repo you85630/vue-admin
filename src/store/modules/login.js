@@ -2,40 +2,43 @@
 import router from 'src/router'
 
 const state = {
-  // 路由
-  routerList: [
-    {
-      path: '/home',
-      name: 'home',
-      component: 'views/home',
-      children: [
-        // 演示
-        {
-          path: '/home/page1',
-          component: 'components/pages/demo/page1'
-        },
-        {
-          path: '/home/page2',
-          component: 'components/pages/demo/page2'
-        },
-        {
-          path: '/home/page3',
-          component: 'components/pages/demo/page3'
-        }
-      ]
-    }
-  ],
   //  左导航
   Menu: [
     {
       id: 1,
       icon: 'md-bulb',
-      title: '全局事件',
+      title: '页面',
       nameBox: [
         {
-          icon: 'ios-albums',
-          title: '事件',
+          icon: 'md-albums',
+          title: 'page1',
+          name: 'page1',
           link: '/home/page1'
+        },
+        {
+          icon: 'md-document',
+          title: 'page4',
+          name: 'page4',
+          link: '/home/page4'
+        }
+      ]
+    },
+    {
+      id: 2,
+      icon: 'md-bulb',
+      title: '页面2',
+      nameBox: [
+        {
+          icon: 'md-browsers',
+          title: 'page2',
+          name: 'page2',
+          link: '/home/page2'
+        },
+        {
+          icon: 'md-desktop',
+          title: 'page3',
+          name: 'page3',
+          link: '/home/page3/1'
         }
       ]
     }
@@ -54,10 +57,6 @@ const getters = {
 }
 
 const actions = {
-  // 获取路由
-  getRouter ({ commit }) {
-    commit('getRouter')
-  },
   // 登录
   login ({ commit }, key) {
     commit('login', key)
@@ -74,24 +73,17 @@ const actions = {
 }
 
 const mutations = {
-  // 获取路由
-  getRouter (state) {
-    let nowRouter = []
-    let rot = state.routerList
-    if (rot) {
-      this._vm.utils.addNewRouter(rot, nowRouter)
-      router.addRoutes(nowRouter)
-    }
-  },
   // 登录
   login (state, key) {
     // 存储用户信息
+    this._vm.VueCookie.set('token', JSON.stringify('token'))
     this._vm.VueCookie.set('user', JSON.stringify(state.user))
     this.state.utils.Message = {
       code: 200
     }
     router.push('/home')
   },
+
   // 退出
   exit (state) {
     this.state.utils.Message = {}

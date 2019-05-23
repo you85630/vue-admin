@@ -81,6 +81,7 @@ const mutations = {
       }
     }
   },
+
   goHome (state) {
     state.tabList = []
     state.breadcrumb = []
@@ -107,7 +108,8 @@ const mutations = {
                 breadcrumb: [element.title, e.title],
                 open: [i + 1],
                 link: e.link,
-                title: e.title
+                title: e.title,
+                name: e.name
               }
             }
           }
