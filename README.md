@@ -60,6 +60,7 @@ key: {
   breadcrumb:['第一级','第二级'],
   open:[menu类别索引],
   title: '标签名',
+  name: '页面名称，需要与router里面的name对应',
   link: '完整路由',
   options: '路由需要传递的参数'
 }
