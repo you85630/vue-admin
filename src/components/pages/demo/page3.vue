@@ -1,10 +1,12 @@
 <template>
   <div class="page">
-    <p>333</p>
-    <Transfer
-        :data="data1"
-        :target-keys="targetKeys1"
-        @on-change="handleChange1"></Transfer>
+    <p>无缓存页面</p>
+    <br>
+    <CheckboxGroup v-model="fruit">
+      <Checkbox label="香蕉"></Checkbox>
+      <Checkbox label="苹果"></Checkbox>
+      <Checkbox label="西瓜"></Checkbox>
+    </CheckboxGroup>
   </div>
 </template>
 
@@ -13,24 +15,7 @@ export default {
   name: 'page3',
   data () {
     return {
-      data1: this.getMockData(),
-      targetKeys1: []
-    }
-  },
-  methods: {
-    getMockData () {
-      let mockData = []
-      for (let i = 1; i <= 10; i++) {
-        mockData.push({
-          key: i.toString(),
-          label: 'Content ' + i,
-          description: 'The desc of content  ' + i
-        })
-      }
-      return mockData
-    },
-    handleChange1 (newTargetKeys, direction, moveKeys) {
-      this.targetKeys1 = newTargetKeys
+      fruit: []
     }
   }
 }

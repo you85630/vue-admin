@@ -1,7 +1,7 @@
 <template>
   <div class="login-box">
     <Card class="card">
-      <p class="title" slot="title"><img src="./../assets/img/logo-small.png" alt="">小思管理平台</p>
+      <p class="title" slot="title"><img src="./../assets/img/logo-small.png" alt="">管理平台</p>
       <Form class="form" ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
           <Input type="text" size="large" v-model="formInline.user" placeholder="请填写用户名"></Input>
@@ -42,6 +42,9 @@ export default {
       }
     }
   },
+  created () {
+    this.exit()
+  },
   computed: {
     ...mapGetters([
       'Message'
@@ -49,41 +52,41 @@ export default {
   },
   methods: {
     ...mapActions([
-      'login'
+      'login',
+      'exit'
     ]),
     // 登录
     handleSubmit (name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           this.login(this.formInline)
+
+          setTimeout(() => {
+            this.getMessage(this.Message)
+          }, 300)
         }
       })
     },
     // 全局提示
     getMessage (val) {
-      if (val) {
-        if (val.code === 200) {
-          this.$Message.success({
-            content: '登录成功',
-            duration: 2
-          })
-          this.formInline = {
-            user: '',
-            password: '',
-            code: '',
-            captcha_id: ''
-          }
-        } else {
-          this.$Message.error({
-            content: val.info,
-            duration: 2
-          })
+      if (val.code === 200) {
+        this.$Message.success({
+          content: '登录成功',
+          duration: 2
+        })
+        this.formInline = {
+          user: '',
+          password: '',
+          code: '',
+          captcha_id: ''
         }
+      } else {
+        this.$Message.error({
+          content: val.info,
+          duration: 2
+        })
       }
     }
-  },
-  watch: {
-    'Message': 'getMessage'
   }
 }
 </script>

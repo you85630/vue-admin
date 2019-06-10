@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <p>222</p>
+    <p>有缓存页面</p>
+    <br>
     <Rate v-model="value" />
   </div>
 </template>

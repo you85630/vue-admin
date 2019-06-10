@@ -42,7 +42,9 @@ const router = new Router({
           name: 'page1',
           component: () => import('components/pages/demo/page1'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            user: [1],
+            title: '页面1'
           }
         },
         {
@@ -50,7 +52,9 @@ const router = new Router({
           name: 'page2',
           component: () => import('components/pages/demo/page2'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            user: [1, 2],
+            title: '页面2'
           }
         },
         {
@@ -58,7 +62,10 @@ const router = new Router({
           name: 'page3',
           component: () => import('components/pages/demo/page3'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            keepAlive: true,
+            user: [1],
+            title: '页面3'
           }
         },
         {
@@ -67,7 +74,8 @@ const router = new Router({
           component: () => import('components/pages/demo/page4'),
           meta: {
             requireAuth: true,
-            keepAlive: true
+            user: [2],
+            title: '页面4'
           }
         }
       ]
@@ -77,13 +85,26 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
-  let login = VueCookie.get('token')
+  let user = VueCookie.get('user')
+  // 是否需要登录
   if (to.meta.requireAuth) {
-    if (!login) {
+    // 是否登录
+    if (!user) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
       })
+    }
+
+    // 是否是当前账号权限
+    let list = to.meta.user
+    if (list) {
+      if (list.indexOf(parseInt(user.user_id)) === -1) {
+        next({
+          path: '/login',
+          query: { redirect: from.fullPath }
+        })
+      }
     }
   }
   next()

@@ -1,4 +1,4 @@
-import store from './../../store'
+import store from 'src/store'
 
 export default {
   // 添加路由

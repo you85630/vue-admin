@@ -32,7 +32,7 @@
           </Breadcrumb>
         </div>
         <Dropdown @on-click="sysClick" class="namebox">
-          <div class="name"><Icon class="icon" type="ios-contact"></Icon>{{user.name}}</div>
+          <div class="name"><Icon class="icon" type="ios-contact"></Icon>{{people.name}}</div>
           <DropdownMenu slot="list">
             <DropdownItem class="box" v-for="li in dropdownList" :key="li.id" :name="li.key">{{li.title}}</DropdownItem>
           </DropdownMenu>
@@ -44,7 +44,7 @@
       <div class="content">
         <div class="main-box">
           <keep-alive :include="keepAlive">
-            <router-view />
+            <router-view v-if="samePage" />
           </keep-alive>
         </div>
       </div>
@@ -70,12 +70,13 @@ export default {
         }
       ],
       isCollapsed: false,
+      samePage: true,
       keepAlive: []
     }
   },
   computed: {
     ...mapGetters([
-      'user',
+      'people',
       'Menu',
       'tabList',
       'nowOpen',
@@ -90,7 +91,7 @@ export default {
       'removeTabs',
       'defaultTabList',
       'goHome',
-      'User'
+      'userInfo'
     ]),
     collapsedSider () {
       this.$refs.vueside.toggleCollapse()
@@ -167,20 +168,34 @@ export default {
           this.keepAlive.push(element)
         }
       }
+
       let list = Array.from(new Set(this.keepAlive))
       this.keepAlive = list
+    },
+    initRoute (val) {
+      let list = this.keepAlive
+      if (list.indexOf(val.name) === -1) {
+        this.samePage = false
+        this.$nextTick(() => {
+          this.samePage = true
+        })
+      }
     }
   },
   created () {
     document.title = '管理平台'
     this.init()
     // 获取用户信息
-    this.User()
+    this.userInfo()
   },
   watch: {
     nowOpen: 'refresh',
     tabList: {
       handler: 'keepInclude',
+      deep: true
+    },
+    $route: {
+      handler: 'initRoute',
       deep: true
     }
   }

@@ -16,10 +16,10 @@ const state = {
           link: '/home/page1'
         },
         {
-          icon: 'md-document',
-          title: 'page4',
-          name: 'page4',
-          link: '/home/page4'
+          icon: 'md-browsers',
+          title: 'page2',
+          name: 'page2',
+          link: '/home/page2'
         }
       ]
     },
@@ -29,23 +29,24 @@ const state = {
       title: '页面2',
       nameBox: [
         {
-          icon: 'md-browsers',
-          title: 'page2',
-          name: 'page2',
-          link: '/home/page2'
-        },
-        {
           icon: 'md-desktop',
           title: 'page3',
           name: 'page3',
           link: '/home/page3/1'
+        },
+        {
+          icon: 'md-document',
+          title: 'page4',
+          name: 'page4',
+          link: '/home/page4'
         }
       ]
     }
   ],
   // 用户信息
-  user: {
-    name: '小明'
+  people: {
+    name: '小明',
+    user_id: 1
   }
 }
 
@@ -53,7 +54,7 @@ const getters = {
   //  左导航
   Menu: state => state.Menu,
   // 用户信息
-  user: state => state.user
+  people: state => state.people
 }
 
 const actions = {
@@ -67,8 +68,8 @@ const actions = {
     commit('exit')
   },
   // 获取用户信息
-  User ({ commit }) {
-    commit('User')
+  userInfo ({ commit }) {
+    commit('userInfo')
   }
 }
 
@@ -76,10 +77,10 @@ const mutations = {
   // 登录
   login (state, key) {
     // 存储用户信息
-    this._vm.VueCookie.set('token', 'token')
-    this._vm.VueCookie.set('user', state.user)
+    this._vm.VueCookie.set('user', state.people)
     this.state.utils.Message = {
       code: 200
+      // info: '账号或密码错误'
     }
     router.push('/home')
   },
@@ -95,7 +96,7 @@ const mutations = {
   },
 
   // 获取用户信息
-  User (state) {
+  userInfo (state) {
     state.user = this._vm.VueCookie.get('user')
   }
 }

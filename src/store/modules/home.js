@@ -43,7 +43,7 @@ const mutations = {
     state.breadcrumb = []
     state.nowOpen = []
     state.nowTab = '/home'
-    router.push('/home')
+    router.push(state.nowTab)
     this._vm.VueCookie.remove('link')
     this._vm.VueCookie.remove('tablist')
     document.title = '管理平台'

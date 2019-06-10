@@ -1,11 +1,6 @@
 <template>
   <div class="page">
-    <p>444</p>
-    <CheckboxGroup v-model="fruit">
-      <Checkbox label="香蕉"></Checkbox>
-      <Checkbox label="苹果"></Checkbox>
-      <Checkbox label="西瓜"></Checkbox>
-    </CheckboxGroup>
+    <p>无权限页面</p>
   </div>
 </template>
 
@@ -13,9 +8,7 @@
 export default {
   name: 'page4',
   data () {
-    return {
-      fruit: []
-    }
+    return {}
   }
 }
 </script>

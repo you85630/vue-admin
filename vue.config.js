@@ -5,6 +5,7 @@ module.exports = {
   outputDir: 'dist',
   productionSourceMap: false,
   assetsDir: 'assets',
+  runtimeCompiler: true,
   devServer: {
     host: 'localhost',
     port: 2333,
