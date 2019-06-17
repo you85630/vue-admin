@@ -160,35 +160,35 @@ export default {
     // tab页面存储
     updateTabList (val) {
       this.keepAlive = []
-      // this.VueCookie.set('tablist', JSON.stringify(val))
+      this.VueCookie.set('tablist', JSON.stringify(val))
 
-      // let loseList = []
-      // let routeList = []
-      // let route = this.$router.options.routes
-      // for (let i = 0; i < route.length; i++) {
-      //   const element = route[i]
-      //   if (element.name === 'home') {
-      //     routeList = element.children
-      //   }
-      // }
-      // for (let i = 0; i < routeList.length; i++) {
-      //   const element = routeList[i]
-      //   if (element.meta) {
-      //     if (element.meta.keepAlive) {
-      //       loseList.push(element.name)
-      //     }
-      //   }
-      // }
+      let loseList = []
+      let routeList = []
+      let route = this.$router.options.routes
+      for (let i = 0; i < route.length; i++) {
+        const element = route[i]
+        if (element.name === 'home') {
+          routeList = element.children
+        }
+      }
+      for (let i = 0; i < routeList.length; i++) {
+        const element = routeList[i]
+        if (element.meta) {
+          if (element.meta.keepAlive) {
+            loseList.push(element.name)
+          }
+        }
+      }
 
-      // for (let i = 0; i < val.length; i++) {
-      //   const element = val[i].name
-      //   if (loseList.indexOf(element) === -1) {
-      //     this.keepAlive.push(element)
-      //   }
-      // }
+      for (let i = 0; i < val.length; i++) {
+        const element = val[i].name
+        if (loseList.indexOf(element) === -1) {
+          this.keepAlive.push(element)
+        }
+      }
 
-      // let list = Array.from(new Set(this.keepAlive))
-      // this.keepAlive = list
+      let list = Array.from(new Set(this.keepAlive))
+      this.keepAlive = list
     },
     updateRoute (val) {
       let list = this.keepAlive
