@@ -56,16 +56,42 @@ const mutations = {
     if (key.constructor === String) {
       for (let i = 0; i < menu.length; i++) {
         const element = menu[i]
-        for (const k in element.nameBox) {
-          if (element.nameBox.hasOwnProperty(k)) {
-            const e = element.nameBox[k]
-            if (e.link === key) {
-              nowKey = {
-                breadcrumb: [element.title, e.title],
-                open: [i + 1],
-                link: e.link,
-                title: e.title,
-                name: e.name
+        if (element.link === key) {
+          nowKey = {
+            breadcrumb: [element.title],
+            link: element.link,
+            title: element.title,
+            name: element.name
+          }
+        } else {
+          let two = element.children
+          if (two) {
+            for (let j = 0; j < two.length; j++) {
+              const e = two[j]
+              if (e.link === key) {
+                nowKey = {
+                  breadcrumb: [element.title, e.title],
+                  open: [i],
+                  link: e.link,
+                  title: e.title,
+                  name: e.name
+                }
+              } else {
+                let three = e.children
+                if (three) {
+                  for (let s = 0; s < three.length; s++) {
+                    const t = three[s]
+                    if (t.link === key) {
+                      nowKey = {
+                        breadcrumb: [element.title, e.title, t.title],
+                        open: [i, i + '-' + j],
+                        link: t.link,
+                        title: t.title,
+                        name: t.name
+                      }
+                    }
+                  }
+                }
               }
             }
           }

@@ -5,17 +5,34 @@
         <img v-if="isCollapsed" src="./../assets/img/logo-small.png" alt="">
         <p v-else>{{siteName.big}}</p>
       </div>
+
       <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
-        <Submenu v-for="(li,index) in Menu" :key="index" :name="li.id">
-          <template slot="title"><Icon :type="li.icon" />{{li.title}}</template>
-          <MenuItem v-for="(i,val) in li.nameBox" :key="val" :name="i.link"><Icon :type="i.icon" />{{i.title}}</MenuItem>
+        <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+        <Submenu v-for="(item,index) in Menu" :key="index" :name="index" v-if="item.children">
+          <template slot="title"><Icon :type="item.icon" />{{item.title}}</template>
+          <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+          <Submenu v-for="(li,val) in item.children" :key="index+'-'+val" :name="index+'-'+val" v-if="li.children">
+            <template slot="title"><Icon :type="li.icon" />{{li.title}}</template>
+            <MenuItem v-for="i in li.children" :key="i.link" :name="i.link">
+              <Icon :type="i.icon" />{{i.title}}
+            </MenuItem>
+          </Submenu>
+          <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+          <MenuItem v-for="li in item.children" :key="li.link" :name="li.link" v-if="li.link">
+            <Icon :type="li.icon" />{{li.title}}
+          </MenuItem>
         </Submenu>
+        <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+        <MenuItem v-for="item in Menu" :key="item.link" :name="item.link" v-if="item.link">
+          <Icon :type="item.icon" />{{item.title}}
+        </MenuItem>
       </Menu>
+
       <div class="menu-box" v-if="isCollapsed">
-        <div class="menu-item" v-for="li in Menu" :key="li.id">
+        <div class="menu-item" v-for="(li,index) in Menu" :key="index">
           <div class="menu-tite"><Icon :type="li.icon" /></div>
           <div class="menu-list">
-            <div class="menu-li" v-for="(i,val) in li.nameBox" :key="val" @click="addTabs(i.link)">
+            <div class="menu-li" v-for="(i,val) in li.children" :key="val" @click="addTabs(i.link)">
               <Icon :type="i.icon" />{{i.title}}
             </div>
           </div>
@@ -140,39 +157,40 @@ export default {
         this.$router.push('/revamp')
       }
     },
-    keepInclude (val) {
+    // tab页面存储
+    updateTabList (val) {
       this.keepAlive = []
-      this.VueCookie.set('tablist', JSON.stringify(val))
+      // this.VueCookie.set('tablist', JSON.stringify(val))
 
-      let loseList = []
-      let routeList = []
-      let route = this.$router.options.routes
-      for (let i = 0; i < route.length; i++) {
-        const element = route[i]
-        if (element.name === 'home') {
-          routeList = element.children
-        }
-      }
-      for (let i = 0; i < routeList.length; i++) {
-        const element = routeList[i]
-        if (element.meta) {
-          if (element.meta.keepAlive) {
-            loseList.push(element.name)
-          }
-        }
-      }
+      // let loseList = []
+      // let routeList = []
+      // let route = this.$router.options.routes
+      // for (let i = 0; i < route.length; i++) {
+      //   const element = route[i]
+      //   if (element.name === 'home') {
+      //     routeList = element.children
+      //   }
+      // }
+      // for (let i = 0; i < routeList.length; i++) {
+      //   const element = routeList[i]
+      //   if (element.meta) {
+      //     if (element.meta.keepAlive) {
+      //       loseList.push(element.name)
+      //     }
+      //   }
+      // }
 
-      for (let i = 0; i < val.length; i++) {
-        const element = val[i].name
-        if (loseList.indexOf(element) === -1) {
-          this.keepAlive.push(element)
-        }
-      }
+      // for (let i = 0; i < val.length; i++) {
+      //   const element = val[i].name
+      //   if (loseList.indexOf(element) === -1) {
+      //     this.keepAlive.push(element)
+      //   }
+      // }
 
-      let list = Array.from(new Set(this.keepAlive))
-      this.keepAlive = list
+      // let list = Array.from(new Set(this.keepAlive))
+      // this.keepAlive = list
     },
-    initRoute (val) {
+    updateRoute (val) {
       let list = this.keepAlive
       if (list.indexOf(val.name) === -1) {
         this.samePage = false
@@ -191,11 +209,11 @@ export default {
   watch: {
     nowOpen: 'refresh',
     tabList: {
-      handler: 'keepInclude',
+      handler: 'updateTabList',
       deep: true
     },
     $route: {
-      handler: 'initRoute',
+      handler: 'updateRoute',
       deep: true
     }
   }
