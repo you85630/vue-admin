@@ -1,6 +1,6 @@
 <template>
   <Layout class="layout">
-    <Sider hide-trigger collapsible ref="vueside" :collapsed-width="78" v-model="isCollapsed" class="left">
+    <Sider hide-trigger collapsible ref="vueside" width="250px" :collapsed-width="78" v-model="isCollapsed" class="left">
       <div class="logo" @click="goHomes">
         <img v-if="isCollapsed" src="./../assets/img/logo-small.png" alt="">
         <p v-else>{{siteName.big}}</p>
@@ -9,11 +9,27 @@
       <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
         <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
         <Submenu v-for="(item,index) in Menu" :key="index" :name="index" v-if="item.children">
-          <template slot="title"><Icon :type="item.icon" />{{item.title}}</template>
+          <template slot="title"><Icon :type="item.icon" /><span class="left-name-box">{{item.title}}</span></template>
           <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
           <Submenu v-for="(li,val) in item.children" :key="index+'-'+val" :name="index+'-'+val" v-if="li.children">
-            <template slot="title"><Icon :type="li.icon" />{{li.title}}</template>
-            <MenuItem v-for="i in li.children" :key="i.link" :name="i.link">
+            <template slot="title"><Icon :type="li.icon" /><span class="left-name-box">{{li.title}}</span></template>
+            <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+            <Submenu v-for="(i,v) in li.children" :key="index+'-'+val+'-'+v" :name="index+'-'+val+'-'+v" v-if="i.children">
+              <template slot="title"><Icon :type="i.icon" /><span class="left-name-box">{{i.title}}</span></template>
+              <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+              <Submenu v-for="(s,sv) in i.children" :key="index+'-'+val+'-'+v+'-'+sv" :name="index+'-'+val+'-'+v+'-'+sv" v-if="s.children">
+                <template slot="title"><Icon :type="s.icon" /><span class="left-name-box">{{s.title}}</span></template>
+                <MenuItem v-for="ss in s.children" :key="ss.link" :name="ss.link">
+                  <Icon :type="ss.icon" />{{ss.title}}
+                </MenuItem>
+              </Submenu>
+              <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+              <MenuItem v-for="a in i.children" :key="a.link" :name="a.link" v-if="a.link">
+                <Icon :type="a.icon" />{{a.title}}
+              </MenuItem>
+            </Submenu>
+            <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
+            <MenuItem v-for="i in li.children" :key="i.link" :name="i.link" v-if="i.link">
               <Icon :type="i.icon" />{{i.title}}
             </MenuItem>
           </Submenu>
@@ -221,7 +237,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.layout{
+.layout {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -230,154 +246,166 @@ export default {
   border: 1px solid #d7dde4;
   background: #f5f7f9;
 }
-.logo{
+.logo {
+  font-size: 22px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0;
   width: 100%;
   height: 60px;
-  font-size: 22px;
+  margin: 10px 0;
   cursor: pointer;
   user-select: none;
 
-  img{
+  align-items: center;
+  justify-content: center;
+
+  img {
     width: 60%;
     height: auto;
   }
-  .small{
+  .small {
     width: 50%;
   }
-  p{
+  p {
+    font-weight: bold;
     padding: 2px 10px;
+    color: #fff;
     border-radius: 10px;
     border-bottom-left-radius: 0;
     background-color: #2d8cf0;
-    color:#fff;
-    font-weight: bold;
   }
 }
-.left{
+.left {
   z-index: 2;
+  overflow: auto;
   background-color: #001529;
-  .ivu-menu-dark{
-    overflow-y: auto;
+  .ivu-menu-dark {
     background-color: #001529;
   }
+  .left-name-box {
+    display: inline-block;
+    width: 70%;
+    vertical-align: top;
+  }
 }
-.right{
+.right {
   position: relative;
   background-color: #f5f7f9;
-  .header{
+  .header {
+    font-size: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     padding: 14px 20px;
     background-color: #fff;
     box-shadow: 0 0 5px #ccc;
-    font-size: 20px;
-    .header-left{
+
+    justify-content: space-between;
+    .header-left {
       display: flex;
-      align-items: center;
       flex-direction: row;
       width: 80%;
-      i{
+
+      align-items: center;
+      i {
         margin-right: 20px;
         cursor: pointer;
       }
     }
-    .namebox{
+    .namebox {
       font-size: 14px;
       cursor: pointer;
-      .name{
+      .name {
         display: flex;
-        align-items: center;
         flex-direction: row;
-        .icon{
+
+        align-items: center;
+        .icon {
+          font-size: 20px;
           margin-top: -4px;
           margin-right: 10px;
-          font-size: 20px;
         }
-        .ivu-icon{
+        .ivu-icon {
           vertical-align: middle;
         }
       }
-      .box{
+      .box {
         text-align: center;
       }
     }
   }
-  .content{
+  .content {
     overflow: hidden;
     box-sizing: border-box;
+    height: 86vh;
     margin: 20px;
     margin-bottom: 0;
     border: 1px solid #e8eaec;
     border-radius: 4px;
     background-color: #fff;
-    height: 86vh;
-    .main-box{
+    .main-box {
+      font-size: 14px;
       overflow-y: auto;
       box-sizing: border-box;
+      height: 100%;
       margin: 20px;
       padding-right: 10px;
-      height: 100%;
-      font-size: 14px;
     }
   }
 }
-.rotate-icon{
+.rotate-icon {
   transform: rotate(-90deg);
 }
-.menu-box{
-  .menu-item{
+.menu-box {
+  .menu-item {
     position: relative;
-    &:hover{
-      .menu-tite{
+    &:hover {
+      .menu-tite {
         background-color: #515a6e;
       }
-      .menu-list{
+      .menu-list {
         display: block;
       }
     }
-    .menu-tite{
-      padding: 6px 2px;
-      color: rgba(255,255,255,.7);
-      text-align: center;
+    .menu-tite {
       font-size: 22px;
+      padding: 6px 2px;
       cursor: pointer;
+      text-align: center;
+      color: rgba(255,255,255,.7);
     }
-    .menu-list{
+    .menu-list {
+      font-size: 14px;
       position: absolute;
+      z-index: 3;
       top: 6px;
       left: 90px;
-      z-index: 3;
       display: none;
       border-radius: 4px;
       background-color: #fff;
       box-shadow: 0 0 5px #999;
-      font-size: 14px;
-      &::after{
+      &::after {
         position: absolute;
         top: 0;
         left: -16px;
         width: 20%;
         height: 100%;
+        content: '';
         background-color: transparent;
-        content: "";
       }
-      .menu-li{
+      .menu-li {
         padding: 6px 16px;
-        white-space: nowrap;
         cursor: pointer;
-        &:hover{
+        white-space: nowrap;
+        &:hover {
           background-color: #f0f0f0;
         }
-        i{
+        i {
           margin-right: 4px;
         }
       }
     }
   }
+}
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+  background: rgba(80, 90, 109, .3);
 }
 </style>

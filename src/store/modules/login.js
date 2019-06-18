@@ -6,7 +6,7 @@ const state = {
   Menu: [
     {
       icon: 'md-bulb',
-      title: '页面1',
+      title: '页面1名字名字名字名字名字名字',
       children: [
         {
           icon: 'md-browsers',
@@ -16,7 +16,7 @@ const state = {
         },
         {
           icon: 'md-body',
-          title: 'page111',
+          title: 'page111名字名字名字名字名字名字',
           children: [
             {
               icon: 'md-albums',
@@ -26,9 +26,49 @@ const state = {
             },
             {
               icon: 'md-browsers',
-              title: 'page2',
+              title: 'page2名字名字名字名字名字名字',
               name: 'page2',
-              link: '/home/page2'
+              link: '/home/page2',
+              children: [
+                {
+                  icon: 'md-bookmark',
+                  title: 'page3-6名字名字名字名字名字名字',
+                  name: 'page3',
+                  link: '/home/page3/6',
+                  children: [
+                    {
+                      icon: 'md-bookmark',
+                      title: 'page3-8名字名字名字名字名字名字',
+                      name: 'page3',
+                      link: '/home/page3/8'
+                    },
+                    {
+                      icon: 'md-bookmark',
+                      title: 'page3-9',
+                      name: 'page3',
+                      link: '/home/page3/9'
+                    },
+                    {
+                      icon: 'md-bookmark',
+                      title: 'page3-10',
+                      name: 'page3',
+                      link: '/home/page3/10'
+                    },
+                    {
+                      icon: 'md-bookmark',
+                      title: 'page3-11',
+                      name: 'page3',
+                      link: '/home/page3/11'
+                    }
+                  ]
+                },
+                {
+                  icon: 'md-bookmark',
+                  title: 'page3-7',
+                  name: 'page3',
+                  link: '/home/page3/7'
+                }
+              ]
             }
           ]
         },
@@ -52,7 +92,7 @@ const state = {
         },
         {
           icon: 'md-document',
-          title: 'page4',
+          title: 'page4名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字',
           name: 'page4',
           link: '/home/page4'
         }
@@ -60,7 +100,7 @@ const state = {
     },
     {
       icon: 'md-alert',
-      title: '页面3-5',
+      title: '页面3-5名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字',
       name: 'page3',
       link: '/home/page3/5'
     }
