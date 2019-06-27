@@ -309,7 +309,6 @@ export default {
     box-sizing: border-box;
     height: 86vh;
     margin: 20px;
-    margin-bottom: 0;
     border: 1px solid #e8eaec;
     border-radius: 4px;
     background-color: #fff;
@@ -317,9 +316,9 @@ export default {
       font-size: 14px;
       overflow-y: auto;
       box-sizing: border-box;
+      width: 100%;
       height: 100%;
-      margin: 20px;
-      padding-right: 10px;
+      padding: 20px;
     }
   }
 }
