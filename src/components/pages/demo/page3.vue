@@ -7,6 +7,7 @@
       <Checkbox label="苹果"></Checkbox>
       <Checkbox label="西瓜"></Checkbox>
     </CheckboxGroup>
+    <p class="active">页面设置选中{{fruit}}</p>
   </div>
 </template>
 
@@ -17,12 +18,26 @@ export default {
     return {
       fruit: []
     }
+  },
+  created () {
+    this.init()
+  },
+  methods: {
+    init () {
+      let route = this.$route
+      if (route.params.id == 2) {
+        this.fruit = ['香蕉']
+      }
+    }
   }
 }
 </script>
 
-<style>
-.page{
+<style lang="scss" scoped>
+.page {
   font-size: 20px;
+  .active {
+    font-size: 14px;
+  }
 }
 </style>
