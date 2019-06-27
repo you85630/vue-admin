@@ -46,6 +46,7 @@ const mutations = {
     router.push(state.nowTab)
     this._vm.VueCookie.remove('LINK')
     this._vm.VueCookie.remove('TABLIST')
+    document.title = '管理平台'
   },
 
   addTabs (state, key) {

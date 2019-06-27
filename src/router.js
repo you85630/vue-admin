@@ -97,7 +97,7 @@ router.beforeEach((to, from, next) => {
         query: { redirect: to.fullPath }
       })
     } else {
-      if (requireAuth.indexOf(login.user_id) == -1) {
+      if (requireAuth.indexOf(parseInt(login.user_id)) === -1) {
         next({
           path: '/login',
           query: { redirect: from.fullPath }
