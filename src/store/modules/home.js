@@ -43,8 +43,8 @@ const mutations = {
     state.breadcrumb = []
     state.nowOpen = []
     router.push(state.nowTab)
-    this._vm.VueCookie.remove('link')
-    this._vm.VueCookie.remove('tablist')
+    this._vm.VueCookie.remove('LINK')
+    this._vm.VueCookie.remove('TABLIST')
     state.nowTab = '/home'
   },
 
@@ -91,13 +91,13 @@ const mutations = {
     document.title = nowKey.title
 
     // 存储当前选中
-    this._vm.VueCookie.set('link', nowKey)
+    this._vm.VueCookie.set('LINK', nowKey)
   },
 
   removeTabs (state, item) {
     state.tabList = item
     let isBool = true
-    let active = this._vm.VueCookie.get('link').link
+    let active = this._vm.VueCookie.get('LINK').link
     item.forEach(element => {
       if (element.link === active) {
         isBool = false

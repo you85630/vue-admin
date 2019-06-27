@@ -75,7 +75,7 @@ const mutations = {
   // 登录
   login (state, key) {
     // 存储用户信息
-    this._vm.VueCookie.set('user', state.people)
+    this._vm.VueCookie.set('USER', state.people)
     this.state.utils.Message = {
       code: 200
       // info: '账号或密码错误'
@@ -88,14 +88,14 @@ const mutations = {
     this.state.utils.Message = {}
     state.user = {}
     router.push('/login')
-    this._vm.VueCookie.remove('user')
-    this._vm.VueCookie.remove('link')
-    this._vm.VueCookie.remove('tablist')
+    this._vm.VueCookie.remove('USER')
+    this._vm.VueCookie.remove('LINK')
+    this._vm.VueCookie.remove('TABLIST')
   },
 
   // 获取用户信息
   userInfo (state) {
-    state.user = this._vm.VueCookie.get('user')
+    state.user = this._vm.VueCookie.get('USER')
   }
 }
 

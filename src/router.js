@@ -85,7 +85,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
-  let login = VueCookie.get('user')
+  let login = VueCookie.get('USER')
   // 是否需要登录
   let requireAuth = to.meta.requireAuth
 

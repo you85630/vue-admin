@@ -113,8 +113,8 @@ export default {
     },
     // 默认效果
     init () {
-      let tabList = JSON.parse(this.VueCookie.get('tablist'))
-      let active = this.VueCookie.get('link')
+      let tabList = JSON.parse(this.VueCookie.get('TABLIST'))
+      let active = this.VueCookie.get('LINK')
       if (tabList) {
         this.defaultTabList(tabList)
         if (active) {
@@ -156,7 +156,7 @@ export default {
     // tab页面存储
     updateTabList (val) {
       this.keepAlive = []
-      this.VueCookie.set('tablist', JSON.stringify(val))
+      this.VueCookie.set('TABLIST', JSON.stringify(val))
 
       let loseList = []
       let routeList = []
