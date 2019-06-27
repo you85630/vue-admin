@@ -42,10 +42,10 @@ const mutations = {
     state.tabList = []
     state.breadcrumb = []
     state.nowOpen = []
+    state.nowTab = '/home'
     router.push(state.nowTab)
     this._vm.VueCookie.remove('LINK')
     this._vm.VueCookie.remove('TABLIST')
-    state.nowTab = '/home'
   },
 
   addTabs (state, key) {
