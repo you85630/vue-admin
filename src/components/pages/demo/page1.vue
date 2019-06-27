@@ -20,7 +20,7 @@ export default {
       this.utils.closeTabs()
       let key = {
         breadcrumb: ['新建的', '页面2'],
-        open: [1],
+        open: [0],
         title: '页面2',
         link: '/home/page2',
         name: 'page2'
@@ -31,6 +31,7 @@ export default {
     addTab1 () {
       let key = {
         breadcrumb: ['新建的', '页面3'],
+        open: [1],
         title: '页面3',
         link: '/home/page3/2',
         name: 'page3',

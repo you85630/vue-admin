@@ -5,6 +5,10 @@ Vue.use(Router)
 
 // keepAlive: (false) 设为true后页面在切换标签后不会缓存，如果需要缓存，无需设置这个字段，而且需要设置页面组件name属性和路由配置的name一致
 
+// 权限
+const admin1 = [1]
+const admin2 = [2]
+
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -34,7 +38,7 @@ const router = new Router({
       name: 'home',
       component: () => import('views/home'),
       meta: {
-        requireAuth: true
+        requireAuth: admin1
       },
       children: [
         {
@@ -42,8 +46,7 @@ const router = new Router({
           name: 'page1',
           component: () => import('components/pages/demo/page1'),
           meta: {
-            requireAuth: true,
-            user: [1],
+            requireAuth: admin1,
             title: '页面1'
           }
         },
@@ -52,8 +55,7 @@ const router = new Router({
           name: 'page2',
           component: () => import('components/pages/demo/page2'),
           meta: {
-            requireAuth: true,
-            user: [1, 2],
+            requireAuth: admin1,
             title: '页面2'
           }
         },
@@ -62,9 +64,8 @@ const router = new Router({
           name: 'page3',
           component: () => import('components/pages/demo/page3'),
           meta: {
-            requireAuth: true,
+            requireAuth: admin1,
             keepAlive: true,
-            user: [1],
             title: '页面3'
           }
         },
@@ -73,8 +74,7 @@ const router = new Router({
           name: 'page4',
           component: () => import('components/pages/demo/page4'),
           meta: {
-            requireAuth: true,
-            user: [2],
+            requireAuth: admin2,
             title: '页面4'
           }
         }
@@ -85,21 +85,19 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
-  let user = VueCookie.get('user')
+  let login = VueCookie.get('user')
   // 是否需要登录
-  if (to.meta.requireAuth) {
-    // 是否登录
-    if (!user) {
+  let requireAuth = to.meta.requireAuth
+
+  if (requireAuth) {
+    // 未登录
+    if (!login) {
       next({
         path: '/login',
         query: { redirect: to.fullPath }
       })
-    }
-
-    // 是否是当前账号权限
-    let list = to.meta.user
-    if (list) {
-      if (list.indexOf(parseInt(user.user_id)) === -1) {
+    } else {
+      if (requireAuth.indexOf(login.user_id) == -1) {
         next({
           path: '/login',
           query: { redirect: from.fullPath }

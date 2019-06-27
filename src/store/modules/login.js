@@ -6,83 +6,25 @@ const state = {
   Menu: [
     {
       icon: 'md-bulb',
-      title: '页面1名字名字名字名字名字名字',
+      title: '组1',
       children: [
         {
           icon: 'md-browsers',
-          title: 'page3-4',
-          name: 'page3',
-          link: '/home/page3/4'
+          title: 'page1',
+          name: 'page1',
+          link: '/home/page1'
         },
         {
           icon: 'md-body',
-          title: 'page111名字名字名字名字名字名字',
-          children: [
-            {
-              icon: 'md-albums',
-              title: 'page1',
-              name: 'page1',
-              link: '/home/page1'
-            },
-            {
-              icon: 'md-browsers',
-              title: 'page2名字名字名字名字名字名字',
-              name: 'page2',
-              link: '/home/page2',
-              children: [
-                {
-                  icon: 'md-bookmark',
-                  title: 'page3-6名字名字名字名字名字名字',
-                  name: 'page3',
-                  link: '/home/page3/6',
-                  children: [
-                    {
-                      icon: 'md-bookmark',
-                      title: 'page3-8名字名字名字名字名字名字',
-                      name: 'page3',
-                      link: '/home/page3/8'
-                    },
-                    {
-                      icon: 'md-bookmark',
-                      title: 'page3-9',
-                      name: 'page3',
-                      link: '/home/page3/9'
-                    },
-                    {
-                      icon: 'md-bookmark',
-                      title: 'page3-10',
-                      name: 'page3',
-                      link: '/home/page3/10'
-                    },
-                    {
-                      icon: 'md-bookmark',
-                      title: 'page3-11',
-                      name: 'page3',
-                      link: '/home/page3/11'
-                    }
-                  ]
-                },
-                {
-                  icon: 'md-bookmark',
-                  title: 'page3-7',
-                  name: 'page3',
-                  link: '/home/page3/7'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          icon: 'md-bookmark',
-          title: 'page3-3',
-          name: 'page3',
-          link: '/home/page3/3'
+          title: 'page2',
+          name: 'page2',
+          link: '/home/page2'
         }
       ]
     },
     {
       icon: 'md-alarm',
-      title: '页面2',
+      title: '组2',
       children: [
         {
           icon: 'md-desktop',
@@ -92,17 +34,11 @@ const state = {
         },
         {
           icon: 'md-document',
-          title: 'page4名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字',
+          title: 'page4',
           name: 'page4',
           link: '/home/page4'
         }
       ]
-    },
-    {
-      icon: 'md-alert',
-      title: '页面3-5名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字名字',
-      name: 'page3',
-      link: '/home/page3/5'
     }
   ],
   // 用户信息

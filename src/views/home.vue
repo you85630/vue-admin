@@ -1,12 +1,9 @@
 <template>
   <Layout class="layout">
-    <Sider hide-trigger collapsible ref="vueside" width="250px" :collapsed-width="78" v-model="isCollapsed" class="left">
-      <div class="logo" @click="goHomes">
-        <img v-if="isCollapsed" src="./../assets/img/logo-small.png" alt="">
-        <p v-else>{{siteName.big}}</p>
-      </div>
+    <Sider hide-trigger collapsible ref="vueside" width="250px" :collapsed-width="78" class="left">
+      <div class="logo" @click="goHomes"><p>管理平台</p></div>
 
-      <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen" v-if="!isCollapsed">
+      <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen">
         <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
         <Submenu v-for="(item,index) in Menu" :key="index" :name="index" v-if="item.children">
           <template slot="title"><Icon :type="item.icon" /><span class="left-name-box">{{item.title}}</span></template>
@@ -43,22 +40,12 @@
           <Icon :type="item.icon" />{{item.title}}
         </MenuItem>
       </Menu>
-
-      <div class="menu-box" v-if="isCollapsed">
-        <div class="menu-item" v-for="(li,index) in Menu" :key="index">
-          <div class="menu-tite"><Icon :type="li.icon" /></div>
-          <div class="menu-list">
-            <div class="menu-li" v-for="(i,val) in li.children" :key="val" @click="addTabs(i.link)">
-              <Icon :type="i.icon" />{{i.title}}
-            </div>
-          </div>
-        </div>
-      </div>
     </Sider>
+
     <Content class="right">
       <div class="header">
         <div class="header-left">
-          <Icon type="md-menu" @click.native="collapsedSider" :class="isCollapsed?'rotate-icon':''"  size="24"  />
+          <Icon type="md-menu" size="24"  />
           <Breadcrumb>
             <BreadcrumbItem>Home</BreadcrumbItem>
             <BreadcrumbItem v-for="li in breadcrumb" :key="li">{{li}}</BreadcrumbItem>
@@ -91,10 +78,6 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      siteName: {
-        big: '管理平台',
-        small: '管'
-      },
       dropdownList: [
         {
           id: 1,
@@ -102,7 +85,6 @@ export default {
           title: '退出'
         }
       ],
-      isCollapsed: false,
       samePage: true,
       keepAlive: []
     }
@@ -144,12 +126,10 @@ export default {
     },
     // 切换左道航
     refresh () {
-      if (!this.isCollapsed) {
-        this.$nextTick(() => {
-          this.$refs.vueadmin.updateOpened()
-          this.$refs.vueadmin.updateActiveName()
-        })
-      }
+      this.$nextTick(() => {
+        this.$refs.vueadmin.updateOpened()
+        this.$refs.vueadmin.updateActiveName()
+      })
     },
     goHomes () {
       this.goHome()
@@ -247,7 +227,6 @@ export default {
   background: #f5f7f9;
 }
 .logo {
-  font-size: 22px;
   display: flex;
   width: 100%;
   height: 60px;
@@ -257,15 +236,8 @@ export default {
 
   align-items: center;
   justify-content: center;
-
-  img {
-    width: 60%;
-    height: auto;
-  }
-  .small {
-    width: 50%;
-  }
   p {
+    font-size: 22px;
     font-weight: bold;
     padding: 2px 10px;
     color: #fff;
@@ -348,60 +320,6 @@ export default {
       height: 100%;
       margin: 20px;
       padding-right: 10px;
-    }
-  }
-}
-.rotate-icon {
-  transform: rotate(-90deg);
-}
-.menu-box {
-  .menu-item {
-    position: relative;
-    &:hover {
-      .menu-tite {
-        background-color: #515a6e;
-      }
-      .menu-list {
-        display: block;
-      }
-    }
-    .menu-tite {
-      font-size: 22px;
-      padding: 6px 2px;
-      cursor: pointer;
-      text-align: center;
-      color: rgba(255,255,255,.7);
-    }
-    .menu-list {
-      font-size: 14px;
-      position: absolute;
-      z-index: 3;
-      top: 6px;
-      left: 90px;
-      display: none;
-      border-radius: 4px;
-      background-color: #fff;
-      box-shadow: 0 0 5px #999;
-      &::after {
-        position: absolute;
-        top: 0;
-        left: -16px;
-        width: 20%;
-        height: 100%;
-        content: '';
-        background-color: transparent;
-      }
-      .menu-li {
-        padding: 6px 16px;
-        cursor: pointer;
-        white-space: nowrap;
-        &:hover {
-          background-color: #f0f0f0;
-        }
-        i {
-          margin-right: 4px;
-        }
-      }
     }
   }
 }

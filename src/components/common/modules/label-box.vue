@@ -82,10 +82,9 @@ export default {
       }
       this.mleft = -this.here * this.multiple
     },
-    // 关闭全部
-    closeAll () {
-      let now = []
-      this.$emit('on-close', now)
+    // 切换tab
+    linkTab (key) {
+      this.$emit('on-click', key)
     },
     // 关闭其他
     closeOther () {
@@ -102,9 +101,11 @@ export default {
       }
       this.$emit('on-close', now)
     },
-    // 切换tab
-    linkTab (key) {
-      this.$emit('on-click', key)
+    // 关闭全部
+    closeAll () {
+      this.mleft = 0
+      let now = []
+      this.$emit('on-close', now)
     },
     // 删除tab
     removeTab (now) {
@@ -125,7 +126,11 @@ export default {
           }
         }
       }
-      this.$emit('on-close', nowList)
+      if (nowList.length) {
+        this.$emit('on-close', nowList)
+      } else {
+        this.closeAll()
+      }
     }
   }
 }
