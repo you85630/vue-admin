@@ -1,5 +1,5 @@
 // import api from 'src/assets/js/api'
-import router from 'src/router'
+// import router from 'src/router'
 
 const state = {
   Message: {}
