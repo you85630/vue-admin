@@ -57,7 +57,7 @@ this._vm.utils.addNewTabs(key)
 * 所需字段
 ```
 key: {
-  breadcrumb:['第一级','第二级'],
+  breadcrumb:['第一级','第二级',……],
   open:[menu类别索引],
   title: '标签名',
   name: '页面名称，需要与router里面的name对应',
