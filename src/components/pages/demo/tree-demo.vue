@@ -1,7 +1,7 @@
 <template>
  <div class="hljs-template-tag">
     <tr class="tree-tr">
-      <td class="tree-tr-td-pdl" v-for="(li,val) in columns" :key="val">
+      <td v-for="(li,val) in columns" :key="val">
         <div class="tree-tr-td tree-tr-td-pdl" v-if="val==0">
           <Icon v-if="child.children" :type="child.expanded ?'ios-arrow-forward':'ios-arrow-forward'"/>
           <span>{{child[li.key]}}</span>
