@@ -1,28 +1,16 @@
 <template>
-  <div>
-    <tbody v-for="(li,index) in data" :key="index">
-      <tr class="tree-tr">
-        <td v-for="(i,v) in columns" :key="v">
-          <div class="tree-tr-td" v-if="v==0">
-            <Icon v-if="li.children" :type="li.expanded ?'ios-arrow-forward':'ios-arrow-down'"/>
-            <span>{{li[i.key]}}</span>
-          </div>
-          <div class="tree-tr-td" v-else>{{li[i.key]}}</div>
-        </td>
-      </tr>
-      <template v-if="li.children">
-        <tr class="tree-tr" v-for="(child,s) in li.children" :key="s">
-          <td v-for="(i,v) in columns" :key="v">
-            <div class="tree-tr-td pdl" v-if="v==0">
-              <Icon v-if="child.children" :type="child.expanded ?'ios-arrow-forward':'ios-arrow-forward'"/>
-              <span>{{child[i.key]}}</span>
-            </div>
-            <div class="tree-tr-td" v-else>{{child[i.key]}}</div>
-          </td>
-        </tr>
-      </template>
-    </tbody>
-  </div>
+ <div class="hljs-template-tag">
+    <tr class="tree-tr">
+      <td class="tree-tr-td-pdl" v-for="(li,val) in columns" :key="val">
+        <div class="tree-tr-td tree-tr-td-pdl" v-if="val==0">
+          <Icon v-if="child.children" :type="child.expanded ?'ios-arrow-forward':'ios-arrow-forward'"/>
+          <span>{{child[li.key]}}</span>
+        </div>
+        <div class="tree-tr-td" v-else>{{child[li.key]}}</div>
+      </td>
+    </tr>
+    <tree v-for="(li,index) in child.children" :key="index" :columns="columns" :child="li"></tree>
+ </div>
 </template>
 
 <script>
@@ -30,11 +18,34 @@ export default {
   name: 'tree',
   props: [
     'columns',
-    'data'
+    'child'
   ]
 }
 </script>
 
 <style lang="scss" scoped>
 
+.tree-tr {
+  height: 48px;
+  border-top: 1px solid #e8eaec;
+  text-align: left;
+  color: #515a6e;
+  td {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    padding: 0 18px;
+    .tree-tr-td {
+      span {
+        padding: 0 4px;
+      }
+    }
+  }
+}
+.tree-tr-td-pdl{
+  padding: 0 0 0 18px;
+}
 </style>

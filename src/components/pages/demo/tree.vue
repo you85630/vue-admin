@@ -9,25 +9,14 @@
       <tbody v-for="(item,index) in data" :key="index">
         <tr class="tree-tr">
           <td v-for="(li,value) in columns" :key="value">
-            <div class="tree-tr-td" v-if="value==0">
+            <div class="tree-tr-td" v-if="value == 0">
               <Icon v-if="item.children" :type="item.expanded ?'ios-arrow-forward':'ios-arrow-down'"/>
               <span>{{item[li.key]}}</span>
             </div>
             <div class="tree-tr-td" v-else>{{item[li.key]}}</div>
           </td>
         </tr>
-        <template v-if="item.children">
-          <tr class="tree-tr" v-for="(child,v) in item.children" :key="v">
-            <td v-for="(li,val) in columns" :key="val">
-              <!-- <div class="tree-tr-td pdl" v-if="val==0">
-                <Icon v-if="child.children" :type="child.expanded ?'ios-arrow-forward':'ios-arrow-forward'"/>
-                <span>{{child[li.key]}}</span>
-              </div>
-              <div class="tree-tr-td" v-else>{{child[li.key]}}</div> -->
-              {{renderBody(child,columns)}}
-            </td>
-          </tr>
-        </template>
+        <tree-demo v-for="(li,value) in item.children" :key="value" :columns="columns" :child="li"></tree-demo>
       </tbody>
     </table>
   </div>
@@ -35,15 +24,15 @@
 
 <script>
 export default {
-  name: 'tree',
+  name: 'tree-table',
   props: [
     'columns',
     'data'
   ],
+  components: {
+    treeDemo: () => import('./tree-demo')
+  },
   methods: {
-    renderBody (row, column, index) {
-      return row[column.key]
-    }
   }
 }
 </script>
@@ -88,9 +77,6 @@ export default {
         }
       }
     }
-  }
-  .pdl{
-    padding-left: 18px;
   }
 }
 </style>
