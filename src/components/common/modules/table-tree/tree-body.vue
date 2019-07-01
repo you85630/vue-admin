@@ -2,31 +2,39 @@
   <div>
     <div class="tree-box" v-for="(item,index) in data" :key="index">
       <ul class="tree-tr">
-        <li v-for="(li,val) in columns" :key="val" :class="[val==0?'lev-'+ item.parent:'']" :style="{width:li.width?li.width+'px':widthLi,textAlign:li.align}">
+        <li v-for="(li,val) in columns" :key="val" :class="[val==0?'lev-'+ item.level:'']" :style="{width:li.width?li.width+'px':widthLi,textAlign:li.align}">
           <div class="tree-tr-td" v-if="val==0" @click="reversal(item)">
-            <Icon v-if="item.children" :type="item.expanded ?'ios-arrow-down':'ios-arrow-forward'"/>
+            <Icon v-if="item.children" :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"/>
             <span>{{item[li.key]}}</span>
           </div>
           <div class="tree-tr-td" v-else>
-            <p v-if="li.key=='action'">
-              <slot name="action"></slot>
+            <p class="tree-tr-td-p" v-if="li.key=='action'">
+            <table-expand
+                :row="item"
+                :column="li"
+                :index="index"
+                :render="li.render"></table-expand>
             </p>
             <p else>{{item[li.key]}}</p>
           </div>
         </li>
       </ul>
-      <tree :columns="columns" :data="item.children" v-if="item.expanded"></tree>
+      <tree-body :columns="columns" :data="item.children" v-if="item.expand"></tree-body>
     </div>
   </div>
 </template>
 
 <script>
+import TableExpand from './expand'
 export default {
-  name: 'tree',
+  name: 'tree-body',
   props: [
     'columns',
     'data'
   ],
+  components: {
+    TableExpand
+  },
   computed: {
     widthLi: function (val) {
       let title = this.columns.length
@@ -36,10 +44,10 @@ export default {
   },
   methods: {
     reversal (item) {
-      item.expanded = !item.expanded
+      item.expand = !item.expand
     },
-    renderBody (row, column, index) {
-      return row[column.key]
+    renderBody (row, column) {
+
     }
   }
 }
@@ -76,9 +84,17 @@ export default {
   }
 }
 @for $n from 0 through 10 {
-    .lev-#{$n} {
-      padding-left: 18px * $n;
-      box-sizing: border-box;
+  .lev-#{$n} {
+    padding-left: 18px * $n;
+    box-sizing: border-box;
+  }
+}
+.tree-tr-td-p{
+  button{
+    margin-right: 5px;
+    &:last-child{
+      margin-right: 0;
     }
   }
+}
 </style>

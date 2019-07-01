@@ -3,19 +3,19 @@
     <ul class="tree-title">
       <li v-for="(item,index) in columns" :key="index" :style="{width:item.width?item.width+'px':widthLi,textAlign:item.align}">{{item.name}}</li>
     </ul>
-    <tree-demo :columns="columns" :data="data"></tree-demo>
+    <tree-body :columns="columns" :data="data"></tree-body>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'tree-table',
+  name: 'tree-head',
   props: [
     'columns',
     'data'
   ],
   components: {
-    treeDemo: () => import('./tree-demo')
+    treeBody: () => import('./tree-body')
   },
   computed: {
     widthLi: function (val) {
