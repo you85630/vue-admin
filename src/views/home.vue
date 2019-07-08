@@ -40,6 +40,7 @@
           <Icon :type="item.icon" />{{item.title}}
         </MenuItem>
       </Menu>
+
     </Sider>
 
     <Content class="right">
@@ -91,6 +92,7 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'Message',
       'people',
       'Menu',
       'tabList',
@@ -108,8 +110,20 @@ export default {
       'goHome',
       'userInfo'
     ]),
-    collapsedSider () {
-      this.$refs.vueside.toggleCollapse()
+    // 全局提示
+    showMessage (val) {
+      if (val.code === 100200) {
+        this.$Message.success({
+          content: val.info,
+          duration: 2
+        })
+        this.init()
+      } else {
+        this.$Message.error({
+          content: val.info,
+          duration: 2
+        })
+      }
     },
     // 默认效果
     init () {
@@ -210,6 +224,10 @@ export default {
     },
     $route: {
       handler: 'updateRoute',
+      deep: true
+    },
+    Message: {
+      handler: 'showMessage',
       deep: true
     }
   }

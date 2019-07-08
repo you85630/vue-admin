@@ -12,7 +12,49 @@ const state = {
           icon: 'md-browsers',
           title: 'page1',
           name: 'page1',
-          link: '/home/page1'
+          link: '/home/page1',
+          children: [
+            {
+              icon: 'md-desktop',
+              title: 'page3-3',
+              name: 'page3',
+              link: '/home/page3/3',
+              children: [
+                {
+                  icon: 'md-desktop',
+                  title: 'page3-5',
+                  name: 'page3',
+                  link: '/home/page3/5',
+                  children: [
+                    {
+                      icon: 'md-desktop',
+                      title: 'page3-6',
+                      name: 'page3',
+                      link: '/home/page3/6'
+                    },
+                    {
+                      icon: 'md-desktop',
+                      title: 'page3-7',
+                      name: 'page3',
+                      link: '/home/page3/7'
+                    }
+                  ]
+                },
+                {
+                  icon: 'md-desktop',
+                  title: 'page3-4',
+                  name: 'page3',
+                  link: '/home/page3/4'
+                }
+              ]
+            },
+            {
+              icon: 'md-desktop',
+              title: 'page3-2',
+              name: 'page3',
+              link: '/home/page3/2'
+            }
+          ]
         },
         {
           icon: 'md-body',
@@ -39,6 +81,12 @@ const state = {
           link: '/home/page4'
         }
       ]
+    },
+    {
+      icon: 'md-alarm',
+      title: '组2',
+      name: 'page3',
+      link: '/home/page3/9'
     }
   ],
   // 用户信息
