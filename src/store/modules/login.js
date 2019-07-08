@@ -11,32 +11,26 @@ const state = {
         {
           icon: 'md-browsers',
           title: 'page1',
-          name: 'page1',
-          link: '/home/page1',
           children: [
             {
               icon: 'md-desktop',
-              title: 'page3-3',
-              name: 'page3',
-              link: '/home/page3/3',
+              title: 'page3-1',
               children: [
                 {
                   icon: 'md-desktop',
-                  title: 'page3-5',
-                  name: 'page3',
-                  link: '/home/page3/5',
+                  title: 'page3-3',
                   children: [
+                    {
+                      icon: 'md-desktop',
+                      title: 'page3-5',
+                      name: 'page3',
+                      link: '/home/page3/5'
+                    },
                     {
                       icon: 'md-desktop',
                       title: 'page3-6',
                       name: 'page3',
                       link: '/home/page3/6'
-                    },
-                    {
-                      icon: 'md-desktop',
-                      title: 'page3-7',
-                      name: 'page3',
-                      link: '/home/page3/7'
                     }
                   ]
                 },
@@ -70,9 +64,9 @@ const state = {
       children: [
         {
           icon: 'md-desktop',
-          title: 'page3-1',
-          name: 'page3',
-          link: '/home/page3/1'
+          title: 'page3-8',
+          name: 'page8',
+          link: '/home/page3/3'
         },
         {
           icon: 'md-document',
@@ -84,7 +78,7 @@ const state = {
     },
     {
       icon: 'md-alarm',
-      title: '组2',
+      title: '组3',
       name: 'page3',
       link: '/home/page3/9'
     }
