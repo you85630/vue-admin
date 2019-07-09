@@ -59,40 +59,39 @@ const mutations = {
       nowKey = key
     }
 
-    if (state.tabList.length) {
-      for (let i = 0; i < state.tabList.length; i++) {
-        const element = state.tabList[i]
-        if (element.link === nowKey.link) {
-          isBool = false
+    if (nowKey) {
+      if (state.tabList.length) {
+        for (let i = 0; i < state.tabList.length; i++) {
+          const element = state.tabList[i]
+          if (element.link === nowKey.link) {
+            isBool = false
+          }
         }
       }
+      // 新页面添加
+      if (isBool) {
+        state.tabList.push(nowKey)
+      }
+
+      // 页面传递参数
+      if (nowKey.options) {
+        router.push({
+          path: nowKey.link,
+          query: { options: JSON.stringify(nowKey.options) }
+        })
+      } else {
+        router.push(nowKey.link)
+      }
+
+      // 导航
+      state.breadcrumb = nowKey.breadcrumb
+      state.nowOpen = nowKey.open
+      state.nowTab = nowKey.link
+      document.title = nowKey.title
+
+      // 存储当前选中
+      this._vm.VueCookie.set('LINK', nowKey)
     }
-
-    // 新页面添加
-    if (isBool) {
-      state.tabList.push(nowKey)
-    }
-
-    // 页面传递参数
-    if (nowKey.options) {
-      router.push({
-        path: nowKey.link,
-        query: {
-          options: JSON.stringify(nowKey.options)
-        }
-      })
-    } else {
-      router.push(nowKey.link)
-    }
-
-    // 导航
-    state.breadcrumb = nowKey.breadcrumb
-    state.nowOpen = nowKey.open
-    state.nowTab = nowKey.link
-    document.title = nowKey.title
-
-    // 存储当前选中
-    this._vm.VueCookie.set('LINK', nowKey)
   },
 
   removeTabs (state, item) {

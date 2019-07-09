@@ -125,6 +125,7 @@ export default {
         })
       }
     },
+
     // 默认效果
     init () {
       let tabList = JSON.parse(this.VueCookie.get('TABLIST'))
@@ -138,6 +139,7 @@ export default {
         this.goHome()
       }
     },
+
     // 切换左道航
     refresh () {
       this.$nextTick(() => {
@@ -145,10 +147,12 @@ export default {
         this.$refs.vueadmin.updateActiveName()
       })
     },
+
     goHomes () {
       this.goHome()
       this.keepAlive = []
     },
+
     // 关闭
     closeTab (item) {
       if (item.length) {
@@ -158,6 +162,7 @@ export default {
         this.keepAlive = []
       }
     },
+
     // 系统设置
     sysClick (e) {
       if (e === 'exit') {
@@ -167,39 +172,43 @@ export default {
         this.$router.push('/revamp')
       }
     },
+
     // tab页面存储
     updateTabList (val) {
       this.keepAlive = []
-      this.VueCookie.set('TABLIST', JSON.stringify(val))
+      if (val) {
+        this.VueCookie.set('TABLIST', JSON.stringify(val))
 
-      let loseList = []
-      let routeList = []
-      let route = this.$router.options.routes
-      for (let i = 0; i < route.length; i++) {
-        const element = route[i]
-        if (element.name === 'home') {
-          routeList = element.children
-        }
-      }
-      for (let i = 0; i < routeList.length; i++) {
-        const element = routeList[i]
-        if (element.meta) {
-          if (element.meta.keepAlive) {
-            loseList.push(element.name)
+        let loseList = []
+        let routeList = []
+        let route = this.$router.options.routes
+        for (let i = 0; i < route.length; i++) {
+          const element = route[i]
+          if (element.name === 'home') {
+            routeList = element.children
           }
         }
-      }
-
-      for (let i = 0; i < val.length; i++) {
-        const element = val[i].name
-        if (loseList.indexOf(element) === -1) {
-          this.keepAlive.push(element)
+        for (let i = 0; i < routeList.length; i++) {
+          const element = routeList[i]
+          if (element.meta) {
+            if (element.meta.keepAlive) {
+              loseList.push(element.name)
+            }
+          }
         }
-      }
 
-      let list = Array.from(new Set(this.keepAlive))
-      this.keepAlive = list
+        for (let i = 0; i < val.length; i++) {
+          const element = val[i].name
+          if (loseList.indexOf(element) === -1) {
+            this.keepAlive.push(element)
+          }
+        }
+
+        let list = Array.from(new Set(this.keepAlive))
+        this.keepAlive = list
+      }
     },
+
     updateRoute (val) {
       let list = this.keepAlive
       if (list.indexOf(val.name) === -1) {
