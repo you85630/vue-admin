@@ -11,44 +11,8 @@ const state = {
         {
           icon: 'md-browsers',
           title: 'page1',
-          children: [
-            {
-              icon: 'md-desktop',
-              title: 'page3-1',
-              children: [
-                {
-                  icon: 'md-desktop',
-                  title: 'page3-3',
-                  children: [
-                    {
-                      icon: 'md-desktop',
-                      title: 'page3-5',
-                      name: 'page3',
-                      link: '/home/page3/5'
-                    },
-                    {
-                      icon: 'md-desktop',
-                      title: 'page3-6',
-                      name: 'page3',
-                      link: '/home/page3/6'
-                    }
-                  ]
-                },
-                {
-                  icon: 'md-desktop',
-                  title: 'page3-4',
-                  name: 'page3',
-                  link: '/home/page3/4'
-                }
-              ]
-            },
-            {
-              icon: 'md-desktop',
-              title: 'page3-2',
-              name: 'page3',
-              link: '/home/page3/2'
-            }
-          ]
+          name: 'page1',
+          link: '/home/page1'
         },
         {
           icon: 'md-body',
@@ -59,28 +23,22 @@ const state = {
       ]
     },
     {
-      icon: 'md-alarm',
+      icon: 'md-body',
       title: '组2',
       children: [
         {
-          icon: 'md-desktop',
-          title: 'page3-8',
-          name: 'page8',
-          link: '/home/page3/3'
+          icon: 'md-browsers',
+          title: 'page3',
+          name: 'page3',
+          link: '/home/page3/1'
         },
         {
-          icon: 'md-document',
+          icon: 'md-body',
           title: 'page4',
           name: 'page4',
           link: '/home/page4'
         }
       ]
-    },
-    {
-      icon: 'md-alarm',
-      title: '组3',
-      name: 'page3',
-      link: '/home/page3/9'
     }
   ],
   // 用户信息

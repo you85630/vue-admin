@@ -9,7 +9,6 @@ module.exports = {
   devServer: {
     host: 'localhost',
     port: 2333
-    // open: true
   },
   configureWebpack: {
     resolve: {
