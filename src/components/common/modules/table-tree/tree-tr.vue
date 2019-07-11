@@ -1,18 +1,18 @@
 <template>
-  <div class="tree-body">
-    <div v-for="(item,index) in data" :key="'i'+index">
-      <table>
+  <div class="tree-tr">
+    <div class="tree-tr-box" v-for="(item,index) in data" :key="'i'+index">
+      <table class="tree-tr-box-table">
         <colgroup>
           <col v-for="(li,val) in columns" :key="index+'-'+val" :width="li.width">
         </colgroup>
         <tbody v-if="treeStart">
           <tr>
-            <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columns" :key="index+'-'+val">
+            <td :class="[li.align?'table-line-'+li.align:'',val==0?'lev-'+item.level:'']"  v-for="(li,val) in columns" :key="index+'-'+val">
               <div class="table-tr-children">
                 <div v-if="li.key!=='action'">
                   <Icon
                     class="table-tr-children-icon"
-                     @click="reversal(item)"
+                    @click="reversal(item)"
                     v-if="val==0&&item.children"
                     :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"/>
                   <span>{{item[li.key]}}</span>
@@ -30,23 +30,10 @@
 
 <script>
 export default {
-  name: 'tree-body',
+  name: 'tree-tr',
   props: {
-    columns: {
-      type: Array,
-      required: true
-    },
-    data: {
-      type: Array
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    border: {
-      type: Boolean,
-      default: false
-    }
+    columns: [Array, Object],
+    data: [Array, Object]
   },
   data () {
     return {
@@ -54,8 +41,7 @@ export default {
     }
   },
   components: {
-    TableExpand: () => import('./expand'),
-    TreeTr: () => import('./tree-tr')
+    TableExpand: () => import('./expand')
   },
   methods: {
     reversal (item) {

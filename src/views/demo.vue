@@ -15,7 +15,19 @@
           </thead>
         </table>
       </div>
-      <tree-body :columns="columns" :data="data"></tree-body>
+      <div class="tree-body">
+        <tr v-for="(item,index) in data" :key="'i'+index">
+          <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columns" :key="index+'-'+val">
+            <div class="table-tr-children">
+              <div v-if="li.key!=='action'">
+                <Icon class="table-tr-children-icon" v-if="val==0&&item.children" :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"/>
+                <span>{{item[li.key]}}</span>
+              </div>
+              <table-expand v-else :row="item" :column="li" :index="index" :render="li.render"></table-expand>
+            </div>
+          </td>
+        </tr>
+      </div>
     </div>
     <Spin size="large" fix v-else></Spin>
   </div>
@@ -23,7 +35,7 @@
 
 <script>
 export default {
-  name: 'tree-table',
+  name: 'tree-header',
   props: {
     columns: {
       type: Array,
@@ -43,7 +55,7 @@ export default {
     }
   },
   components: {
-    treeBody: () => import('./tree-body')
+    // TableExpand: () => import('./expand')
   }
 }
 </script>
@@ -71,7 +83,6 @@ export default {
   box-sizing: border-box;
   table{
     table-layout: fixed;
-    border-bottom: 1px solid #e8eaec;
     tr{
       &:hover{
         background-color: #EBF7FF;
@@ -83,6 +94,7 @@ export default {
         text-align: left;
         text-overflow: ellipsis;
         vertical-align: middle;
+        border-bottom: 1px solid #e8eaec;
       }
       .table-tr-children{
         padding-left: 18px;
@@ -106,7 +118,6 @@ export default {
       }
       .table-tr-children-icon{
         margin-right: 4px;
-        cursor: pointer;
       }
     }
     .table-line-left{

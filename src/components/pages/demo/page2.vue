@@ -197,6 +197,20 @@ export default {
               'checked': true
             }
           ]
+        },
+        {
+          'right_id': '10',
+          'title': '权限页面',
+          'level': '0',
+          'class': 'home1',
+          'method': '#',
+          'component': 'home1',
+          'icons': '',
+          'format': '1',
+          'is_show': '2',
+          'is_login': '1',
+          'expand': true,
+          'selected': true
         }
       ]
     }
