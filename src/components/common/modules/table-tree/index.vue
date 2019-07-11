@@ -1,6 +1,9 @@
 <template>
   <div class="table-wrap">
-    <div class="table-box" :class="{'table-box-border':border}" v-if="loading">
+    <div class="table-spin-box" v-if="loading">
+      <Spin size="large" fix></Spin>
+    </div>
+    <div class="table-box" :class="{'table-box-border':border}" v-else>
       <div class="tree-header">
         <table>
           <colgroup>
@@ -17,7 +20,6 @@
       </div>
       <tree-body :columns="columns" :data="data"></tree-body>
     </div>
-    <Spin size="large" fix v-else></Spin>
   </div>
 </template>
 
@@ -58,6 +60,15 @@ export default {
   font-size: 0;
   table{
     width: 100%;
+  }
+  .table-spin-box{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #dcdee2;
+    border-top: none;
+    border-left: none;
+    overflow: hidden;
   }
 }
 .table-box{
@@ -107,6 +118,9 @@ export default {
       .table-tr-children-icon{
         margin-right: 4px;
         cursor: pointer;
+      }
+      .table-data-none{
+        text-align: center;
       }
     }
     .table-line-left{

@@ -25,6 +25,11 @@
       </table>
       <tree-tr :columns="columns" :data="item.children" v-if="item.expand"></tree-tr>
     </div>
+    <table v-if="!data.length">
+      <tr>
+        <td class="table-data-none">暂无数据</td>
+      </tr>
+    </table>
   </div>
 </template>
 

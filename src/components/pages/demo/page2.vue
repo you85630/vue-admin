@@ -8,7 +8,7 @@ export default {
   name: 'page2',
   data () {
     return {
-      loading: true,
+      loading: false,
       columns: [
         {
           title: '名称',
