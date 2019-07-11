@@ -44,7 +44,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.editControl('新增', params.row)
+                    console.log(params.row)
                   }
                 }
               }, '新增'),
@@ -58,7 +58,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.editControl('编辑', params.row)
+                    console.log(params.row)
                   }
                 }
               }, '编辑'),
@@ -69,7 +69,7 @@ export default {
                 },
                 on: {
                   click: () => {
-                    this.delAuthor(params.row)
+                    console.log(params.row)
                   }
                 }
               }, '删除')
