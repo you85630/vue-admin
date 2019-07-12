@@ -122,6 +122,12 @@ export default {
       .table-data-none{
         text-align: center;
       }
+      .table-tr-text{
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
     .table-line-left{
       text-align: left;

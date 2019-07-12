@@ -9,7 +9,7 @@
           <tr>
             <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columns" :key="index+'-'+val">
               <div class="table-tr-children">
-                <div v-if="li.key!=='action'">
+                <div class="table-tr-text" v-if="li.key!=='action'">
                   <Icon
                     class="table-tr-children-icon"
                      @click="reversal(item)"

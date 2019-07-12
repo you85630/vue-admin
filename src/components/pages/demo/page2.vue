@@ -25,7 +25,8 @@ export default {
         },
         {
           title: '组件',
-          key: 'class'
+          key: 'class',
+          tooltip: true
         },
         {
           title: '操作',
