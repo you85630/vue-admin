@@ -9,13 +9,16 @@ export default {
   name: 'menu-wrap',
   data () {
     return {
-      select: ''
+      select: this.active
     }
   },
   computed: {
-    menuList () {
-      let list = JSON.parse(JSON.stringify(this.data))
-      return list
+    menuList: {
+      get () {
+        let list = JSON.parse(JSON.stringify(this.data))
+        return list
+      },
+      set () {}
     }
   },
   props: {
@@ -26,6 +29,9 @@ export default {
     width: {
       type: [Number, String],
       default: 240
+    },
+    active: {
+      type: [String, Number, Object, Array]
     }
   },
   components: {
@@ -33,7 +39,7 @@ export default {
   },
   methods: {
     changeSelect (val) {
-      console.log(val)
+      this.$emit('on-select', val)
     }
   },
   watch: {
@@ -97,7 +103,7 @@ export default {
     }
   }
   .open-menu {
-    background-color: rgba(80, 90, 109, .3);
+    background-color: rgba(80, 90, 109, .5);
     .title-box-open {
       background-color: #515a6e;
     }
