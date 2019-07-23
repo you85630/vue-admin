@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-      <menu-wrap :data="menuList"></menu-wrap>
+      <menu-wrap :data="menuList" :active="select"></menu-wrap>
   </div>
 </template>
 
@@ -115,8 +115,8 @@ export default {
           link: '/home/template-maintain',
           select: false
         }
-      ]
-
+      ],
+      select: '/home/people-manage'
     }
   },
   components: {

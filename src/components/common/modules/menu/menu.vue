@@ -7,7 +7,7 @@
         <Icon v-if="item.children" class="aline-middle right-icon" :type="item.expand?'ios-arrow-down':'ios-arrow-forward'" />
       </div>
       <div class="menu-main"  v-if="item.children">
-        <menu-li :class="'menu-li-'+index" :data="item.children" v-show="item.expand"  @on-change="selectMenu"></menu-li>
+        <menu-li :class="'menu-li-'+index" :data="item.children" v-show="item.expand"></menu-li>
       </div>
     </li>
   </ul>
@@ -34,8 +34,8 @@ export default {
     selectMenu (item) {
       if (item.link) {
         this.select = item.link
-        this.$emit('on-change', item)
-        this.$emit('input', item)
+        this.$emit('input', this.select)
+        this.$forceUpdate()
       }
     },
     openMenu (item, key) {
