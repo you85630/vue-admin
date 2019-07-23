@@ -65,7 +65,7 @@
       <div class="content">
         <div class="main-box">
           <keep-alive :include="keepAlive">
-            <router-view v-if="samePage" />
+            <router-view />
           </keep-alive>
         </div>
       </div>
@@ -86,7 +86,6 @@ export default {
           title: '退出'
         }
       ],
-      samePage: true,
       keepAlive: []
     }
   },
@@ -212,10 +211,7 @@ export default {
     updateRoute (val) {
       let list = this.keepAlive
       if (list.indexOf(val.name) === -1) {
-        this.samePage = false
-        this.$nextTick(() => {
-          this.samePage = true
-        })
+        this.$forceUpdate()
       }
     }
   },
