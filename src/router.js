@@ -7,7 +7,7 @@ Vue.use(Router)
 
 // 权限
 const admin1 = [1]
-const admin2 = [2]
+const admin2 = [1, 2]
 
 const router = new Router({
   mode: 'history',
@@ -75,6 +75,15 @@ const router = new Router({
           component: () => import('components/pages/demo/page4'),
           meta: {
             requireAuth: admin2,
+            title: '页面4'
+          }
+        },
+        {
+          path: '/home/page5',
+          name: 'page5',
+          component: () => import('components/pages/demo/page5'),
+          meta: {
+            requireAuth: admin1,
             title: '页面4'
           }
         }

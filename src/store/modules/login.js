@@ -37,6 +37,12 @@ const state = {
           title: 'page4',
           name: 'page4',
           link: '/home/page4'
+        },
+        {
+          icon: 'md-body',
+          title: 'page5',
+          name: 'page5',
+          link: '/home/page5'
         }
       ]
     }

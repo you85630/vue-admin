@@ -1,32 +1,25 @@
 <template>
-  <ul class="menu-box">
-    <li class="menu-li" v-for="(item, index) in data" :key="'item'+index" @click="selectMenu(item.link)">
-      <div class="title-box" @click="openMenu(item)">
-        <Icon class="aline-middle icon" :type="item.icon" />
-        <span class="aline-middle">{{item.title}}</span>
-        <Icon v-if="item.children" class="aline-middle right-icon" :type="item.expand?'ios-arrow-down':'ios-arrow-forward'" />
-      </div>
-      <div class="menu-main"  v-if="item.children">
-        <menu-li :class="'menu-li-'+index" :data="item.children" :active="select" v-show="item.expand"></menu-li>
-      </div>
-    </li>
-  </ul>
+  <div>
+      <menu-li :active="select" :data="data" @click="success"></menu-li>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'menu-li',
+  name: 'menu-wrap',
+  data () {
+    return {
+      select: this.active
+    }
+  },
+  components: {
+    menuLi: () => import('./menu')
+  },
   computed: {
     menuList: {
       get () {
         let list = JSON.parse(JSON.stringify(this.data))
         return list
-      },
-      set () {}
-    },
-    select: {
-      get () {
-        return this.active
       },
       set () {}
     }
@@ -41,15 +34,10 @@ export default {
     }
   },
   methods: {
-    openMenu (item) {
-      if (!item.key) {
-        item.expand = !item.expand
-        this.$forceUpdate()
-      }
-    },
-    selectMenu (key) {
-      this.select = key
-      console.log(this.active)
+    success (item) {
+      console.log(item)
+
+      this.select = item
     }
   }
 }
