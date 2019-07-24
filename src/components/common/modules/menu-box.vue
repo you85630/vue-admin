@@ -1,29 +1,21 @@
 <template>
-  <div>
-      <menu-li :active="select" :data="data" @click="success"></menu-li>
-  </div>
+  <ul class="menu-box">
+    <li class="menu-li" :class="'menu-li-'+ (item.level+1)" v-for="(item, index) in data" :key="'item'+index" @click="success(item.link)">
+      <div class="title-box" :class="{'menu-active':item.link == select&&select}" @click="openSelectMenu(item)">
+        <Icon class="aline-middle icon" :type="item.icon" />
+        <span class="aline-middle">{{item.title}}</span>
+        <Icon v-if="item.children" class="aline-middle right-icon" :type="item.expand?'ios-arrow-down':'ios-arrow-forward'" />
+      </div>
+      <div class="menu-main" v-if="item.children">
+        <menu-li :active="select" :data="item.children" v-show="item.expand" @success="toSuccess"></menu-li>
+      </div>
+    </li>
+  </ul>
 </template>
 
 <script>
 export default {
-  name: 'menu-wrap',
-  data () {
-    return {
-      select: this.active
-    }
-  },
-  components: {
-    menuLi: () => import('./menu')
-  },
-  computed: {
-    menuList: {
-      get () {
-        let list = JSON.parse(JSON.stringify(this.data))
-        return list
-      },
-      set () {}
-    }
-  },
+  name: 'menu-li',
   props: {
     data: {
       type: Array,
@@ -33,17 +25,34 @@ export default {
       type: [String, Number, Object, Array]
     }
   },
+  computed: {
+    select: {
+      get () {
+        return this.active
+      },
+      set () {}
+    }
+  },
   methods: {
-    success (item) {
-      console.log(item)
-
-      this.select = item
+    openSelectMenu (item) {
+      if (!item.link) {
+        item.expand = !item.expand
+        this.$forceUpdate()
+      }
+    },
+    success (key) {
+      if (key) {
+        this.$emit('success', key)
+      }
+    },
+    toSuccess (key) {
+      this.$emit('success', key)
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .menu-box {
   font-size: 0;
   min-width: 240px;
@@ -102,10 +111,8 @@ export default {
 
 @for $n from 0 through 10 {
   .menu-li-#{$n} {
-    li {
-      .title-box {
-        padding-left: 23px * $n !important;
-      }
+    .title-box {
+      padding: 14px 24px 14px 23px * $n !important;
     }
   }
 }
