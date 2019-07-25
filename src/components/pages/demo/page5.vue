@@ -1,6 +1,6 @@
 <template>
   <div>
-    <editor-text></editor-text>
+    <editor-wrap></editor-wrap>
   </div>
 </template>
 
@@ -8,11 +8,7 @@
 export default {
   name: 'page5',
   components: {
-    editorText: () => import('components/common/modules/editor-text')
+    editorWrap: () => import('components/common/modules/editor')
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
