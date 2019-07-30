@@ -108,7 +108,7 @@ export default {
         let nowSize = size > 14 ? size : 14
         if (this.vertical) {
           style.left = -(nowSize - this.size) / 2 + 'px'
-          style.bottom = this.slider.offsetHeight * this.scale + 'px'
+          style.bottom = (this.slider.offsetHeight * this.scale) - (this.size / 2) + 'px'
         } else {
           style.left = (this.slider.offsetWidth * this.scale) - (this.thunk.offsetWidth / 2) + 'px'
           style.top = -(nowSize - this.size) / 2 + 'px'
@@ -158,7 +158,7 @@ export default {
       border-style: solid;
       border-color: #409eff;
       border-radius: 50%;
-      background-color: #fc0;
+      background-color: #e4e7ed;
     }
   }
 }
