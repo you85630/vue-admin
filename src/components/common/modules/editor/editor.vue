@@ -30,9 +30,7 @@ export default {
   methods: {
     changeText (e) {
       let text = this.$el.innerHTML
-      console.log(text)
-
-      // this.$emit('input', this.$el.innerHTML)
+      this.$emit('input', text)
     }
   }
 }

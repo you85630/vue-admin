@@ -1,24 +1,15 @@
 <template>
   <div class="editor-wrap">
-    <Form ref="formItem" :model="formItem">
-        <FormItem>
-          <Input v-model="formItem.name" placeholder="请输入标题">
-            <span slot="prepend">标题</span>
-          </Input>
-        </FormItem>
-        <FormItem>
-          <div class="action-wrap">
-            <ul>
-              <li v-for="(item, index) in actionList" :key="'item'+index" :title="item.title">
-                <span :class="'action-icon-'+(index+1)"></span>
-              </li>
-            </ul>
-          </div>
-          <div class="editor-box">
-            <editor-box v-model="text"></editor-box>
-          </div>
-        </FormItem>
-    </Form>
+    <div class="action-wrap">
+      <ul>
+        <li v-for="(item, index) in actionList" :key="'item'+index" :title="item.title" @click="uploadHtml(item)">
+          <span :class="'action-icon-'+(index+1)"></span>
+        </li>
+      </ul>
+    </div>
+    <div class="editor-box">
+      <div class="editor" contenteditable="true"></div>
+    </div>
   </div>
 </template>
 
@@ -29,58 +20,80 @@ export default {
     return {
       actionList: [
         {
-          title: '粗体'
+          title: '粗体',
+          key: 'bold'
         },
         {
-          title: '斜体'
+          title: '斜体',
+          key: 'italic'
         },
         {
-          title: '中划线'
+          title: '中划线',
+          key: 'strikeThrough'
         },
         {
-          title: '下划线'
-        },
-        {
-          title: '间距'
-        },
-        {
-          title: 'h1'
-        },
-        {
-          title: 'h2'
-        },
-        {
-          title: 'h3'
-        },
-        {
-          title: 'h4'
-        },
-        {
-          title: 'h5'
-        },
-        {
-          title: 'h6'
+          title: '下划线',
+          key: 'underline'
         },
         {
           title: '间距'
         },
         {
-          title: '无序列表'
+          title: 'h1',
+          key: 'fontSize',
+          size: 1
         },
         {
-          title: '有序列表'
+          title: 'h2',
+          key: 'fontSize',
+          size: 2
         },
         {
-          title: '左对齐'
+          title: 'h3',
+          key: 'formatBlock',
+          size: 3
         },
         {
-          title: '居中对齐'
+          title: 'h4',
+          key: 'formatBlock',
+          size: 4
         },
         {
-          title: '右对齐'
+          title: 'h5',
+          key: 'formatBlock',
+          size: 5
         },
         {
-          title: '两端对齐'
+          title: 'h6',
+          key: 'formatBlock',
+          size: 6
+        },
+        {
+          title: '间距'
+        },
+        {
+          title: '无序列表',
+          key: 'insertOrderedList'
+        },
+        {
+          title: '有序列表',
+          key: 'insertUnorderedList'
+        },
+        {
+          title: '左对齐',
+          key: 'justifyLeft'
+        },
+        {
+          title: '居中对齐',
+          key: 'justifyCenter'
+        },
+        {
+          title: '右对齐',
+          key: 'justifyRight'
+        },
+        {
+          title: '两端对齐',
+          key: 'justifyFull'
         },
         {
           title: '间距'
@@ -92,33 +105,46 @@ export default {
           title: '图片'
         }
       ],
-      formItem: {
-        name: ''
-      },
       text: ''
     }
   },
-  components: {
-    editorBox: () => import('./editor')
+  methods: {
+    uploadHtml (item) {
+      let html = document.getElementsByClassName('editor')[0]
+      let htmlContainerParent = document.createElement('div')
+      let htmlContainer = document.createElement('div')
+
+      htmlContainer.innerHTML = html.innerHTML
+      htmlContainerParent.appendChild(htmlContainer)
+      console.log(htmlContainerParent.innerHTML)
+
+      this.execCommand(item)
+    },
+    execCommand (item) {
+      let value = null
+      if (item.key) {
+        if (item.size) {
+          value = item.size
+        }
+        document.execCommand(item.key, false, value)
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .editor-wrap {
-  width: 80%;
-  margin: 20px auto;
+  border: 1px solid #dcdee2;
+  border-radius: 4px;
   .action-wrap {
     font-size: 0;
     box-sizing: border-box;
     width: 100%;
-    border: 1px solid #dcdee2;
-    border-bottom: none;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    border-bottom: 1px solid #dcdee2;
     background-color: #f8f8f9;
     ul {
-      padding: 0 5px;
+      padding: 2px 5px;
       li {
         display: inline-block;
         vertical-align: top;
@@ -291,10 +317,12 @@ export default {
     box-sizing: border-box;
     width: 100%;
     max-height: 500px;
-    border: 1px solid #dcdee2;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
     background-color: #fff;
+  }
+  .editor {
+    width: 100%;
+    min-height: 200px;
+    padding: 10px;
   }
 }
 </style>
