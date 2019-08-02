@@ -11,11 +11,6 @@
       <slider-box v-model="pwidth2" size="6" ></slider-box>
       {{pwidth2}}
     </div>
-    <br>
-    <div class="box2">
-      <slider-box v-model="pwidth3"></slider-box>
-      {{pwidth3}}
-    </div>
   </div>
 </template>
 
@@ -23,13 +18,12 @@
 export default {
   name: 'page5',
   components: {
-    editorWrap: () => import('components/common/modules/editor')
+    editorWrap: () => import('components/common/modules/editor/')
   },
   data () {
     return {
       pwidth: 30,
-      pwidth2: 20,
-      pwidth3: 0
+      pwidth2: 20
     }
   }
 }
