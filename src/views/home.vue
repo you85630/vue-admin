@@ -262,7 +262,7 @@ export default {
   p {
     font-size: 22px;
     font-weight: bold;
-    padding: 4px 10px;
+    padding: 6px 10px;
     color: #fff;
     border-radius: 10px;
     border-bottom-left-radius: 0;

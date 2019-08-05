@@ -46,8 +46,7 @@ const router = new Router({
           name: 'page1',
           component: () => import('components/pages/demo/page1'),
           meta: {
-            requireAuth: admin1,
-            title: '页面1'
+            requireAuth: admin1
           }
         },
         {
@@ -55,8 +54,7 @@ const router = new Router({
           name: 'page2',
           component: () => import('components/pages/demo/page2'),
           meta: {
-            requireAuth: admin1,
-            title: '页面2'
+            requireAuth: admin1
           }
         },
         {
@@ -65,8 +63,7 @@ const router = new Router({
           component: () => import('components/pages/demo/page3'),
           meta: {
             requireAuth: admin1,
-            keepAlive: true,
-            title: '页面3'
+            keepAlive: true
           }
         },
         {
@@ -74,8 +71,7 @@ const router = new Router({
           name: 'page4',
           component: () => import('components/pages/demo/page4'),
           meta: {
-            requireAuth: admin2,
-            title: '页面4'
+            requireAuth: admin2
           }
         },
         {
@@ -83,8 +79,15 @@ const router = new Router({
           name: 'page5',
           component: () => import('components/pages/demo/page5'),
           meta: {
-            requireAuth: admin1,
-            title: '页面4'
+            requireAuth: admin1
+          }
+        },
+        {
+          path: '/home/page6',
+          name: 'page6',
+          component: () => import('components/pages/demo/page6'),
+          meta: {
+            requireAuth: admin1
           }
         }
       ]

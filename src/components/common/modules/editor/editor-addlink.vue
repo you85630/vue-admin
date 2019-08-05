@@ -1,7 +1,7 @@
 <template>
   <div class="add-link">
-    <input type="text" v-model="link">
-    <button @click="setLink">Add</button>
+    <input type="text" v-model="link" autofocus>
+    <button @click="setLink(link)">Add</button>
   </div>
 </template>
 
@@ -10,11 +10,11 @@ export default {
   name: 'VmEditorAddlink',
   data: function () {
     return {
-      link: ''
+      link: 'https://www.baidu.com'
     }
   },
   methods: {
-    setLink: function () {
+    setLink (key) {
       document.execCommand('createLink', false, this.link)
     }
   }
@@ -22,21 +22,25 @@ export default {
 </script>
 
 <style lang="scss">
-  .add-link{
-    display: flex;
-    margin: 10px;
-    input{
+  .add-link {
+    width: 300px;
+    margin: 0;
+    padding: 0;
+    padding: 16px;
+    input {
+      width: 206px;
       border: 1px solid #eeeff1;
     }
-    button{
-      margin-left: 10px;
+    button {
       width: 50px;
-      background-color: #555;
-      color: white;
+      margin-left: 10px;
+      padding: 2px 0;
+      cursor: pointer;
+      color: #fff;
       border: none;
       border-radius: 2px;
       outline: 0;
-      cursor: pointer;
+      background-color: #555;;
     }
   }
 </style>

@@ -10,15 +10,9 @@ const state = {
       children: [
         {
           icon: 'md-browsers',
-          title: 'page1',
+          title: '打开关闭页面',
           name: 'page1',
           link: '/home/page1'
-        },
-        {
-          icon: 'md-body',
-          title: 'page2',
-          name: 'page2',
-          link: '/home/page2'
         }
       ]
     },
@@ -27,22 +21,34 @@ const state = {
       title: '组2',
       children: [
         {
-          icon: 'md-browsers',
-          title: 'page3',
+          icon: 'md-body',
+          title: '树形表格',
+          name: 'page2',
+          link: '/home/page2'
+        },
+        {
+          icon: 'md-body',
+          title: '导航菜单',
           name: 'page3',
           link: '/home/page3/1'
         },
         {
           icon: 'md-body',
-          title: 'page4',
+          title: '弹窗+表单',
           name: 'page4',
           link: '/home/page4'
         },
         {
           icon: 'md-body',
-          title: 'page5',
+          title: '滑块',
           name: 'page5',
           link: '/home/page5'
+        },
+        {
+          icon: 'md-body',
+          title: '富文本编辑器',
+          name: 'page6',
+          link: '/home/page6'
         }
       ]
     }

@@ -1,11 +1,12 @@
 <template>
-  <VmEditor @upload="showHtml"></VmEditor>
+  <Editor @upload="showHtml"></Editor>
 </template>
 
 <script>
 export default {
+  name: 'editor-wrap',
   components: {
-    VmEditor: () => import('./vm-editor')
+    Editor: () => import('./editor')
   },
   methods: {
     showHtml: function (data) {
@@ -16,8 +17,8 @@ export default {
 </script>
 
 <style>
-.preview{
-  height: 100%;
+.preview {
   width: 100%;
+  height: 100%;
 }
 </style>
