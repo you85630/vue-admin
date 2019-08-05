@@ -35,6 +35,7 @@ export default {
     }
     .editor-content {
       font-size: 16px;
+      line-height: 2;
       overflow-y: auto;
       height: calc(100% - 40px);
       min-height: 350px;
@@ -46,15 +47,22 @@ export default {
         padding: 0;
       }
       ul {
-        list-style-type: square;
+        list-style: square;
+        li {
+          display: list-item;
+          padding: 0;
+          list-style: square;
+        }
       }
       ol {
-        list-style-type: decimal;
+        list-style: decimal;
+        li {
+          display: list-item;
+          padding: 0;
+          list-style: decimal;
+        }
       }
-      li {
-        display: list-item;
-        padding: 0;
-      }
+
       hr {
         margin: 15px 0;
         border-top: 1px solid #eeeff1;
