@@ -5,9 +5,6 @@
 <script>
 export default {
   name: 'page6',
-  components: {
-    editorWrap: () => import('components/common/modules/editor/')
-  },
   data () {
     return {
     }

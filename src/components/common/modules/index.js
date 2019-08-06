@@ -1,4 +1,4 @@
-const files = require.context('.', false, /\.vue$/)
+const files = require.context('.', true, /\.vue$/)
 let modules = {}
 
 files.keys().forEach(key => {
@@ -16,10 +16,19 @@ files.keys().forEach(key => {
     name += element
   })
 
+  if (name.indexOf('/') != -1) {
+    let more = name.split('/')
+    let morePathName = pathName.split('/')
+    name = more[0]
+    pathName = morePathName[0]
+  }
+
   let keyName = arr.slice(0, 1) + name
 
   modules[keyName] = pathName
   return modules
 })
+
+console.log(modules)
 
 export default modules

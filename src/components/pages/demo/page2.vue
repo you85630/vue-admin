@@ -215,9 +215,6 @@ export default {
         }
       ]
     }
-  },
-  components: {
-    TableTree: () => import('components/common/modules/table-tree')
   }
 }
 </script>
