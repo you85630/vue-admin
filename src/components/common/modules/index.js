@@ -29,6 +29,4 @@ files.keys().forEach(key => {
   return modules
 })
 
-console.log(modules)
-
 export default modules
