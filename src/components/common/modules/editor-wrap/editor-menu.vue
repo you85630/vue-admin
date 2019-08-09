@@ -3,13 +3,11 @@
     <!-- 字体 -->
     <VmEditorButton icon="font-size">
       <ul class="editor-ul">
-        <li @click="execCommand('fontSize', 7)"><button style="font-size: 24px">7</button></li>
-        <li @click="execCommand('fontSize', 6)"><button style="font-size: 22px">6</button></li>
-        <li @click="execCommand('fontSize', 5)"><button style="font-size: 20px">5</button></li>
-        <li @click="execCommand('fontSize', 4)"><button style="font-size: 18px">4</button></li>
-        <li @click="execCommand('fontSize', 3)"><button style="font-size: 16px">3</button></li>
-        <li @click="execCommand('fontSize', 2)"><button style="font-size: 14px">2</button></li>
-        <li @click="execCommand('fontSize', 1)"><button style="font-size: 12px">1</button></li>
+        <li @click="execCommand('fontSize', 2)"><p style="font-size: 14px">正文</p></li>
+        <li @click="execCommand('formatBlock', '<h1>')"><h1>标题1</h1></li>
+        <li @click="execCommand('formatBlock', '<h2>')"><h2>标题2</h2></li>
+        <li @click="execCommand('formatBlock', '<h3>')"><h3>标题3</h3></li>
+        <li @click="execCommand('formatBlock', '<h4>')"><h4>标题4</h4></li>
       </ul>
     </VmEditorButton>
     <!-- 粗体 -->
@@ -98,26 +96,10 @@ export default {
     }
   }
   .editor-ul {
+    padding: 10px 0;
     li {
-      display: flex;
-      margin: 0;
-      padding: 6px 30px;
-
-      justify-content: center;
-      &:hover {
-        background: #f8f8f8;
-      }
-      h1 {
-        text-align: center;
-      }
-      button {
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        color: inherit;
-        border: none;
-        background: transparent;
-      }
+      padding: 6px 20px;
+      white-space: nowrap;
     }
   }
 </style>

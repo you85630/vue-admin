@@ -26,7 +26,7 @@ export default {
       this.slot = true
     },
     hideSlot () {
-      this.slot = false
+      // this.slot = false
     }
   }
 }
