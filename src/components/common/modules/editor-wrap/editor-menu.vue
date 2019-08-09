@@ -3,11 +3,11 @@
     <!-- 字体 -->
     <VmEditorButton icon="font-size">
       <ul class="editor-ul">
-        <li @click="execCommand('fontSize', 2)"><p style="font-size: 14px">正文</p></li>
-        <li @click="execCommand('formatBlock', '<h1>')"><h1>标题1</h1></li>
-        <li @click="execCommand('formatBlock', '<h2>')"><h2>标题2</h2></li>
-        <li @click="execCommand('formatBlock', '<h3>')"><h3>标题3</h3></li>
-        <li @click="execCommand('formatBlock', '<h4>')"><h4>标题4</h4></li>
+        <li @click="execCommand('formatBlock', '<p>')"><button><p style="font-size: 14px">正文</p></button></li>
+        <li @click="execCommand('formatBlock', '<h2>')"><button><h1>标题1</h1></button></li>
+        <li @click="execCommand('formatBlock', '<h2>')"><button><h2>标题2</h2></button></li>
+        <li @click="execCommand('formatBlock', '<h3>')"><button><h3>标题3</h3></button></li>
+        <li @click="execCommand('formatBlock', '<h4>')"><button><h4>标题4</h4></button></li>
       </ul>
     </VmEditorButton>
     <!-- 粗体 -->
@@ -56,13 +56,13 @@ export default {
     VmEditorAddimage: () => import('./editor-addimage.vue')
   },
   methods: {
-    execCommand: function (commandName, valueArgument) {
+    execCommand (commandName, valueArgument) {
       if (!valueArgument) {
         valueArgument = null
       }
       document.execCommand(commandName, false, valueArgument)
     },
-    setImage: function (evt) {
+    setImage (evt) {
       let reader = new FileReader()
       let file = evt.target.files[0]
       reader.readAsDataURL(file)
@@ -98,8 +98,17 @@ export default {
   .editor-ul {
     padding: 10px 0;
     li {
-      padding: 6px 20px;
+      padding: 10px 20px;
       white-space: nowrap;
+      &:hover{
+        background-color: #f9f9f9;
+      }
+      button {
+        color: inherit;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
     }
   }
 </style>

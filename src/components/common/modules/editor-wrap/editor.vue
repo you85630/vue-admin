@@ -34,14 +34,17 @@ export default {
       right: 15px;
     }
     .editor-content {
-      font-size: 16px;
-      line-height: 2;
+      font-size: 14px;
+      line-height: 2.2;
       overflow-y: auto;
       height: calc(100% - 40px);
       min-height: 350px;
       padding: 15px;
       text-align: left;
       outline: 0;
+      p{
+        font-size: 14px;
+      }
       ul ,ol {
         margin: 10px 20px;
         padding: 0;
@@ -61,11 +64,6 @@ export default {
           padding: 0;
           list-style: decimal;
         }
-      }
-
-      hr {
-        margin: 15px 0;
-        border-top: 1px solid #eeeff1;
       }
       pre {
         font-size: 14px;
@@ -87,6 +85,15 @@ export default {
       }
       a {
         color: #2d8cf0;
+      }
+      i{
+        font-style: italic;
+      }
+      u{
+        text-decoration: underline;
+      }
+      strike{
+        text-decoration: line-through;
       }
     }
   }
