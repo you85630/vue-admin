@@ -81,6 +81,7 @@ export default {
     // 数字按钮
     selectPage (key) {
       this.page = key
+      this.$emit('on-change', key)
     },
     // 输入框
     jumpPage (e) {
@@ -91,7 +92,7 @@ export default {
     },
     // 首页
     firstPage () {
-      this.page = 1
+      this.selectPage(1)
       if (this.number > this.max) {
         this.prevMore = false
         this.nextMore = true
@@ -99,7 +100,7 @@ export default {
     },
     // 尾页
     LastPage () {
-      this.page = this.number
+      this.selectPage(this.number)
       if (this.number > this.max) {
         this.prevMore = true
         this.nextMore = false
@@ -108,6 +109,7 @@ export default {
     // 上一个
     prevPage () {
       this.page--
+      this.selectPage(this.page)
       if (this.page + 1 == this.number) {
         this.nextMore = true
       }
@@ -118,6 +120,7 @@ export default {
     // 下一个
     nextPage () {
       this.page++
+      this.selectPage(this.page)
       if (this.page >= this.max) {
         this.prevMore = true
         this.nextMore = true
@@ -141,12 +144,11 @@ export default {
     margin: 0 8px;
     cursor: pointer;
     user-select: none;
+    text-align: center;
     vertical-align: middle;
     color: #989898;
-    border: 1px solid #d4d5d7;
     border-radius: 2px;
     background-color: #f8f8f8;
-    text-align: center;
   }
   .page-next ,.page-prev {
     font-size: 0;
@@ -176,14 +178,15 @@ export default {
     p {
       font-size: 14px;
       display: inline-block;
+      user-select: none;
       vertical-align: middle;
       color: #2e41a1;
-      user-select: none;
     }
     input {
       padding: 0 4px;
       cursor: auto;
       color: #454545;
+      border: 1px solid #d4d5d7;
       background-color: #fff;
     }
   }

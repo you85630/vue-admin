@@ -21,7 +21,7 @@ const state = {
     {
       label: '文章管理',
       icon: 'ios-basketball',
-      link: '/page/3'
+      link: '/page1'
     },
     {
       label: '统计分析',

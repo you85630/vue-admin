@@ -103,6 +103,9 @@ export default {
     // 导航选择
     HomeMenuSelect (name) {
       let list = name.length > 1 ? name.split('-') : [name]
+      let active = name.length > 1 ? name : Number(name)
+
+      sessionStorage.setItem('HomeMenuActive', name)
 
       let open = []
       open.length = list.length - 1
@@ -153,9 +156,7 @@ export default {
         }
       }
 
-      sessionStorage.setItem('HomeMenuActive', name)
-
-      this.HomeMenuActive = name
+      this.HomeMenuActive = active
       this.HomeMenuOpen = open
       this.BreadcrumbList = bread
 

@@ -1,6 +1,9 @@
 <template>
   <div class="page">
     <table-tree :loading="loading" border :columns="columns" :data="authorList"></table-tree>
+    <div class="page-box">
+      <page-box :total="20" @on-change="changePage"></page-box>
+    </div>
   </div>
 </template>
 <script>
@@ -13,20 +16,15 @@ export default {
         {
           title: '名称',
           key: 'title',
-          width: 400
+          width: 200
         },
         {
-          title: '控制器名',
-          key: 'component'
-        },
-        {
-          title: '方法名',
-          key: 'method'
+          title: '方法',
+          key: 'class'
         },
         {
           title: '组件',
-          key: 'class',
-          tooltip: true
+          key: 'component'
         },
         {
           title: '操作',
@@ -80,147 +78,93 @@ export default {
       ],
       authorList: [
         {
-          'right_id': '1',
-          'title': '权限',
-          'level': '0',
-          'class': 'home',
-          'method': '#',
-          'component': 'home',
-          'icons': '',
-          'format': '1',
-          'is_show': '2',
-          'is_login': '1',
-          'expand': true,
-          'selected': true,
-          'children': [
+          title: '权限',
+          level: '0',
+          class: 'home',
+          component: 'home',
+          expand: true,
+          children: [
             {
-              'right_id': '2',
-              'title': '内容管理',
-              'level': '1',
-              'class': 'home',
-              'method': '#',
-              'component': 'content',
-              'icons': '',
-              'format': '1',
-              'is_show': '1',
-              'is_login': '1',
-              'expand': true,
-              'checked': true,
-              'children': [
+              title: '内容管理',
+              level: '1',
+              class: 'home',
+              component: 'content',
+              expand: true,
+              children: [
                 {
-                  'right_id': '3',
-                  'title': '查数据',
-                  'level': '2',
-                  'class': 'content',
-                  'method': '#',
-                  'component': 'search-data',
-                  'icons': '',
-                  'format': '1',
-                  'is_show': '1',
-                  'is_login': '1',
-                  'expand': true,
-                  'checked': true,
-                  'children': [
+                  title: '查数据',
+                  level: '2',
+                  class: 'content',
+                  component: 'search-data',
+                  expand: true,
+                  children: [
                     {
-                      'right_id': '4',
-                      'title': '管理人',
-                      'level': '3',
-                      'class': 'home/content/search-data',
-                      'method': 'manage-people',
-                      'component': 'manage-people',
-                      'icons': '',
-                      'format': '1',
-                      'is_show': '1',
-                      'is_login': '1',
-                      'expand': true,
-                      'checked': true
+                      title: '管理人',
+                      level: '3',
+                      class: 'home/content/search-data',
+                      component: 'manage-people',
+                      expand: true
                     }
                   ]
                 },
                 {
-                  'right_id': '11',
-                  'title': '最新资讯',
-                  'level': '2',
-                  'class': 'home/content',
-                  'method': 'now-news',
-                  'component': 'now-news',
-                  'icons': '',
-                  'format': '1',
-                  'is_show': '1',
-                  'is_login': '1',
-                  'expand': true,
-                  'checked': true
+                  title: '最新资讯',
+                  level: '2',
+                  class: 'home/content',
+                  component: 'now-news',
+                  expand: true
                 }
               ]
             },
             {
-              'right_id': '15',
-              'title': '用户管理',
-              'level': '1',
-              'class': 'home',
-              'method': 'people-manage',
-              'component': 'people-manage',
-              'icons': '',
-              'format': '1',
-              'is_show': '1',
-              'is_login': '1',
-              'expand': true,
-              'checked': true,
-              'children': [
+              title: '用户管理',
+              level: '1',
+              class: 'home',
+              component: 'people-manage',
+              expand: true,
+              children: [
                 {
-                  'right_id': '31',
-                  'title': '获取用户列表',
-                  'level': '3',
-                  'class': 'Admin',
-                  'method': 'getAdminList',
-                  'component': null,
-                  'icons': '',
-                  'format': '2',
-                  'is_show': '2',
-                  'is_login': '2',
-                  'expand': true,
-                  'checked': true
+                  title: '获取用户列表',
+                  level: '3',
+                  class: 'Admin',
+                  component: null,
+                  expand: true
                 }
               ]
             },
             {
-              'right_id': '18',
-              'title': '填报模版维护',
-              'level': '1',
-              'class': 'home',
-              'method': 'template-maintain',
-              'component': 'template-maintain',
-              'icons': '',
-              'format': '1',
-              'is_show': '1',
-              'is_login': '1',
-              'expand': true,
-              'checked': true
+              title: '填报模版维护',
+              level: '1',
+              class: 'home',
+              component: 'template-maintain',
+              expand: true
             }
           ]
         },
         {
-          'right_id': '10',
-          'title': '权限页面',
-          'level': '0',
-          'class': 'home1',
-          'method': '#',
-          'component': 'home1',
-          'icons': '',
-          'format': '1',
-          'is_show': '2',
-          'is_login': '1',
-          'expand': true,
-          'selected': true
+          title: '权限页面',
+          level: '0',
+          class: 'home1',
+          component: 'home1',
+          expand: true
         }
       ]
+    }
+  },
+  methods: {
+    changePage (e) {
+      console.log(e)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.page{
+.page {
   font-size: 20px;
+  .page-box {
+    padding-top: 20px;
+    text-align: center;
+  }
 }
 </style>
