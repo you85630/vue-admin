@@ -5,343 +5,24 @@ const state = {
   // 导航
   HomeMenuList: [
     {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
-      label: '文章管理',
-      name: 1
-    },
-    {
       label: '用户管理',
-      name: 2,
+      name: 1,
       icon: 'ios-baseball',
       children: [
         {
           label: '新增用户',
-          name: '2-1'
+          name: '1-1'
         },
         {
           label: '活跃用户',
-          name: '2-2'
+          name: '1-2'
         }
       ]
+    },
+    {
+      label: '文章管理',
+      name: 2,
+      icon: 'ios-basketball'
     },
     {
       label: '统计分析',
@@ -404,14 +85,7 @@ const state = {
     }
   ],
   // 面包屑
-  BreadcrumbList: [
-    {
-      label: 'Components'
-    },
-    {
-      label: 'Breadcrumb'
-    }
-  ],
+  BreadcrumbList: [],
   // 导航选中
   HomeMenuActive: null,
   // 导航展开
@@ -426,6 +100,10 @@ const getters = {
 }
 
 const actions = {
+  // 获取用户信息
+  getUserInfo ({ commit }) {
+    commit('getUserInfo')
+  },
   GoHome ({ commit }) {
     commit('GoHome')
   },
@@ -439,7 +117,7 @@ const mutations = {
   GoHome (state) {
     state.HomeMenuActive = null
     state.HomeMenuOpen = []
-    router.push('/')
+    router.push('/home')
   },
   // 导航跳转
   HomeMenuSelect (state, key) {

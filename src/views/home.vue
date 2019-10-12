@@ -1,9 +1,10 @@
 <template>
-  <Layout class="home-layout">
-      <Sider ref="HomeSide" width="300">
-        <div ref="HomeLogo" class="logo" @click="GoHome"><p>管理平台</p></div>
+  <Layout class="Home">
+    <Sider class="Sider" ref="HomeSide" width="300">
+      <div ref="HomeLogo" class="Logo" @click="GoHome"><p>管理平台</p></div>
 
-        <Menu ref="HomeMenu" theme="dark" accordion width="auto" class="menu-item" :style="HomeHeader" :active-name="HomeMenuActive" :open-names="HomeMenuOpen" @on-select="HomeMenuSelect">
+      <div class="Menu">
+        <Menu ref="HomeMenu" theme="dark" accordion width="auto" class="Menu-box" :active-name="HomeMenuActive" :open-names="HomeMenuOpen" @on-select="HomeMenuSelect">
           <span v-for="(item, index) in HomeMenuList" :key="index">
             <Submenu :name="item.name" v-if="item.children">
               <template slot="title"><Icon :type="item.icon" />{{item.label}}</template>
@@ -33,32 +34,35 @@
               </span>
 
             </Submenu>
-            <MenuItem :name="item.name" v-else>{{item.label}}</MenuItem>
+            <MenuItem :name="item.name" v-else><Icon :type="item.icon" />{{item.label}}</MenuItem>
           </span>
         </Menu>
-      </Sider>
+      </div>
+    </Sider>
 
-      <Layout>
-        <Header class="header-wrap" ref="HomeHeader">
-          <Breadcrumb>
-            <BreadcrumbItem><Icon type="md-home" size="14" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
-            <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
-          </Breadcrumb>
-          <Poptip placement="bottom">
-            <Badge :count="1">
-              <Avatar shape="square" icon="ios-person" />
-            </Badge>
-            <ul slot="content" class="user-handle">
-              <li>消息</li>
-              <li class="red" @click="exit">退出</li>
-            </ul>
-          </Poptip>
-        </Header>
+    <Layout class="Layout">
+      <Header class="Header" ref="HomeHeader">
+        <Breadcrumb>
+          <BreadcrumbItem><Icon type="md-home" size="14" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
+          <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
+        </Breadcrumb>
+        <Poptip placement="bottom">
+          <Badge :count="1">
+            <Avatar shape="square" icon="ios-person" />
+          </Badge>
+          <ul slot="content" class="user-handle">
+            <li>消息</li>
+            <li class="red" @click="exit">退出</li>
+          </ul>
+        </Poptip>
+      </Header>
 
-        <Content class="container" :style="HomeContainer">
+      <Content class="Content">
+        <div class="content-box">
           <router-view/>
-        </Content>
-      </Layout>
+        </div>
+      </Content>
+    </Layout>
   </Layout>
 </template>
 
@@ -66,33 +70,13 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Home',
-  data () {
-    return {
-      // 内容区域高度
-      HomeHeight: {}
-    }
-  },
   computed: {
     ...mapGetters([
       'HomeMenuList',
       'BreadcrumbList',
       'HomeMenuActive',
       'HomeMenuOpen'
-    ]),
-    // 标题区域高度
-    HomeHeader () {
-      let style = {
-        height: this.HomeHeight.HomeHeader
-      }
-      return style
-    },
-    // 内容区域高度
-    HomeContainer () {
-      let style = {
-        height: this.HomeHeight.ContainerHeight
-      }
-      return style
-    }
+    ])
   },
   created () {
     this.init()
@@ -105,10 +89,10 @@ export default {
     ]),
     // 默认事件
     init () {
-      this.$nextTick(() => {
-        this.$refs.HomeMenu.updateOpened()
-        this.$refs.HomeMenu.updateActiveName()
-      })
+      // this.$nextTick(() => {
+      //   this.$refs.HomeMenu.updateOpened()
+      //   this.$refs.HomeMenu.updateActiveName()
+      // })
     },
     // 监控路由
     changeRouter (val) {
@@ -127,7 +111,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home-layout {
+.Home {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -135,78 +119,85 @@ export default {
   border: 1px solid #d7dde4;
   background: #f5f7f9;
 }
-.logo {
-  display: flex;
-  overflow: hidden;
-  flex-direction: row;
-  width: 80%;
-  height: 50px;
-  margin: 20px auto;
-  cursor: pointer;
-  border-radius: 4px;
-  background-color: #5b6270;
-
-  justify-content: center;
-  align-items: center;
-  img {
+.Sider {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #363e4f;
+  .Logo {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
-  }
-  p {
-    font-size: 20px;
-    font-weight: bold;
-    overflow: hidden;
-    padding: 0 10px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    color: #fff;
-  }
-}
-.header-wrap {
-  display: flex;
-  flex-direction: row;
-  padding-right: 64px;
-  padding-left: 20px;
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0,0,0,.1);
-
-  justify-content: space-between;
-  align-items: center;
-  .ivu-poptip {
-    line-height: 1;
-  }
-  .user-handle {
-    li {
-      font-size: 14px;
+    margin: 20px 0;
+    p {
+      font-size: 20px;
+      font-weight: bold;
+      overflow: hidden;
+      width: 80%;
+      margin: 0 auto;
       padding: 10px 0;
       cursor: pointer;
       text-align: center;
-      border-top: 1px solid #e8eaec;
-      &:first-child {
-        border: none;
-      }
+      color: #fff;
+      border-radius: 4px;
+      background-color: #5b6270;
+    }
+  }
+  .Menu {
+    overflow: hidden;
+    height: 88%;
+    margin-top: 88px;
+    .Menu-box {
+      overflow-y: auto;
+      height: 100%;
+      background-color: #363e4f;
     }
   }
 }
-.container {
-  margin: 20px;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 1px rgba(0,0,0,.1);
-}
-.red {
-  color: #ed4014;
-}
-.green {
-  color: #19be6b;
-}
-.blue {
-  color: #2d8cf0;
-}
-.yellow {
-  color: #f90;
-}
-.black {
-  color: #515a6e;
+.Layout {
+  position: relative;
+  .Header {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-right: 64px;
+    padding-left: 20px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+
+    justify-content: space-between;
+    align-items: center;
+    .ivu-poptip {
+      line-height: 1;
+    }
+    .user-handle {
+      li {
+        font-size: 14px;
+        padding: 10px 0;
+        cursor: pointer;
+        text-align: center;
+        border-top: 1px solid #e8eaec;
+        &:first-child {
+          border: none;
+        }
+      }
+    }
+  }
+  .Content {
+    overflow: hidden;
+    margin: 20px;
+    margin-top: 84px;
+    padding: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 0 1px rgba(0,0,0,.1);
+    .content-box {
+      overflow-y: auto;
+      height: 100%;
+      padding: 0 20px;
+    }
+  }
 }
 </style>

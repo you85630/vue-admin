@@ -4,13 +4,17 @@
       <p class="title" slot="title"><img src="./../assets/img/logo-small.png" alt="">管理平台</p>
       <Form class="form" ref="formInline" :model="formInline" :rules="ruleInline">
         <FormItem prop="user">
-          <Input type="text" size="large" v-model="formInline.user" placeholder="请填写用户名"></Input>
+          <Input type="text" size="large" v-model="formInline.user" placeholder="请填写用户名">
+            <Icon type="ios-person-outline" slot="prepend"></Icon>
+          </Input>
         </FormItem>
         <FormItem prop="password">
-          <Input type="password" size="large" v-model="formInline.password" placeholder="请填写密码"></Input>
+          <Input type="password" size="large" v-model="formInline.password" placeholder="请填写密码">
+            <Icon type="ios-lock-outline" slot="prepend"></Icon>
+          </Input>
         </FormItem>
         <FormItem>
-          <Button type="primary" long @click="handleSubmit('formInline')">登录</Button>
+          <Button class="btn" type="primary" long @click="handleSubmit('formInline')">登录</Button>
         </FormItem>
       </Form>
 
@@ -67,24 +71,26 @@ export default {
 .login-box {
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100%;
   background-color: #17233d;
+
+  align-items: center;
+  justify-content: center;
 }
 .card {
   width: 400px;
   .title {
-    padding: 20px 0;
+    font-size: 20px;
     display: flex;
     flex-direction: row;
+    padding: 20px 0;
+
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    img{
-      height: 30px;
+    img {
       width: auto;
+      height: 30px;
       margin-right: 10px;
     }
   }
@@ -92,11 +98,15 @@ export default {
     padding: 0 20px;
     padding-top: 20px;
     .ivu-input {
+      font-size: 18px;
       height: 40px;
       border: none;
       background-color: #fff;
       box-shadow: inset 0 1px 2px #515a6e;
-      font-size: 18px;
+    }
+    .btn {
+      font-weight: bold;
+      height: 40px;
     }
   }
 }
