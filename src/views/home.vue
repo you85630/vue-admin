@@ -1,238 +1,142 @@
 <template>
-  <Layout class="layout">
-    <Sider hide-trigger collapsible ref="vueside" width="250px" :collapsed-width="78" class="left">
-      <div class="logo" @click="goHomes"><p>管理平台</p></div>
+  <Layout class="home-layout">
+      <Sider ref="HomeSide" width="300">
+        <div ref="HomeLogo" class="logo" @click="GoHome"></div>
 
-      <Menu theme="dark" accordion ref="vueadmin" width="auto" @on-select="addTabs" :active-name="nowTab" :open-names="nowOpen">
-        <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-        <Submenu v-for="(item,index) in Menu" :key="index" :name="index" v-if="item.children">
-          <template slot="title"><Icon :type="item.icon" /><span class="left-name-box">{{item.title}}</span></template>
-          <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-          <Submenu v-for="(li,val) in item.children" :key="index+'-'+val" :name="index+'-'+val" v-if="li.children">
-            <template slot="title"><Icon :type="li.icon" /><span class="left-name-box">{{li.title}}</span></template>
-            <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-            <Submenu v-for="(i,v) in li.children" :key="index+'-'+val+'-'+v" :name="index+'-'+val+'-'+v" v-if="i.children">
-              <template slot="title"><Icon :type="i.icon" /><span class="left-name-box">{{i.title}}</span></template>
-              <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-              <Submenu v-for="(s,sv) in i.children" :key="index+'-'+val+'-'+v+'-'+sv" :name="index+'-'+val+'-'+v+'-'+sv" v-if="s.children">
-                <template slot="title"><Icon :type="s.icon" /><span class="left-name-box">{{s.title}}</span></template>
-                <MenuItem v-for="ss in s.children" :key="ss.link" :name="ss.link">
-                  <Icon :type="ss.icon" />{{ss.title}}
-                </MenuItem>
-              </Submenu>
-              <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-              <MenuItem v-for="a in i.children" :key="a.link" :name="a.link" v-if="a.link">
-                <Icon :type="a.icon" />{{a.title}}
-              </MenuItem>
+        <Menu ref="HomeMenu" theme="dark" accordion width="auto" class="menu-item" :style="HomeHeader" :active-name="HomeMenuActive" :open-names="HomeMenuOpen" @on-select="HomeMenuSelect">
+          <span v-for="(item, index) in HomeMenuList" :key="index">
+            <Submenu :name="item.name" v-if="item.children">
+              <template slot="title"><Icon :type="item.icon" />{{item.label}}</template>
+
+              <span v-for="(li, indx) in item.children" :key="indx">
+                <Submenu :name="li.name" v-if="li.children">
+                  <template slot="title"><Icon :type="li.icon" />{{li.label}}</template>
+
+                  <span v-for="(i, iv) in li.children" :key="iv">
+                    <Submenu :name="i.name" v-if="i.children">
+                      <template slot="title"><Icon :type="i.icon" />{{i.label}}</template>
+
+                      <span v-for="(j, jv) in i.children" :key="jv">
+                        <Submenu :name="j.name" v-if="j.children">
+                          <template slot="title"><Icon :type="j.icon" />{{j.label}}</template>
+                          <MenuItem :name="k.name" v-for="(k, kv) in j.children" :key="kv">{{k.label}}</MenuItem>
+                        </Submenu>
+                        <MenuItem :name="j.name" v-else>{{j.label}}</MenuItem>
+                      </span>
+
+                    </Submenu>
+                    <MenuItem :name="i.name" v-else>{{i.label}}</MenuItem>
+                  </span>
+
+                </Submenu>
+                <MenuItem :name="li.name" v-else>{{li.label}}</MenuItem>
+              </span>
+
             </Submenu>
-            <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-            <MenuItem v-for="i in li.children" :key="i.link" :name="i.link" v-if="i.link">
-              <Icon :type="i.icon" />{{i.title}}
-            </MenuItem>
-          </Submenu>
-          <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-          <MenuItem v-for="li in item.children" :key="li.link" :name="li.link" v-if="li.link">
-            <Icon :type="li.icon" />{{li.title}}
-          </MenuItem>
-        </Submenu>
-        <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
-        <MenuItem v-for="item in Menu" :key="item.link" :name="item.link" v-if="item.link">
-          <Icon :type="item.icon" />{{item.title}}
-        </MenuItem>
-      </Menu>
+            <MenuItem :name="item.name" v-else>{{item.label}}</MenuItem>
+          </span>
+        </Menu>
+      </Sider>
 
-    </Sider>
-
-    <Content class="right">
-      <div class="header">
-        <div class="header-left">
-          <Icon type="md-menu" size="24"  />
+      <Layout>
+        <Header class="header-wrap" ref="HomeHeader">
           <Breadcrumb>
-            <BreadcrumbItem>Home</BreadcrumbItem>
-            <BreadcrumbItem v-for="li in breadcrumb" :key="li">{{li}}</BreadcrumbItem>
+            <BreadcrumbItem><Icon type="md-home" size="14" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
+            <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
           </Breadcrumb>
-        </div>
-        <Dropdown @on-click="sysClick" class="namebox">
-          <div class="name"><Icon class="icon" type="ios-contact"></Icon>{{people.name}}</div>
-          <DropdownMenu slot="list">
-            <DropdownItem class="box" v-for="li in dropdownList" :key="li.id" :name="li.key">{{li.title}}</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+          <Poptip placement="bottom">
+            <Badge :count="1">
+              <Avatar shape="square" icon="ios-person" />
+            </Badge>
+            <ul slot="content" class="user-handle">
+              <li>消息</li>
+              <li class="red">退出</li>
+            </ul>
+          </Poptip>
+        </Header>
 
-      <label-box :list="tabList" :active="nowTab"  @on-click="addTabs" @on-close="closeTab"></label-box>
-
-      <div class="content">
-        <div class="main-box">
-          <keep-alive :include="keepAlive">
-            <router-view />
-          </keep-alive>
-        </div>
-      </div>
-    </Content>
+        <Content class="container" :style="HomeContainer">
+          <router-view/>
+        </Content>
+      </Layout>
   </Layout>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
+  name: 'Home',
   data () {
     return {
-      dropdownList: [
-        {
-          id: 1,
-          key: 'exit',
-          title: '退出'
-        }
-      ],
-      keepAlive: []
+      // 内容区域高度
+      HomeHeight: {}
     }
   },
   computed: {
     ...mapGetters([
-      'Message',
-      'people',
-      'Menu',
-      'tabList',
-      'nowOpen',
-      'nowTab',
-      'breadcrumb'
-    ])
-  },
-  methods: {
-    ...mapActions([
-      'exit',
-      'addTabs',
-      'removeTabs',
-      'defaultTabList',
-      'goHome',
-      'userInfo'
+      'HomeMenuList',
+      'BreadcrumbList',
+      'HomeMenuActive',
+      'HomeMenuOpen'
     ]),
-    // 全局提示
-    showMessage (val) {
-      if (val.code === 100200) {
-        this.$Message.success({
-          content: val.info,
-          duration: 2
-        })
-        this.init()
-      } else {
-        this.$Message.error({
-          content: val.info,
-          duration: 2
-        })
+    // 标题区域高度
+    HomeHeader () {
+      let style = {
+        height: this.HomeHeight.HomeHeader
       }
+      return style
     },
-
-    // 默认效果
-    init () {
-      let tabList = JSON.parse(this.VueCookie.get('TABLIST'))
-      let active = this.VueCookie.get('LINK')
-      if (tabList) {
-        this.defaultTabList(tabList)
-        if (active) {
-          this.addTabs(active)
-        }
-      } else {
-        this.goHome()
+    // 内容区域高度
+    HomeContainer () {
+      let style = {
+        height: this.HomeHeight.ContainerHeight
       }
-    },
-
-    // 切换左道航
-    refresh () {
-      this.$nextTick(() => {
-        this.$refs.vueadmin.updateOpened()
-        this.$refs.vueadmin.updateActiveName()
-      })
-    },
-
-    goHomes () {
-      this.goHome()
-      this.keepAlive = []
-    },
-
-    // 关闭
-    closeTab (item) {
-      if (item.length) {
-        this.removeTabs(item)
-      } else {
-        this.goHome()
-        this.keepAlive = []
-      }
-    },
-
-    // 系统设置
-    sysClick (e) {
-      if (e === 'exit') {
-        this.exit()
-      }
-      if (e === 'revamp') {
-        this.$router.push('/revamp')
-      }
-    },
-
-    // tab页面存储
-    updateTabList (val) {
-      this.keepAlive = []
-      if (val) {
-        this.VueCookie.set('TABLIST', JSON.stringify(val))
-
-        let loseList = []
-        let routeList = []
-        let route = this.$router.options.routes
-        for (let i = 0; i < route.length; i++) {
-          const element = route[i]
-          if (element.name === 'home') {
-            routeList = element.children
-          }
-        }
-        for (let i = 0; i < routeList.length; i++) {
-          const element = routeList[i]
-          if (element.meta) {
-            if (element.meta.keepAlive) {
-              loseList.push(element.name)
-            }
-          }
-        }
-
-        for (let i = 0; i < val.length; i++) {
-          const element = val[i].name
-          if (loseList.indexOf(element) === -1) {
-            this.keepAlive.push(element)
-          }
-        }
-
-        let list = Array.from(new Set(this.keepAlive))
-        this.keepAlive = list
-      }
-    },
-
-    updateRoute (val) {
-      let list = this.keepAlive
-      if (list.indexOf(val.name) === -1) {
-        this.$forceUpdate()
-      }
+      return style
+    }
+  },
+  mounted () {
+    // 监听窗口变化
+    this.onresizePage()
+    window.onresize = () => {
+      this.onresizePage()
     }
   },
   created () {
-    document.title = '管理平台'
     this.init()
-    // 获取用户信息
-    this.userInfo()
+  },
+  methods: {
+    ...mapActions([
+      'GoHome',
+      'HomeMenuSelect'
+    ]),
+    // 监听窗口变化
+    onresizePage () {
+      let Gap = 42
+      let Home = window.innerHeight
+      let Header = this.$refs.HomeHeader.clientHeight
+      let Logo = this.$refs.HomeLogo.clientHeight
+      this.HomeHeight = {
+        HomeHeader: (Home - Logo - Gap) + 'px',
+        ContainerHeight: (Home - Header - Gap) + 'px'
+      }
+    },
+    // 默认事件
+    init () {
+      this.$nextTick(() => {
+        this.$refs.HomeMenu.updateOpened()
+        this.$refs.HomeMenu.updateActiveName()
+      })
+    },
+    // 监控路由
+    changeRouter (val) {
+      if (val.name === 'Home') {
+        this.$refs.HomeMenu.currentActiveName = null
+      }
+    }
   },
   watch: {
-    nowOpen: 'refresh',
-    tabList: {
-      handler: 'updateTabList',
-      deep: true
-    },
     $route: {
-      handler: 'updateRoute',
-      deep: true
-    },
-    Message: {
-      handler: 'showMessage',
+      handler: 'changeRouter',
       deep: true
     }
   }
@@ -240,112 +144,83 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.layout {
+.home-layout {
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
   border: 1px solid #d7dde4;
   background: #f5f7f9;
 }
 .logo {
   display: flex;
-  width: 100%;
-  height: 60px;
-  margin: 10px 0;
+  overflow: hidden;
+  flex-direction: row;
+  width: 80%;
+  height: 50px;
+  margin: 20px auto;
   cursor: pointer;
-  user-select: none;
+  border-radius: 4px;
+  background-color: #5b6270;
 
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  img {
+    width: 100%;
+    height: 100%;
+  }
   p {
-    font-size: 22px;
-    font-weight: bold;
-    padding: 6px 10px;
-    color: #fff;
-    border-radius: 10px;
-    border-bottom-left-radius: 0;
-    background-color: #2d8cf0;
-  }
-}
-.left {
-  z-index: 2;
-  overflow: auto;
-  background-color: #001529;
-  .ivu-menu-dark {
-    background-color: #001529;
-  }
-  .left-name-box {
-    display: inline-block;
-    width: 70%;
-    vertical-align: top;
-  }
-}
-.right {
-  position: relative;
-  background-color: #f5f7f9;
-  .header {
     font-size: 20px;
-    display: flex;
-    flex-direction: row;
-    padding: 14px 20px;
-    background-color: #fff;
-    box-shadow: 0 0 5px #ccc;
-
-    justify-content: space-between;
-    .header-left {
-      display: flex;
-      flex-direction: row;
-      width: 80%;
-
-      align-items: center;
-      i {
-        margin-right: 20px;
-        cursor: pointer;
-      }
-    }
-    .namebox {
-      font-size: 14px;
-      cursor: pointer;
-      .name {
-        display: flex;
-        flex-direction: row;
-
-        align-items: center;
-        .icon {
-          font-size: 20px;
-          margin-top: -4px;
-          margin-right: 10px;
-        }
-        .ivu-icon {
-          vertical-align: middle;
-        }
-      }
-      .box {
-        text-align: center;
-      }
-    }
-  }
-  .content {
     overflow: hidden;
-    box-sizing: border-box;
-    height: 86vh;
-    margin: 20px;
-    border: 1px solid #e8eaec;
-    border-radius: 4px;
-    background-color: #fff;
-    .main-box {
+    padding: 0 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #fff;
+  }
+}
+.header-wrap {
+  display: flex;
+  flex-direction: row;
+  padding-right: 64px;
+  padding-left: 20px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+
+  justify-content: space-between;
+  align-items: center;
+  .ivu-poptip {
+    line-height: 1;
+  }
+  .user-handle {
+    li {
       font-size: 14px;
-      overflow-y: auto;
-      box-sizing: border-box;
-      width: 100%;
-      height: 100%;
-      padding: 20px;
+      padding: 10px 0;
+      cursor: pointer;
+      text-align: center;
+      border-top: 1px solid #e8eaec;
+      &:first-child {
+        border: none;
+      }
     }
   }
 }
-.ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
-  background: rgba(80, 90, 109, .3);
+.container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 1px rgba(0,0,0,.1);
+}
+.red{
+  color: #ed4014;
+}
+.green{
+  color: #19be6b;
+}
+.blue{
+  color: #2d8cf0;
+}
+.yellow{
+  color: #ff9900;
+}
+.black{
+  color: #515a6e;
 }
 </style>

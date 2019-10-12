@@ -1,12 +1,11 @@
-import Vue from 'vue'
-import 'babel-polyfill'
-import Vuex from 'vuex'
+// 一次性引入modules文件夹下的所有js文件-重要，勿删
 
-import modules from './modules'
+const files = require.context('.', false, /\.js$/)
+const modules = {}
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  modules,
-  strict: process.env.NODE_ENV !== 'production'
+files.keys().forEach(key => {
+  if (key === './index.js') return
+  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
 })
+
+export default modules

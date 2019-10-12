@@ -1,3 +1,7 @@
+// 安装组件至全局，重要文件，不可删
+
+// 全局组件命名规则，必须是以中划线-分割例demo-box
+
 const files = require.context('.', true, /\.vue$/)
 let modules = {}
 
@@ -16,7 +20,7 @@ files.keys().forEach(key => {
     name += element
   })
 
-  if (name.indexOf('/') != -1) {
+  if (name.indexOf('/') !== -1) {
     let more = name.split('/')
     let morePathName = pathName.split('/')
     name = more[0]

@@ -1,33 +1,51 @@
 <template>
-  <div id="app" v-cloak>
-    <router-view />
-    <!-- 返回顶部 -->
-    <BackTop></BackTop>
+  <div id="app">
+    <router-view/>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 export default {
-  mounted () {
-    this.judge()
-    window.addEventListener('resize', this.judge)
+  name: 'App',
+  computed: {
+    ...mapGetters([
+      'alertMessage'
+    ])
   },
   methods: {
-    ...mapActions([
-      'judge'
-    ])
+    changeMsg (val) {
+      if (val.code) {
+        if (val.code === 200) {
+          this.$Message.success({
+            content: val.info,
+            duration: 2
+          })
+        } else {
+          this.$Message.error({
+            content: val.info,
+            duration: 2
+          })
+        }
+      }
+    }
+  },
+  watch: {
+    alertMessage: {
+      handler: 'changeMsg',
+      deep: true
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
-  width: 100%;
-  height: 100%;
   font-size: 0;
-}
-[v-cloak] {
-  display: none;
+  line-height: 1.4;
+  width: 100%;
+  min-width: 1000px;
+  height: 100%;
+  color: #2c3e50;
 }
 </style>

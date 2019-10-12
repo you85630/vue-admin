@@ -10,6 +10,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
+  name: 'not-found',
   methods: {
     ...mapActions([
       'goHome'

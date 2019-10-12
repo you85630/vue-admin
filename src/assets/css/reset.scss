@@ -54,7 +54,6 @@ ol ,ul ,li {
   list-style: none;
 }
 html ,body {
-  line-height: 1;
   width: 100%;
   height: 100%;
 }
@@ -72,13 +71,4 @@ html ,body {
   width: 6px;
   height: 6px;
   background-color: #f5f5f5;
-}
-.txt-middle {
-  text-align: center;
-}
-.txt-end {
-  text-align: right;
-}
-.txt-start {
-  text-align: left;
 }

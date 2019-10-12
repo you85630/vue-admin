@@ -1,46 +1,40 @@
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 // 引入路由
 import router from './router'
 // 引入vuex
-import store from './store/index.js'
-// IE兼容
-import 'babel-polyfill'
-// 引入UI
-import iView from 'iview'
-import 'iview/dist/styles/iview.css'
-// 重置全局样式
-import 'assets/css/reset.css'
+import store from 'assets/js/store.js'
 // 引入echarts
 import echarts from 'echarts'
 // 引入存储组件
-import VueCookie from 'vue-cookies'
+import VueCookies from 'vue-cookies'
+// 引入UI组件库
+import ViewUI from 'view-design'
+import 'view-design/dist/styles/iview.css'
+// 重置全局样式
+import 'assets/css/reset.css'
 // 全局事件
 import utils from 'assets/js/utils.js'
 // 全局引用自定义模板
-import commonVue from 'components/common'
+import VueModule from 'assets/js/modules.js'
 
-// 全局使用
-Vue.prototype.utils = utils
-Vue.prototype.$echarts = echarts
-Vue.prototype.VueCookie = VueCookie
+Vue.use(ViewUI)
+Vue.use(VueModule)
 
-// 使用
-Vue.use(iView)
-Vue.use(commonVue)
+Vue.config.productionTip = false
+Vue.prototype.Utils = utils
+Vue.prototype.Echarts = echarts
+Vue.prototype.VueCookie = VueCookies
 
 router.beforeEach((to, from, next) => {
-  iView.LoadingBar.start()
+  ViewUI.LoadingBar.start()
   next()
 })
 
 router.afterEach(() => {
-  iView.LoadingBar.finish()
+  ViewUI.LoadingBar.finish()
 })
 
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
 new Vue({
   router,
   store,
