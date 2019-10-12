@@ -47,7 +47,7 @@
           <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
         </Breadcrumb>
         <Poptip placement="bottom">
-          <Badge :count="1" class="Badge"><Avatar shape="square" icon="ios-person" /></Badge><span class="name">{{userInfo.name}}</span>
+          <div class="Badge"><Avatar shape="square" icon="ios-person" /><span class="name">{{userInfo.name}}</span></div>
           <ul slot="content" class="user-handle">
             <li>消息</li>
             <li class="red" @click="exit">退出</li>
@@ -258,11 +258,12 @@ export default {
     .user-handle {
       li {
         font-size: 14px;
-        padding: 10px 0;
+        padding: 6px 0;
         cursor: pointer;
         text-align: center;
-        border-top: 1px solid #e8eaec;
-        &:first-child {
+        border-bottom: 1px solid #e8eaec;
+        &:last-child {
+          padding-top: 10px;
           border: none;
         }
       }
