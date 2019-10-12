@@ -36,21 +36,21 @@ const mutations = {
     }
     // 存储用户信息
     this._vm.VueCookie.set('USER', state.userInfo)
-    this.state.utils.Message = {
-      code: 200
-      // info: '账号或密码错误'
-    }
+    // 登录跳转
     router.push('/home')
+
+    let nowMsg = {
+      code: 200,
+      info: '登录成功'
+    }
+    this.dispatch('showMessage', nowMsg)
   },
 
   // 退出
   exit (state) {
-    this.state.utils.Message = {}
     state.user = {}
     router.push('/login')
     this._vm.VueCookie.remove('USER')
-    this._vm.VueCookie.remove('LINK')
-    this._vm.VueCookie.remove('TABLIST')
   },
 
   // 获取用户信息

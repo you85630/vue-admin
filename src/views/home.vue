@@ -50,7 +50,7 @@
             </Badge>
             <ul slot="content" class="user-handle">
               <li>消息</li>
-              <li class="red">退出</li>
+              <li class="red" @click="exit">退出</li>
             </ul>
           </Poptip>
         </Header>
@@ -106,6 +106,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'exit',
       'GoHome',
       'HomeMenuSelect'
     ]),

@@ -17,7 +17,7 @@ const router = new Router({
     {
       path: '*',
       name: 'not-found',
-      component: () => import('views/notFound')
+      component: () => import('views/NotFound')
     },
     {
       path: '/login',
