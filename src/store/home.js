@@ -1,56 +1,51 @@
 // import api from 'assets/js/api'
-import router from 'src/router'
+// import router from 'src/router'
 
 const state = {
   // 导航
   HomeMenuList: [
     {
       label: '用户管理',
-      name: 1,
       icon: 'ios-baseball',
       children: [
         {
           label: '新增用户',
-          name: '1-1'
+          link: '/page/1'
         },
         {
           label: '活跃用户',
-          name: '1-2'
+          link: '/page/2'
         }
       ]
     },
     {
       label: '文章管理',
-      name: 2,
-      icon: 'ios-basketball'
+      icon: 'ios-basketball',
+      link: '/page/3'
     },
     {
       label: '统计分析',
-      name: 3,
       icon: 'md-baseball',
       children: [
         {
           label: '使用',
-          name: '3-1',
           icon: 'ios-basketball',
           children: [
             {
               label: '新增和启动',
-              name: '3-1-1',
               icon: 'md-basketball',
               children: [
                 {
                   label: '新增',
-                  name: '3-1-1-1'
+                  link: '/page/4'
                 },
                 {
                   label: '启动',
-                  name: '3-1-1-2',
                   icon: 'ios-baseball',
                   children: [
                     {
                       label: '准备',
-                      name: '3-1-1-2-1'
+                      link: '/page/5'
                     }
                   ]
                 }
@@ -58,71 +53,43 @@ const state = {
             },
             {
               label: '活跃分析',
-              name: '3-1-2'
+              link: '/page/6'
             },
             {
               label: '时段分析',
-              name: '3-1-3'
+              link: '/page/7'
             }
           ]
         },
         {
           label: '留存',
-          name: '3-2',
           icon: 'md-basketball',
           children: [
             {
               label: '用户留存',
-              name: '3-2-1'
+              link: '/page/8'
             },
             {
               label: '流失用户',
-              name: '3-2-2'
+              link: '/page/9'
             }
           ]
         }
       ]
     }
-  ],
-  // 面包屑
-  BreadcrumbList: [],
-  // 导航选中
-  HomeMenuActive: null,
-  // 导航展开
-  HomeMenuOpen: []
+  ]
 }
 
 const getters = {
-  HomeMenuList: state => state.HomeMenuList,
-  BreadcrumbList: state => state.BreadcrumbList,
-  HomeMenuActive: state => state.HomeMenuActive,
-  HomeMenuOpen: state => state.HomeMenuOpen
+  HomeMenuList: state => state.HomeMenuList
 }
 
 const actions = {
-  // 获取用户信息
-  getUserInfo ({ commit }) {
-    commit('getUserInfo')
-  },
-  GoHome ({ commit }) {
-    commit('GoHome')
-  },
-  HomeMenuSelect ({ commit }, key) {
-    commit('HomeMenuSelect', key)
-  }
+
 }
 
 const mutations = {
-  // 跳转首页
-  GoHome (state) {
-    state.HomeMenuActive = null
-    state.HomeMenuOpen = []
-    router.push('/home')
-  },
-  // 导航跳转
-  HomeMenuSelect (state, key) {
-    console.log(key)
-  }
+
 }
 
 export default {

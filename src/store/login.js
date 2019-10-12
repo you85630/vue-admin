@@ -55,7 +55,7 @@ const mutations = {
 
   // 获取用户信息
   getUserInfo (state) {
-    state.user = this._vm.VueCookie.get('USER')
+    state.userInfo = this._vm.VueCookie.get('USER')
   }
 }
 

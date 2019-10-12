@@ -1,40 +1,40 @@
 <template>
   <Layout class="Home">
     <Sider class="Sider" ref="HomeSide" width="300">
-      <div ref="HomeLogo" class="Logo" @click="GoHome"><p>管理平台</p></div>
+      <div ref="HomeLogo" class="Logo"><p @click="goHome">管理平台</p></div>
 
       <div class="Menu">
         <Menu ref="HomeMenu" theme="dark" accordion width="auto" class="Menu-box" :active-name="HomeMenuActive" :open-names="HomeMenuOpen" @on-select="HomeMenuSelect">
           <span v-for="(item, index) in HomeMenuList" :key="index">
-            <Submenu :name="item.name" v-if="item.children">
+            <Submenu :name="index" v-if="item.children">
               <template slot="title"><Icon :type="item.icon" />{{item.label}}</template>
 
               <span v-for="(li, indx) in item.children" :key="indx">
-                <Submenu :name="li.name" v-if="li.children">
+                <Submenu :name="index+'-'+indx" v-if="li.children">
                   <template slot="title"><Icon :type="li.icon" />{{li.label}}</template>
 
                   <span v-for="(i, iv) in li.children" :key="iv">
-                    <Submenu :name="i.name" v-if="i.children">
+                    <Submenu :name="index+'-'+indx+'-'+iv" v-if="i.children">
                       <template slot="title"><Icon :type="i.icon" />{{i.label}}</template>
 
                       <span v-for="(j, jv) in i.children" :key="jv">
-                        <Submenu :name="j.name" v-if="j.children">
+                        <Submenu :name="index+'-'+indx+'-'+iv+'-'+jv" v-if="j.children">
                           <template slot="title"><Icon :type="j.icon" />{{j.label}}</template>
-                          <MenuItem :name="k.name" v-for="(k, kv) in j.children" :key="kv">{{k.label}}</MenuItem>
+                          <MenuItem :name="index+'-'+indx+'-'+iv+'-'+jv+'-'+kv" v-for="(k, kv) in j.children" :key="kv">{{k.label}}</MenuItem>
                         </Submenu>
-                        <MenuItem :name="j.name" v-else>{{j.label}}</MenuItem>
+                        <MenuItem :name="index+'-'+indx+'-'+iv+'-'+jv" :to="j.link" v-else>{{j.label}}</MenuItem>
                       </span>
 
                     </Submenu>
-                    <MenuItem :name="i.name" v-else>{{i.label}}</MenuItem>
+                    <MenuItem :name="index+'-'+indx+'-'+iv" :to="i.link" v-else>{{i.label}}</MenuItem>
                   </span>
 
                 </Submenu>
-                <MenuItem :name="li.name" v-else>{{li.label}}</MenuItem>
+                <MenuItem :name="index+'-'+indx" :to="li.link" v-else>{{li.label}}</MenuItem>
               </span>
 
             </Submenu>
-            <MenuItem :name="item.name" v-else><Icon :type="item.icon" />{{item.label}}</MenuItem>
+            <MenuItem :name="index" :to="item.link" v-else><Icon :type="item.icon" />{{item.label}}</MenuItem>
           </span>
         </Menu>
       </div>
@@ -43,13 +43,11 @@
     <Layout class="Layout">
       <Header class="Header" ref="HomeHeader">
         <Breadcrumb>
-          <BreadcrumbItem><Icon type="md-home" size="14" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
+          <BreadcrumbItem><Icon type="md-home" size="18" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
           <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
         </Breadcrumb>
         <Poptip placement="bottom">
-          <Badge :count="1">
-            <Avatar shape="square" icon="ios-person" />
-          </Badge>
+          <Badge :count="1"><Avatar shape="square" icon="ios-person" /></Badge><span class="name">{{userInfo.name}}</span>
           <ul slot="content" class="user-handle">
             <li>消息</li>
             <li class="red" @click="exit">退出</li>
@@ -70,12 +68,20 @@
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'Home',
+  data () {
+    return {
+      // 面包屑
+      BreadcrumbList: [],
+      // 导航选中
+      HomeMenuActive: null,
+      // 导航展开
+      HomeMenuOpen: []
+    }
+  },
   computed: {
     ...mapGetters([
-      'HomeMenuList',
-      'BreadcrumbList',
-      'HomeMenuActive',
-      'HomeMenuOpen'
+      'userInfo',
+      'HomeMenuList'
     ])
   },
   created () {
@@ -83,28 +89,99 @@ export default {
   },
   methods: {
     ...mapActions([
-      'exit',
-      'GoHome',
-      'HomeMenuSelect'
+      'getUserInfo',
+      'exit'
     ]),
     // 默认事件
     init () {
-      // this.$nextTick(() => {
-      //   this.$refs.HomeMenu.updateOpened()
-      //   this.$refs.HomeMenu.updateActiveName()
-      // })
-    },
-    // 监控路由
-    changeRouter (val) {
-      if (val.name === 'Home') {
-        this.$refs.HomeMenu.currentActiveName = null
+      this.getUserInfo()
+
+      let key = sessionStorage.getItem('HomeMenuActive')
+      if (key) {
+        this.HomeMenuSelect(key)
       }
-    }
-  },
-  watch: {
-    $route: {
-      handler: 'changeRouter',
-      deep: true
+    },
+    // 导航选择
+    HomeMenuSelect (name) {
+      let HomeMenuList = this.HomeMenuList
+
+      let list = name.length > 1 ? name.split('-') : [name]
+      for (let i = 0; i < list.length; i++) {
+        const element = list[i]
+        list[i] = Number(element)
+      }
+
+      let open = [
+        Number(list[0]),
+        list[0] + '-' + list[1],
+        list[0] + '-' + list[1] + '-' + list[2],
+        list[0] + '-' + list[1] + '-' + list[2] + '-' + list[3],
+        list[0] + '-' + list[1] + '-' + list[2] + '-' + list[3] + '-' + list[4]
+      ]
+
+      if (list.length > 1) {
+        for (let i = 0; i < open.length; i++) {
+          const element = open[i]
+          if (i != 0) {
+            if (element[0].indexOf('undefined') != -1) {
+              delete open[i]
+            }
+          }
+        }
+        open.length = list.length - 1
+      } else {
+        open = []
+      }
+
+      let bread = list
+      for (let i = 0; i < bread.length; i++) {
+        let key1 = HomeMenuList[bread[0]]
+        if (key1) {
+          bread[0] = key1
+          let key2 = key1.children ? key1.children[bread[1]] : undefined
+          if (key2) {
+            bread[1] = key2
+            let key3 = key2.children ? key2.children[bread[2]] : undefined
+            if (key3) {
+              bread[2] = key3
+              let key4 = key3.children ? key3.children[bread[3]] : undefined
+              if (key4) {
+                bread[3] = key4
+                let key5 = key4.children ? key4.children[bread[4]] : undefined
+                if (key5) {
+                  bread[4] = key5
+                }
+              }
+            }
+          }
+        }
+      }
+
+      sessionStorage.setItem('HomeMenuActive', name)
+
+      this.HomeMenuActive = name
+      this.HomeMenuOpen = open
+      this.BreadcrumbList = bread
+
+      this.$nextTick(() => {
+        this.$refs.HomeMenu.updateOpened()
+        this.$refs.HomeMenu.updateActiveName()
+      })
+    },
+    // 跳转首页
+    goHome () {
+      sessionStorage.removeItem('HomeMenuActive')
+
+      this.HomeMenuActive = null
+      this.HomeMenuOpen = []
+      this.BreadcrumbList = []
+
+      this.$nextTick(() => {
+        this.$refs.HomeMenu.updateOpened()
+        this.$refs.HomeMenu.updateActiveName()
+      })
+
+      this.$router.push('/home')
     }
   }
 }
@@ -184,6 +261,12 @@ export default {
           border: none;
         }
       }
+    }
+    .name {
+      font-size: 14px;
+      display: inline-block;
+      margin-left: 10px;
+      vertical-align: middle;
     }
   }
   .Content {
