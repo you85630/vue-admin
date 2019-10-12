@@ -90,20 +90,20 @@ export default {
       td ,th {
         box-sizing: border-box;
         min-width: 0;
-        height: 48px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         text-align: left;
         vertical-align: middle;
         text-overflow: ellipsis;
       }
       .table-tr-children {
         box-sizing: border-box;
-        padding-right: 18px;
-        padding-left: 18px;
+        padding-right: 10px;
+        padding-left: 10px;
         word-break: break-all;
       }
       th {
         overflow: hidden;
-        height: 40px;
         white-space: nowrap;
         background-color: #f8f8f9;
         .table-tr-children {
