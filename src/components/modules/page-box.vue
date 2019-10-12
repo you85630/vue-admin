@@ -111,6 +111,8 @@ export default {
       this.page--
       this.selectPage(this.page)
       if (this.page + 1 == this.number) {
+        this.nextMore = false
+      } else {
         this.nextMore = true
       }
       if (this.page + 1 == this.max) {
@@ -121,9 +123,9 @@ export default {
     nextPage () {
       this.page++
       this.selectPage(this.page)
-      if (this.page >= this.max) {
-        this.prevMore = true
+      if (this.page <= this.max) {
         this.nextMore = true
+        this.prevMore = true
       }
       if (this.page + 1 == this.number) {
         this.nextMore = false

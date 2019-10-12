@@ -2,7 +2,7 @@
   <div class="page">
     <table-tree :loading="loading" border :columns="columns" :data="authorList"></table-tree>
     <div class="page-box">
-      <page-box :total="20" @on-change="changePage"></page-box>
+      <page-box :total="100" @on-change="changePage"></page-box>
     </div>
   </div>
 </template>
