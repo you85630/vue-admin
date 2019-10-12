@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrap">
-    <div class="page-item page-hover" :class="{'none':page ==1 }" @click="firstPage">首页</div>
+    <div class="page-item page-hover page-box" :class="{'none':page ==1 }" @click="firstPage">首页</div>
 
     <div class="page-item page-hover page-prev none" v-if="page == 1"><span></span></div>
     <div class="page-item page-hover page-prev" v-if="page > 1" @click="prevPage"><span></span></div>
@@ -12,7 +12,7 @@
     <div class="page-item page-hover page-next" v-if="page < number" @click="nextPage"><span></span></div>
     <div class="page-item page-hover page-next none" v-if="page == number"><span></span></div>
 
-    <div class="page-item page-hover" :class="{'none':page == number}" @click="LastPage">尾页</div>
+    <div class="page-item page-hover page-box" :class="{'none':page == number}" @click="LastPage">尾页</div>
     <div class="page-options">
       <p>跳到</p>
       <input class="page-item" :value="page" type="text" @keyup.enter="jumpPage">
@@ -149,6 +149,9 @@ export default {
     color: #989898;
     border-radius: 2px;
     background-color: #f8f8f8;
+  }
+  .page-box {
+    width: 50px;
   }
   .page-next ,.page-prev {
     font-size: 0;
