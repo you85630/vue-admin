@@ -49,7 +49,6 @@
         <Poptip placement="bottom">
           <div class="Badge"><Avatar shape="square" icon="ios-person" /><span class="name">{{userInfo.name}}</span></div>
           <ul slot="content" class="user-handle">
-            <li>消息</li>
             <li class="red" @click="exit">退出</li>
           </ul>
         </Poptip>
