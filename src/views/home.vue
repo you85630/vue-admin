@@ -108,9 +108,9 @@ export default {
       let open = []
       open.length = list.length - 1
       for (let i = 0; i < open.length; i++) {
-        let open1 = Number(list[0])
+        let open1 = list[0]
         if (open1) {
-          open[0] = open1
+          open[0] = Number(open1)
           let open2 = open1 + '-' + list[1]
           if (open2) {
             open[1] = open2
