@@ -2,14 +2,25 @@
   <div class="not-found">
     <div class="box">
       <img src="././../assets/img/notfound.png" alt="">
-      <Button size="large" type="primary" shape="circle"> <router-link to="/home">返回首页</router-link></Button>
+      <Button size="large" type="primary" shape="circle" @click="goHome">返回首页</Button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'not-found'
+  name: 'not-found',
+  methods: {
+    goHome () {
+      sessionStorage.removeItem('HomeMenuActive')
+
+      this.HomeMenuActive = null
+      this.HomeMenuOpen = []
+      this.BreadcrumbList = []
+
+      this.$router.push('/home')
+    }
+  }
 }
 </script>
 

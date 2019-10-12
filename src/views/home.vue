@@ -20,17 +20,17 @@
                       <span v-for="(j, jv) in i.children" :key="jv">
                         <Submenu :name="index+'-'+indx+'-'+iv+'-'+jv" v-if="j.children">
                           <template slot="title"><Icon :type="j.icon" />{{j.label}}</template>
-                          <MenuItem :name="index+'-'+indx+'-'+iv+'-'+jv+'-'+kv" v-for="(k, kv) in j.children" :key="kv">{{k.label}}</MenuItem>
+                          <MenuItem :name="index+'-'+indx+'-'+iv+'-'+jv+'-'+kv" v-for="(k, kv) in j.children" :key="kv"><Icon :type="k.icon" />{{k.label}}</MenuItem>
                         </Submenu>
-                        <MenuItem :name="index+'-'+indx+'-'+iv+'-'+jv" :to="j.link" v-else>{{j.label}}</MenuItem>
+                        <MenuItem :name="index+'-'+indx+'-'+iv+'-'+jv" :to="j.link" v-else><Icon :type="j.icon" />{{j.label}}</MenuItem>
                       </span>
 
                     </Submenu>
-                    <MenuItem :name="index+'-'+indx+'-'+iv" :to="i.link" v-else>{{i.label}}</MenuItem>
+                    <MenuItem :name="index+'-'+indx+'-'+iv" :to="i.link" v-else><Icon :type="i.icon" />{{i.label}}</MenuItem>
                   </span>
 
                 </Submenu>
-                <MenuItem :name="index+'-'+indx" :to="li.link" v-else>{{li.label}}</MenuItem>
+                <MenuItem :name="index+'-'+indx" :to="li.link" v-else><Icon :type="li.icon" />{{li.label}}</MenuItem>
               </span>
 
             </Submenu>
@@ -47,7 +47,7 @@
           <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
         </Breadcrumb>
         <Poptip placement="bottom">
-          <Badge :count="1"><Avatar shape="square" icon="ios-person" /></Badge><span class="name">{{userInfo.name}}</span>
+          <Badge :count="1" class="Badge"><Avatar shape="square" icon="ios-person" /></Badge><span class="name">{{userInfo.name}}</span>
           <ul slot="content" class="user-handle">
             <li>消息</li>
             <li class="red" @click="exit">退出</li>
@@ -247,8 +247,13 @@ export default {
 
     justify-content: space-between;
     align-items: center;
+    .ivu-breadcrumb {
+      width: 80%;
+    }
     .ivu-poptip {
       line-height: 1;
+      width: 20%;
+      text-align: right;
     }
     .user-handle {
       li {
@@ -262,10 +267,14 @@ export default {
         }
       }
     }
+    .Badge {
+      cursor: pointer;
+    }
     .name {
       font-size: 14px;
       display: inline-block;
       margin-left: 10px;
+      cursor: pointer;
       vertical-align: middle;
     }
   }
