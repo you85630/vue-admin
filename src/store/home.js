@@ -9,6 +9,326 @@ const state = {
       name: 1
     },
     {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
+      label: '文章管理',
+      name: 1
+    },
+    {
       label: '用户管理',
       name: 2,
       icon: 'ios-baseball',

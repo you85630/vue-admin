@@ -1,7 +1,7 @@
 <template>
   <Layout class="home-layout">
       <Sider ref="HomeSide" width="300">
-        <div ref="HomeLogo" class="logo" @click="GoHome"></div>
+        <div ref="HomeLogo" class="logo" @click="GoHome"><p>管理平台</p></div>
 
         <Menu ref="HomeMenu" theme="dark" accordion width="auto" class="menu-item" :style="HomeHeader" :active-name="HomeMenuActive" :open-names="HomeMenuOpen" @on-select="HomeMenuSelect">
           <span v-for="(item, index) in HomeMenuList" :key="index">
@@ -94,13 +94,6 @@ export default {
       return style
     }
   },
-  mounted () {
-    // 监听窗口变化
-    this.onresizePage()
-    window.onresize = () => {
-      this.onresizePage()
-    }
-  },
   created () {
     this.init()
   },
@@ -110,17 +103,6 @@ export default {
       'GoHome',
       'HomeMenuSelect'
     ]),
-    // 监听窗口变化
-    onresizePage () {
-      let Gap = 42
-      let Home = window.innerHeight
-      let Header = this.$refs.HomeHeader.clientHeight
-      let Logo = this.$refs.HomeLogo.clientHeight
-      this.HomeHeight = {
-        HomeHeader: (Home - Logo - Gap) + 'px',
-        ContainerHeight: (Home - Header - Gap) + 'px'
-      }
-    },
     // 默认事件
     init () {
       this.$nextTick(() => {
@@ -148,6 +130,8 @@ export default {
 .home-layout {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
   border: 1px solid #d7dde4;
   background: #f5f7f9;
 }
@@ -170,6 +154,7 @@ export default {
   }
   p {
     font-size: 20px;
+    font-weight: bold;
     overflow: hidden;
     padding: 0 10px;
     white-space: nowrap;
@@ -209,19 +194,19 @@ export default {
   background-color: #fff;
   box-shadow: 0 0 1px rgba(0,0,0,.1);
 }
-.red{
+.red {
   color: #ed4014;
 }
-.green{
+.green {
   color: #19be6b;
 }
-.blue{
+.blue {
   color: #2d8cf0;
 }
-.yellow{
-  color: #ff9900;
+.yellow {
+  color: #f90;
 }
-.black{
+.black {
   color: #515a6e;
 }
 </style>

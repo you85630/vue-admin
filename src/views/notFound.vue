@@ -2,38 +2,38 @@
   <div class="not-found">
     <div class="box">
       <img src="././../assets/img/notfound.png" alt="">
-      <Button size="large" type="primary" shape="circle" @click="goHome">返回首页</Button>
+      <Button size="large" type="primary" shape="circle"> <router-link to="/home">返回首页</router-link></Button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
-  name: 'not-found',
-  methods: {
-    ...mapActions([
-      'goHome'
-    ])
-  }
+  name: 'not-found'
+
 }
 </script>
 
 <style lang="scss" scoped>
-.not-found{
+.not-found {
   display: flex;
-  align-items: center;
   flex-direction: row;
-  justify-content: center;
   width: 100%;
   height: 100%;
   background-color: #5c5e64;
-  .box{
+
+  align-items: center;
+  justify-content: center;
+  .box {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
     margin-top: -100px;
+
+    align-items: center;
+    justify-content: center;
+    a {
+      color: #fff;
+    }
   }
 }
 </style>

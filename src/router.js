@@ -33,7 +33,7 @@ const router = new Router({
         {
           path: '/page1',
           name: 'page1',
-          component: () => import('./components/pages/page1'),
+          component: () => import('components/pages/page1'),
           meta: { requireAuth: user }
         }
       ]
