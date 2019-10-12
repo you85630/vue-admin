@@ -103,53 +103,50 @@ export default {
     },
     // 导航选择
     HomeMenuSelect (name) {
-      let HomeMenuList = this.HomeMenuList
-
       let list = name.length > 1 ? name.split('-') : [name]
-      for (let i = 0; i < list.length; i++) {
-        const element = list[i]
-        list[i] = Number(element)
-      }
 
-      let open = [
-        Number(list[0]),
-        list[0] + '-' + list[1],
-        list[0] + '-' + list[1] + '-' + list[2],
-        list[0] + '-' + list[1] + '-' + list[2] + '-' + list[3],
-        list[0] + '-' + list[1] + '-' + list[2] + '-' + list[3] + '-' + list[4]
-      ]
-
-      if (list.length > 1) {
-        for (let i = 0; i < open.length; i++) {
-          const element = open[i]
-          if (i != 0) {
-            if (element[0].indexOf('undefined') != -1) {
-              delete open[i]
+      let open = []
+      open.length = list.length - 1
+      for (let i = 0; i < open.length; i++) {
+        let open1 = Number(list[0])
+        if (open1) {
+          open[0] = open1
+          let open2 = open1 + '-' + list[1]
+          if (open2) {
+            open[1] = open2
+            let open3 = open2 + '-' + list[2]
+            if (open3) {
+              open[2] = open3
+              let open4 = open3 + '-' + list[3]
+              if (open4) {
+                open[3] = open4
+                let open5 = open4 + '-' + list[4]
+                if (open5) {
+                  open[4] = open5
+                }
+              }
             }
           }
         }
-        open.length = list.length - 1
-      } else {
-        open = []
       }
 
-      let bread = list
-      for (let i = 0; i < bread.length; i++) {
-        let key1 = HomeMenuList[bread[0]]
-        if (key1) {
-          bread[0] = key1
-          let key2 = key1.children ? key1.children[bread[1]] : undefined
-          if (key2) {
-            bread[1] = key2
-            let key3 = key2.children ? key2.children[bread[2]] : undefined
-            if (key3) {
-              bread[2] = key3
-              let key4 = key3.children ? key3.children[bread[3]] : undefined
-              if (key4) {
-                bread[3] = key4
-                let key5 = key4.children ? key4.children[bread[4]] : undefined
-                if (key5) {
-                  bread[4] = key5
+      let bread = []
+      for (let i = 0; i < list.length; i++) {
+        let bread1 = this.HomeMenuList[list[0]]
+        if (bread1) {
+          bread[0] = bread1
+          let bread2 = bread1.children ? bread1.children[list[1]] : undefined
+          if (bread2) {
+            bread[1] = bread2
+            let bread3 = bread2.children ? bread2.children[list[2]] : undefined
+            if (bread3) {
+              bread[2] = bread3
+              let bread4 = bread3.children ? bread3.children[list[3]] : undefined
+              if (bread4) {
+                bread[3] = bread4
+                let bread5 = bread4.children ? bread4.children[list[4]] : undefined
+                if (bread5) {
+                  bread[4] = bread5
                 }
               }
             }
@@ -168,6 +165,7 @@ export default {
         this.$refs.HomeMenu.updateActiveName()
       })
     },
+
     // 跳转首页
     goHome () {
       sessionStorage.removeItem('HomeMenuActive')
