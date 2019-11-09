@@ -30,7 +30,8 @@ export default {
         },
         {
           title: '说明',
-          key: ''
+          key: 'dec',
+          tooltip: true
         },
         {
           width: 80,
