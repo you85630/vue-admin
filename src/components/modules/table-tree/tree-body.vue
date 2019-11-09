@@ -9,6 +9,7 @@
           <tr>
             <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columnsList" :key="index+'-'+val">
               <div class="table-tr-children">
+                <table-slot v-if="li.typeKey=='slot'" :row="item" :column="li" :index="index"></table-slot>
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
                 <div class="table-tr-text" v-if="li.typeKey=='normal'">
                   <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon"
@@ -77,6 +78,7 @@ export default {
   },
   components: {
     TableExpand: () => import('./expand'),
+    TableSlot: () => import('./slot'),
     TreeTr: () => import('./tree-tr')
   },
   methods: {

@@ -26,6 +26,11 @@
 <script>
 export default {
   name: 'tree-table',
+  provide () {
+    return {
+      tableRoot: this
+    }
+  },
   props: {
     columns: {
       type: Array,

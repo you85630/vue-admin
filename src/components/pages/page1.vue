@@ -2,7 +2,7 @@
   <div class="page">
     <table-tree :loading="loading" border :columns="columns" :data="HomeMenuList">
       <template slot-scope="{ row }" slot="action">
-        <Button size="small" @click="submit(row)">按钮</Button>
+        <Button type="primary" size="small" @click="submit(row)">按钮</Button>
       </template>
     </table-tree>
     <div class="page-box">
