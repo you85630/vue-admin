@@ -9,7 +9,9 @@
           <tr>
             <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columns" :key="index+'-'+val">
               <div class="table-tr-children">
-                <div class="table-tr-text" v-if="li.key!=='action'">
+                <table-expand  v-if="li.key=='action'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
+
+                <div class="table-tr-text" v-else>
                   <Icon
                     :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"
                     class="table-tr-children-icon"
@@ -17,7 +19,6 @@
                     @click="reversal(item)" />
                   <span :class="{'none-icon':val==0&&!item.children}">{{item[li.key]}}</span>
                 </div>
-                <table-expand v-else :row="item" :column="li" :index="index" :render="li.render"></table-expand>
               </div>
             </td>
           </tr>
