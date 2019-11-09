@@ -38,9 +38,6 @@ export default {
                   type: 'success',
                   size: 'small'
                 },
-                style: {
-                  marginRight: '5px'
-                },
                 on: {
                   click: () => {
                     console.log(params.row)
