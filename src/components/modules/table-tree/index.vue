@@ -81,7 +81,6 @@ export default {
 .table-wrap {
   font-size: 0;
   position: relative;
-  overflow: hidden;
   border: 1px solid #dcdee2;
   border-right: 0;
   border-bottom: 0;
@@ -96,7 +95,6 @@ export default {
   }
   .table-box {
     font-size: 12px;
-    overflow: hidden;
     box-sizing: border-box;
     width: inherit;
     max-width: 100%;

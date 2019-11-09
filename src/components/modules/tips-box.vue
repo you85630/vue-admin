@@ -11,6 +11,10 @@ export default {
   props: {
     content: {
       type: String // 类型：Array,String,Number,Object,Boolean,Function,Symbol
+    },
+    placement: {
+      type: String, // 类型：Array,String,Number,Object,Boolean,Function,Symbol
+      default: 'top'
     }
   },
   data () {

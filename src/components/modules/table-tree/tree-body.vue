@@ -11,7 +11,7 @@
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
                 <template v-if="li.typeKey=='normal'">
                   <div class="table-tr-tooltip" v-if="li.tooltip">
-                    <tips-box v-if="li.tooltip" :content="item[li.key]">{{item[li.key]}}</tips-box>
+                    <tips-box :content="item[li.key]">{{item[li.key]}}</tips-box>
                   </div>
                   <template v-else>
                     <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon" v-if="val==0&&item.children" @click="reversal(item)" />
