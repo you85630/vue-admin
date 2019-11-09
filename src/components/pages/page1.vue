@@ -35,29 +35,9 @@ export default {
         },
         {
           width: 80,
-          title: '操作1',
+          title: '操作',
           slot: 'action',
           align: 'center'
-        },
-        {
-          title: '操作2',
-          width: 80,
-          align: 'center',
-          render: (h, params) => {
-            return h('div', [
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small'
-                },
-                on: {
-                  click: () => {
-                    console.log(params.row)
-                  }
-                }
-              }, '按钮')
-            ])
-          }
         }
       ]
     }

@@ -1,23 +1,18 @@
 <template>
-  <ul class="tree-body">
-    <li v-for="(item,index) in data" :key="'i'+index">
+  <ul class="table-body">
+    <li v-for="(item,index) in data" :key="index">
       <table>
-        <colgroup>
-          <col v-for="(li,val) in columns" :key="index+'-'+val" :width="li.width">
-        </colgroup>
+        <colgroup><col v-for="(li,val) in columns" :key="val" :width="li.width"></colgroup>
         <tbody v-if="treeStart">
           <tr>
-            <td :class="[li.align ? 'table-line-' + li.align : '',val == 0 ? 'lev-' + item.level : '']" v-for="(li,val) in columnsList" :key="index+'-'+val">
-              <div class="table-tr-children">
+            <td :class="[li.align ? 'table-line-' + li.align : '' , val == 0 ? 'table-level-' + item.level : '']" v-for="(li,val) in columnsList" :key=" val">
+              <div class="table-tr-children table-tr-text">
                 <table-slot v-if="li.typeKey=='slot'" :row="item" :column="li" :index="index"></table-slot>
-
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
-
-                <div class="table-tr-text" v-if="li.typeKey=='normal'">
-                  <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon"
-                    v-if="val==0&&item.children" @click="reversal(item)" />
+                <template v-if="li.typeKey=='normal'">
+                  <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon" v-if="val==0&&item.children" @click="reversal(item)" />
                   <span :class="{'none-icon':val==0&&!item.children}">{{item[li.key]}}</span>
-                </div>
+                </template>
               </div>
             </td>
           </tr>
