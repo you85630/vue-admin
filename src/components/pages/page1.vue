@@ -46,32 +46,7 @@ export default {
                     console.log(params.row)
                   }
                 }
-              }, '新增'),
-              h('Button', {
-                props: {
-                  type: 'primary',
-                  size: 'small'
-                },
-                style: {
-                  marginRight: '5px'
-                },
-                on: {
-                  click: () => {
-                    console.log(params.row)
-                  }
-                }
-              }, '编辑'),
-              h('Button', {
-                props: {
-                  type: 'error',
-                  size: 'small'
-                },
-                on: {
-                  click: () => {
-                    console.log(params.row)
-                  }
-                }
-              }, '删除')
+              }, '新增')
             ])
           }
         },
