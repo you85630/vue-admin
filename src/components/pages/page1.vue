@@ -30,13 +30,23 @@ export default {
         },
         {
           title: '说明',
+          key: ''
+        },
+        {
+          width: 80,
+          title: '操作1',
+          slot: 'action',
+          align: 'center'
+        },
+        {
+          title: '操作2',
           width: 80,
           align: 'center',
           render: (h, params) => {
             return h('div', [
               h('Button', {
                 props: {
-                  type: 'success',
+                  type: 'primary',
                   size: 'small'
                 },
                 on: {
@@ -44,15 +54,9 @@ export default {
                     console.log(params.row)
                   }
                 }
-              }, '新增')
+              }, '按钮')
             ])
           }
-        },
-        {
-          width: 80,
-          title: '操作',
-          slot: 'action',
-          align: 'center'
         }
       ]
     }

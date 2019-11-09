@@ -185,7 +185,7 @@ export default {
       display: inline-block;
       user-select: none;
       vertical-align: middle;
-      color: #2e41a1;
+      color: #2d8cf0;
     }
     input {
       padding: 0 4px;
@@ -198,8 +198,8 @@ export default {
   .page-hover {
     &:hover {
       color: #fff;
-      border-color: #2e41a1;
-      background-color: #2e41a1;
+      border-color: #2d8cf0;
+      background-color: #2d8cf0;
       span {
         border-right-color: #fff;
         border-left-color: #fff;
@@ -208,8 +208,8 @@ export default {
   }
   .active {
     color: #fff;
-    border-color: #2e41a1;
-    background-color: #2e41a1;
+    border-color: #2d8cf0;
+    background-color: #2d8cf0;
   }
   .none {
     &:hover {
