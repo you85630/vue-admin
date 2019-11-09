@@ -18,7 +18,7 @@
           </thead>
         </table>
       </div>
-      <tree-body :columns="columns" :data="data"></tree-body>
+      <tree-body :columns="columns" :data="dataList"></tree-body>
     </div>
   </div>
 </template>
@@ -52,7 +52,6 @@ export default {
       get () {
         let list = JSON.parse(JSON.stringify(this.data))
         let data = this.loopData(list, 0)
-        console.log(data)
         return data
       },
       set () {}
@@ -62,11 +61,10 @@ export default {
     loopData (data, index) {
       for (let i = 0; i < data.length; i++) {
         const element = data[i]
+        element.expand = true
+        element.level = index
         if (element.children) {
-          this.loopData(element.children, i)
-        } else {
-          element.expand = true
-          element.level = index
+          this.loopData(element.children, index + 1)
         }
       }
       return data
