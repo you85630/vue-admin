@@ -1,6 +1,6 @@
 <template>
   <div class="tab-main">
-    <div class="tab-nav" @mouseleave="closeshow=false">
+    <div class="tab-nav"  @mouseleave="closeshow=false">
       <div class="nav-list" id="navbox">
         <div class="direction" @click="prev"><Icon type="ios-arrow-back" /></div>
         <div class="item-box" :style="{marginLeft:mleft+'px'}" id="tabbox">
@@ -30,9 +30,9 @@
 
 <script>
 export default {
-  name: 'label-tab',
+  name: 'page-tab',
   props: {
-    data: {
+    list: {
       type: Array, // String, Number, Boolean, Function, Object, Array
       required: true,
       default: null
@@ -53,7 +53,7 @@ export default {
   computed: {
     tabList: {
       get () {
-        let list = JSON.parse(JSON.stringify(this.data))
+        let list = JSON.parse(JSON.stringify(this.list))
         for (let i = 0; i < list.length; i++) {
           const element = list[i]
           element.show = false
@@ -107,7 +107,7 @@ export default {
     closeOther () {
       let now = []
       let active = this.active
-      let list = this.tabList
+      let list = this.list
       for (const key in list) {
         if (list.hasOwnProperty(key)) {
           const element = list[key]
@@ -128,7 +128,7 @@ export default {
     removeTab (now) {
       let nowList = []
       let active = now.link
-      let list = this.tabList
+      let list = this.list
       for (const key in list) {
         if (list.hasOwnProperty(key)) {
           const element = list[key]
@@ -180,6 +180,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   .nav-list {
+    overflow: hidden;
     display: flex;
     flex-direction: row;
 

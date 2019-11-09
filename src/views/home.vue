@@ -98,18 +98,19 @@ export default {
     init () {
       this.getUserInfo()
 
-      let key = sessionStorage.getItem('HomeMenuActive')
+      let key = this.VueCookie.get('HomeMenuActive')
 
       if (key) {
         this.HomeMenuSelect(key)
       }
     },
+
     // 导航选择
     HomeMenuSelect (name) {
       let list = name.length > 1 ? name.split('-') : [name]
       let active = name.length > 1 ? name : Number(name)
 
-      sessionStorage.setItem('HomeMenuActive', name)
+      this.VueCookie.set('HomeMenuActive', name)
 
       let open = []
       open.length = list.length - 1
@@ -164,26 +165,28 @@ export default {
       this.HomeMenuOpen = open
       this.BreadcrumbList = bread
 
-      this.$nextTick(() => {
-        this.$refs.HomeMenu.updateOpened()
-        this.$refs.HomeMenu.updateActiveName()
-      })
+      this.updatePage()
     },
 
     // 跳转首页
     goHome () {
-      sessionStorage.removeItem('HomeMenuActive')
+      this.VueCookie.remove('HomeMenuActive')
 
       this.HomeMenuActive = null
       this.HomeMenuOpen = []
       this.BreadcrumbList = []
 
+      this.updatePage()
+
+      this.$router.push('/home')
+    },
+
+    // 刷新页面
+    updatePage () {
       this.$nextTick(() => {
         this.$refs.HomeMenu.updateOpened()
         this.$refs.HomeMenu.updateActiveName()
       })
-
-      this.$router.push('/home')
     }
   }
 }
