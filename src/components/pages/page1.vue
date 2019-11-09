@@ -30,7 +30,7 @@ export default {
         },
         {
           title: '说明',
-          key: 'component',
+          key: 'action',
           render: (h, params) => {
             return h('div', [
               h('Button', {
@@ -53,7 +53,7 @@ export default {
         {
           width: 200,
           title: '操作',
-          slot: 'action',
+          slot: 'slot',
           align: 'center'
         }
       ]
