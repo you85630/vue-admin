@@ -10,8 +10,13 @@
                 <table-slot v-if="li.typeKey=='slot'" :row="item" :column="li" :index="index"></table-slot>
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
                 <template v-if="li.typeKey=='normal'">
-                  <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon" v-if="val==0&&item.children" @click="reversal(item)" />
-                  <span :class="{'none-icon':val==0&&!item.children}">{{item[li.key]}}</span>
+                  <div class="table-tr-tooltip" v-if="li.tooltip">
+                    <tips-box v-if="li.tooltip" :content="item[li.key]">{{item[li.key]}}</tips-box>
+                  </div>
+                  <template v-else>
+                    <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon" v-if="val==0&&item.children" @click="reversal(item)" />
+                    <span :class="{'none-icon':val==0&&!item.children}">{{item[li.key]}}</span>
+                  </template>
                 </template>
               </div>
             </td>
@@ -28,19 +33,11 @@ export default {
   name: 'tree-body',
   props: {
     columns: {
-      type: [Array, Object],
+      type: Array,
       required: true
     },
     data: {
-      type: [Array, Object]
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    border: {
-      type: Boolean,
-      default: false
+      type: Array
     }
   },
   data () {
@@ -142,6 +139,11 @@ table {
   .table-level-#{$n} {
     box-sizing: border-box;
     padding-left: 18px * $n;
+  }
+}
+.table-tr-tooltip {
+  .tips-box {
+    width: 100%;
   }
 }
 </style>
