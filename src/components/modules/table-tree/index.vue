@@ -1,14 +1,10 @@
 <template>
   <div class="table-wrap">
-    <div class="table-spin-box" v-if="loading">
-      <Spin size="large" fix></Spin>
-    </div>
+    <div class="table-spin-box" v-if="loading"><Spin size="large" fix></Spin></div>
     <div class="table-box" :class="{'table-box-border':border}" v-else>
       <div class="table-header">
         <table>
-          <colgroup>
-            <col v-for="(item,index) in columns" :key="index" :width="item.width">
-          </colgroup>
+          <colgroup><col v-for="(item,index) in columns" :key="index" :width="item.width"></colgroup>
           <thead>
             <tr>
               <th :class="item.align?'table-line-'+item.align:''" v-for="(item,index) in columns" :key="index">
@@ -20,9 +16,7 @@
       </div>
       <tree-body :columns="columns" :data="dataList"></tree-body>
       <table v-if="!dataList.length">
-        <tr>
-          <td class="table-line-center">暂无数据</td>
-        </tr>
+        <tr><td class="table-line-center">暂无数据</td></tr>
       </table>
     </div>
   </div>
@@ -83,7 +77,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .table-wrap {
   font-size: 0;
   position: relative;
@@ -91,38 +85,6 @@ export default {
   border: 1px solid #dcdee2;
   border-right: 0;
   border-bottom: 0;
-  table {
-    width: 100%;
-    table-layout: fixed;
-    border-bottom: 1px solid #e8eaec;
-    tr {
-      td ,th {
-        box-sizing: border-box;
-        min-width: 0;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: left;
-        vertical-align: middle;
-        text-overflow: ellipsis;
-      }
-    }
-  }
-  .table-header {
-    font-weight: bold;
-    background-color: #f8f8f9;
-  }
-  .table-body {
-    tr {
-      &:hover {
-        background-color: #ebf7ff;
-      }
-    }
-  }
-  .table-box-border {
-    td ,th {
-      border-right: 1px solid #e8eaec;
-    }
-  }
   .table-spin-box {
     position: relative;
     overflow: hidden;
@@ -132,15 +94,49 @@ export default {
     border-top: none;
     border-left: none;
   }
-  .table-tr-text {
-    font-size: 14px;
+  .table-box {
+    font-size: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: inherit;
+    max-width: 100%;
+    height: 100%;
+    color: #515a6e;
+    background-color: #fff;
+    .table-header {
+      font-weight: bold;
+      background-color: #f8f8f9;
+    }
+    .table-tr-children {
+      box-sizing: border-box;
+      padding-right: 10px;
+      padding-left: 10px;
+      word-break: break-all;
+    }
+    .table-tr-text {
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      table-layout: fixed;
+      border-bottom: 1px solid #e8eaec;
+      tr {
+        td ,th {
+          box-sizing: border-box;
+          min-width: 0;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-align: left;
+          vertical-align: middle;
+          text-overflow: ellipsis;
+        }
+      }
+    }
   }
-  .none-icon {
-    padding-left: 16px;
-  }
-  .table-tr-children-icon {
-    margin-right: 4px;
-    cursor: pointer;
+  .table-box-border {
+    td ,th {
+      border-right: 1px solid #e8eaec;
+    }
   }
   .table-line-left {
     text-align: left;
@@ -152,27 +148,4 @@ export default {
     text-align: center;
   }
 }
-.table-box {
-  font-size: 12px;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: inherit;
-  max-width: 100%;
-  height: 100%;
-  color: #515a6e;
-  background-color: #fff;
-  .table-tr-children {
-    box-sizing: border-box;
-    padding-right: 10px;
-    padding-left: 10px;
-    word-break: break-all;
-  }
-}
-@for $n from 0 through 10 {
-  .table-level-#{$n} {
-    box-sizing: border-box;
-    padding-left: 18px * $n;
-  }
-}
-
 </style>

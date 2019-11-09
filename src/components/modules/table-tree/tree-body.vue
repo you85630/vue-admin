@@ -83,3 +83,65 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-bottom: 1px solid #e8eaec;
+  tr {
+    td {
+      box-sizing: border-box;
+      min-width: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: left;
+      vertical-align: middle;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.table-body {
+  tr {
+    &:hover {
+      background-color: #ebf7ff;
+    }
+  }
+}
+.table-box-border {
+  td ,th {
+    border-right: 1px solid #e8eaec;
+  }
+}
+.table-tr-children {
+  box-sizing: border-box;
+  padding-right: 10px;
+  padding-left: 10px;
+  word-break: break-all;
+}
+.table-tr-children-icon {
+  margin-right: 4px;
+  cursor: pointer;
+}
+.table-tr-text {
+  font-size: 14px;
+}
+.none-icon {
+  padding-left: 16px;
+}
+.table-line-left {
+  text-align: left;
+}
+.table-line-right {
+  text-align: right;
+}
+.table-line-center {
+  text-align: center;
+}
+@for $n from 0 through 10 {
+  .table-level-#{$n} {
+    box-sizing: border-box;
+    padding-left: 18px * $n;
+  }
+}
+</style>
