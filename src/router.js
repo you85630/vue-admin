@@ -37,6 +37,12 @@ const router = new Router({
           meta: { requireAuth: user }
         },
         {
+          path: '/page2',
+          name: 'page2',
+          component: () => import('components/pages/page2'),
+          meta: { requireAuth: user }
+        },
+        {
           path: '/page/:id',
           name: 'page',
           component: () => import('components/pages/page'),

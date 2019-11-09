@@ -9,19 +9,19 @@ const state = {
       icon: 'ios-baseball',
       children: [
         {
-          label: '新增用户',
-          link: '/page/1'
+          label: '树形表格',
+          link: '/page1'
         },
         {
-          label: '活跃用户',
-          link: '/page/2'
+          label: 'Echarts类型',
+          link: '/page2'
         }
       ]
     },
     {
       label: '文章管理',
       icon: 'ios-basketball',
-      link: '/page1'
+      link: '/page/1'
     },
     {
       label: '统计分析',

@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  name: 'page',
   computed: {
     page () {
       let route = this.$route

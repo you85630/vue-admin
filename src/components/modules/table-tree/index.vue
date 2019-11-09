@@ -46,6 +46,31 @@ export default {
   },
   components: {
     treeBody: () => import('./tree-body')
+  },
+  computed: {
+    dataList: {
+      get () {
+        let list = JSON.parse(JSON.stringify(this.data))
+        let data = this.loopData(list, 0)
+        console.log(data)
+        return data
+      },
+      set () {}
+    }
+  },
+  methods: {
+    loopData (data, index) {
+      for (let i = 0; i < data.length; i++) {
+        const element = data[i]
+        if (element.children) {
+          this.loopData(element.children, i)
+        } else {
+          element.expand = true
+          element.level = index
+        }
+      }
+      return data
+    }
   }
 }
 </script>
