@@ -1,5 +1,5 @@
 <template>
-  <div class="tree-body">
+  <div>
     <div v-for="(item,index) in data" :key="'i'+index">
       <table>
         <colgroup>
@@ -7,7 +7,7 @@
         </colgroup>
         <tbody v-if="treeStart">
           <tr>
-            <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columnsList" :key="index+'-'+val">
+            <td :class="[li.align?'table-line-'+li.align:'',val==0?'lev-'+item.level:'']" v-for="(li,val) in columnsList" :key="index+'-'+val">
               <div class="table-tr-children">
                 <table-slot v-if="li.typeKey=='slot'" :row="item" :column="li" :index="index"></table-slot>
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
@@ -21,13 +21,8 @@
           </tr>
         </tbody>
       </table>
-      <tree-tr :columns="columnsList" :data="item.children" v-if="item.expand"></tree-tr>
+      <tree-body :columns="columnsList" :data="item.children" v-if="item.expand"></tree-body>
     </div>
-    <table v-if="!data.length">
-      <tr>
-        <td class="table-data-none">暂无数据</td>
-      </tr>
-    </table>
   </div>
 </template>
 
@@ -36,11 +31,11 @@ export default {
   name: 'tree-body',
   props: {
     columns: {
-      type: Array,
+      type: [Array, Object],
       required: true
     },
     data: {
-      type: Array
+      type: [Array, Object]
     },
     loading: {
       type: Boolean,
@@ -78,8 +73,7 @@ export default {
   },
   components: {
     TableExpand: () => import('./expand'),
-    TableSlot: () => import('./slot'),
-    TreeTr: () => import('./tree-tr')
+    TableSlot: () => import('./slot')
   },
   methods: {
     reversal (item) {
