@@ -118,16 +118,16 @@ export default {
         if (open1) {
           open[0] = Number(open1)
           let open2 = open1 + '-' + list[1]
-          if (open2) {
+          if (open2 && list[1] !== undefined) {
             open[1] = open2
             let open3 = open2 + '-' + list[2]
-            if (open3) {
+            if (open3 && list[2] !== undefined) {
               open[2] = open3
               let open4 = open3 + '-' + list[3]
-              if (open4) {
+              if (open4 && list[3] !== undefined) {
                 open[3] = open4
                 let open5 = open4 + '-' + list[4]
-                if (open5) {
+                if (open5 && list[4] !== undefined) {
                   open[4] = open5
                 }
               }
@@ -291,6 +291,7 @@ export default {
     margin-bottom: 10px;
     .content-box {
       box-sizing: border-box;
+      min-height: 100%;
       margin: 0 10px;
       padding: 20px;
       border: 1px solid #e8eaec;
