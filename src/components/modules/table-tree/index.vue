@@ -152,6 +152,9 @@ export default {
       .table-tr-text {
         display: block;
       }
+      .none-icon{
+        padding-left: 16px;
+      }
     }
     .table-line-left {
       text-align: left;

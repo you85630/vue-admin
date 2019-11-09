@@ -11,11 +11,11 @@
               <div class="table-tr-children">
                 <div class="table-tr-text" v-if="li.key!=='action'">
                   <Icon
+                    :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"
                     class="table-tr-children-icon"
-                    @click="reversal(item)"
                     v-if="val==0&&item.children"
-                    :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"/>
-                  <span>{{item[li.key]}}</span>
+                    @click="reversal(item)" />
+                  <span :class="{'none-icon':val==0&&!item.children}">{{item[li.key]}}</span>
                 </div>
                 <table-expand v-else :row="item" :column="li" :index="index" :render="li.render"></table-expand>
               </div>
