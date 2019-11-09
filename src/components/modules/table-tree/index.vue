@@ -55,13 +55,6 @@ export default {
         return data
       },
       set () {}
-    },
-    columnsList: {
-      get () {
-        let data = JSON.parse(JSON.stringify(this.columns))
-        return data
-      },
-      set () {}
     }
   },
   methods: {

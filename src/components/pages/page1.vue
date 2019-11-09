@@ -30,7 +30,6 @@ export default {
         },
         {
           title: '说明',
-          key: 'action',
           width: 80,
           align: 'center',
           render: (h, params) => {

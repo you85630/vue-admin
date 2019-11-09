@@ -7,11 +7,10 @@
         </colgroup>
         <tbody v-if="treeStart">
           <tr>
-            <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columns" :key="index+'-'+val">
+            <td :class="li.align?'table-line-'+li.align:''" v-for="(li,val) in columnsList" :key="index+'-'+val">
               <div class="table-tr-children">
-                <table-expand  v-if="li.key=='action'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
-
-                <div class="table-tr-text" v-else>
+                <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
+                <div class="table-tr-text" v-if="li.typeKey=='normal'">
                   <Icon
                     :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"
                     class="table-tr-children-icon"
@@ -24,7 +23,7 @@
           </tr>
         </tbody>
       </table>
-      <tree-tr :columns="columns" :data="item.children" v-if="item.expand"></tree-tr>
+      <tree-tr :columns="columnsList" :data="item.children" v-if="item.expand"></tree-tr>
     </div>
     <table v-if="!data.length">
       <tr>
@@ -57,6 +56,27 @@ export default {
   data () {
     return {
       treeStart: true
+    }
+  },
+  computed: {
+    columnsList () {
+      let data = this.columns
+      for (let i = 0; i < data.length; i++) {
+        const element = data[i]
+        for (const key in element) {
+          if (element.hasOwnProperty(key)) {
+            if (key == 'render') {
+              element.typeKey = 'render'
+            } else if (key == 'slot') {
+              element.typeKey = 'slot'
+            } else {
+              element.typeKey = 'normal'
+            }
+          }
+        }
+        console.log(element)
+      }
+      return data
     }
   },
   components: {

@@ -9,9 +9,8 @@
           <tr>
             <td :class="[li.align?'table-line-'+li.align:'',val==0?'lev-'+item.level:'']"  v-for="(li,val) in columns" :key="index+'-'+val">
               <div class="table-tr-children">
-                <table-expand v-if="li.key=='action'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
-
-                <div class="table-tr-text" v-else>
+                <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
+                <div class="table-tr-text" v-if="li.typeKey=='normal'">
                   <Icon
                     :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"
                     class="table-tr-children-icon"
