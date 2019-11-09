@@ -42,16 +42,19 @@
 
     <Layout class="Layout">
       <Header class="Header" ref="HomeHeader">
-        <Breadcrumb>
-          <BreadcrumbItem><Icon type="md-home" size="18" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
-          <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
-        </Breadcrumb>
-        <Poptip placement="bottom">
-          <div class="Badge"><Avatar shape="square" icon="ios-person" /><span class="name">{{userInfo.name}}</span></div>
-          <ul slot="content" class="user-handle">
-            <li class="red" @click="exit">退出</li>
-          </ul>
-        </Poptip>
+        <div class="Header-box">
+          <Breadcrumb>
+            <BreadcrumbItem><Icon type="md-home" size="18" style="margin-right:6px"></Icon>Home</BreadcrumbItem>
+            <BreadcrumbItem v-for="(item, index) in BreadcrumbList" :key="index">{{item.label}}</BreadcrumbItem>
+          </Breadcrumb>
+          <Poptip placement="bottom">
+            <div class="Badge"><Avatar shape="square" icon="ios-person" /><span class="name">{{userInfo.name}}</span></div>
+            <ul slot="content" class="user-handle">
+              <li class="red" @click="exit">退出</li>
+            </ul>
+          </Poptip>
+        </div>
+        <label-tab :data='[]'></label-tab>
       </Header>
 
       <Content class="Content">
@@ -236,59 +239,62 @@ export default {
   position: relative;
   .Header {
     position: absolute;
-    display: flex;
-    flex-direction: row;
+    z-index: 1;
     width: 100%;
-    padding-right: 64px;
-    padding-left: 20px;
+    padding: 0;
     background: #fff;
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    .Header-box {
+      display: flex;
+      flex-direction: row;
+      padding-right: 64px;
+      padding-left: 20px;
 
-    justify-content: space-between;
-    align-items: center;
-    .ivu-breadcrumb {
-      width: 80%;
-    }
-    .ivu-poptip {
-      line-height: 1;
-      width: 20%;
-      text-align: right;
-    }
-    .user-handle {
-      li {
-        font-size: 14px;
-        padding: 6px 0;
-        cursor: pointer;
-        text-align: center;
-        border-bottom: 1px solid #e8eaec;
-        &:last-child {
-          padding-top: 10px;
-          border: none;
+      justify-content: space-between;
+      align-items: center;
+      .ivu-breadcrumb {
+        width: 80%;
+      }
+      .ivu-poptip {
+        line-height: 1;
+        width: 20%;
+        text-align: right;
+      }
+      .user-handle {
+        li {
+          font-size: 14px;
+          padding: 6px 0;
+          cursor: pointer;
+          text-align: center;
+          border-bottom: 1px solid #e8eaec;
+          &:last-child {
+            padding-top: 10px;
+            border: none;
+          }
         }
       }
-    }
-    .Badge {
-      cursor: pointer;
-    }
-    .name {
-      font-size: 14px;
-      display: inline-block;
-      margin-left: 10px;
-      cursor: pointer;
-      vertical-align: middle;
+      .Badge {
+        cursor: pointer;
+      }
+      .name {
+        font-size: 14px;
+        display: inline-block;
+        margin-left: 10px;
+        cursor: pointer;
+        vertical-align: middle;
+      }
     }
   }
   .Content {
-    overflow: hidden;
-    margin: 20px;
-    margin-top: 84px;
-    padding: 20px 0;
-    background-color: #fff;
-    box-shadow: 0 0 1px rgba(0,0,0,.1);
+    overflow-y: auto;
+    margin-top: 110px;
+    margin-bottom: 10px;
     .content-box {
-      overflow-y: auto;
-      height: 100%;
-      padding: 0 20px;
+      box-sizing: border-box;
+      margin: 0 10px;
+      padding: 20px;
+      border: 1px solid #e8eaec;
+      background-color: #fff;
     }
   }
 }

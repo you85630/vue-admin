@@ -32,7 +32,7 @@
 export default {
   name: 'label-tab',
   props: {
-    list: {
+    data: {
       type: Array, // String, Number, Boolean, Function, Object, Array
       required: true,
       default: null
@@ -53,7 +53,7 @@ export default {
   computed: {
     tabList: {
       get () {
-        let list = JSON.parse(JSON.stringify(this.list))
+        let list = JSON.parse(JSON.stringify(this.data))
         for (let i = 0; i < list.length; i++) {
           const element = list[i]
           element.show = false
@@ -107,7 +107,7 @@ export default {
     closeOther () {
       let now = []
       let active = this.active
-      let list = this.list
+      let list = this.tabList
       for (const key in list) {
         if (list.hasOwnProperty(key)) {
           const element = list[key]
@@ -128,7 +128,7 @@ export default {
     removeTab (now) {
       let nowList = []
       let active = now.link
-      let list = this.list
+      let list = this.tabList
       for (const key in list) {
         if (list.hasOwnProperty(key)) {
           const element = list[key]
