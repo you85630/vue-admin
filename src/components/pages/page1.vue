@@ -30,10 +30,53 @@ export default {
         },
         {
           title: '说明',
-          key: 'component'
+          key: 'component',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'success',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    console.log(params.row)
+                  }
+                }
+              }, '新增'),
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small'
+                },
+                style: {
+                  marginRight: '5px'
+                },
+                on: {
+                  click: () => {
+                    console.log(params.row)
+                  }
+                }
+              }, '编辑'),
+              h('Button', {
+                props: {
+                  type: 'error',
+                  size: 'small'
+                },
+                on: {
+                  click: () => {
+                    console.log(params.row)
+                  }
+                }
+              }, '删除')
+            ])
+          }
         },
         {
-          width: 80,
+          width: 200,
           title: '操作',
           slot: 'action',
           align: 'center'
