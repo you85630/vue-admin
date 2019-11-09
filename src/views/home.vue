@@ -96,6 +96,7 @@ export default {
       this.getUserInfo()
 
       let key = sessionStorage.getItem('HomeMenuActive')
+
       if (key) {
         this.HomeMenuSelect(key)
       }

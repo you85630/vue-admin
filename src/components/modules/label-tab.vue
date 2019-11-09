@@ -1,13 +1,16 @@
 <template>
   <div class="tab-main">
-    <div class="tab-nav">
+    <div class="tab-nav" @mouseleave="closeshow=false">
       <div class="nav-list" id="navbox">
         <div class="direction" @click="prev"><Icon type="ios-arrow-back" /></div>
-        <div class="tab-box" :style="{marginLeft:mleft+'px'}" id="tabbox">
-          <div class="tab" v-for="(li,index) in list" :key="index" :class="{active:li.link===active}">
-            <div class="add" @click="linkTab(li)">
+        <div class="item-box" :style="{marginLeft:mleft+'px'}" id="tabbox">
+          <div class="item" v-for="(li,index) in tabList" :key="index" :class="{active:li.link===active}">
+            <div class="box" @click="linkTab(li)">
               <span></span>
-              <p>{{li.title}}</p>
+              <div class="label-name" @mouseover="showTitle(true,li)" @mouseleave="showTitle(false,li)">{{li.label}}</div>
+            </div>
+            <div class="label-show" v-if="li.show">
+              <div class="t-bold">{{li.label}}</div>
             </div>
             <Icon class="icon" type="ios-close" @click="removeTab(li)" />
           </div>
@@ -27,6 +30,7 @@
 
 <script>
 export default {
+  name: 'label-tab',
   props: {
     list: {
       type: Array, // String, Number, Boolean, Function, Object, Array
@@ -44,6 +48,19 @@ export default {
       multiple: 200,
       mleft: 0,
       closeshow: false
+    }
+  },
+  computed: {
+    tabList: {
+      get () {
+        let list = JSON.parse(JSON.stringify(this.list))
+        for (let i = 0; i < list.length; i++) {
+          const element = list[i]
+          element.show = false
+        }
+        return list
+      },
+      set () {}
     }
   },
   methods: {
@@ -131,131 +148,167 @@ export default {
       } else {
         this.closeAll()
       }
+    },
+    showTitle (type, item) {
+      let list = this.tabList
+      for (let i = 0; i < list.length; i++) {
+        const element = list[i]
+        element.show = false
+      }
+      if (type) {
+        item.show = true
+      }
+      this.$forceUpdate()
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.tab-main{
-  border-top: 1px solid #e8eaec;
-  border-bottom: 1px solid #e8eaec;
+.tab-main {
+  font-size: 0;
+  border-top: 1px solid #dcdee2;
+  border-bottom: 1px solid #dcdee2;
 }
-.tab-nav{
+.tab-nav {
   display: flex;
-  align-items: center;
   flex-direction: row;
-  justify-content: space-between;
   box-sizing: border-box;
   width: 100%;
   background-color: #e3e3e3;
-  .nav-list{
+
+  align-items: center;
+  justify-content: space-between;
+  .nav-list {
     display: flex;
-    overflow: hidden;
-    align-items: center;
     flex-direction: row;
-    .tab-box{
+
+    align-items: center;
+
+    .item-box {
       display: flex;
-      align-items: center;
       flex-direction: row;
       padding-right: 30px;
-    }
-    .tab{
-      display: flex;
+
       align-items: center;
+    }
+    .item {
+      position: relative;
+      display: flex;
       flex-direction: row;
       box-sizing: border-box;
       margin: 4px;
       padding: 2px 0;
+      cursor: pointer;
       background-color: #fff;
       box-shadow: 0 0 2px #ccc;
-      font-size: 12px;
-      cursor: pointer;
-      .add{
+
+      align-items: center;
+      .box {
         display: flex;
         flex-direction: row;
-        align-items: center;
         height: 22px;
-        span{
+
+        align-items: center;
+        span {
           display: flex;
-          margin: 0 6px;
-          width: 12px;
-          height: 12px;
+          width: 14px;
+          height: 14px;
+          margin: 0 10px;
           border-radius: 100%;
           background-color: #e3e3e3;
         }
-        p{
+        .label-name {
+          font-size: 16px;
           overflow: hidden;
-          padding: 0 6px;
-          max-width: 300px;
-          text-overflow: ellipsis;
+          max-width: 200px;
+          margin-right: 5px;
           white-space: nowrap;
           word-spacing: nowrap;
+          text-overflow: ellipsis;
         }
       }
-      .icon{
-        margin-right: 6px;
+      .icon {
         font-size: 22px;
-        &:hover{
-          color: #ed4014;
+        margin-right: 6px;
+        &:hover {
           font-weight: bold;
+          color: #ed4014;
         }
       }
     }
-    .active{
+    .active {
       color: #2d8cf0;
-      .add{
-        span{
-            background-color: #2d8cf0;
+      .box {
+        span {
+          background-color: #2d8cf0;
         }
       }
-      .icon{
+      .icon {
         color: #666;
       }
     }
   }
-  .direction{
+  .direction {
+    font-size: 20px;
     position: relative;
     z-index: 2;
     display: flex;
+    box-sizing: border-box;
+    height: 34px;
+    padding: 0 10px;
+    cursor: pointer;
+    background-color: #fff;
+
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-    padding: 0 10px;
-    height: 34px;
-    background-color: #fff;
-    font-size: 20px;
-    cursor: pointer;
   }
-  .close-box{
+  .close-box {
     position: relative;
     display: flex;
+
     align-items: center;
-    .icon{
+    .icon {
       border-left: 1px solid #f5f5f5;
     }
-    .btn{
+    .btn {
       position: absolute;
-      top: 34px;
-      right: -2px;
       z-index: 1;
+      top: 34px;
+      right: 0;
+      width: 81px;
       padding: 5px 0;
-      border: 2px solid #f5f5f5;
-      border-radius: 4px;
       background-color: #fff;
-      p{
+      box-shadow: 0 1px 6px rgba(0,0,0,.2);
+      p {
+        font-size: 14px;
         margin-top: 5px;
         padding: 0 12px;
-        white-space: nowrap;
-        font-size: 14px;
         cursor: pointer;
-
         user-select: none;
-        &:first-child{
+        white-space: nowrap;
+        &:first-child {
           margin-top: 0;
         }
       }
     }
+  }
+}
+.label-show {
+  font-size: 14px;
+  position: absolute;
+  z-index: 2;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.2);
+
+  .t-bold {
+    font-size: 14px;
+    font-weight: bold;
+    color: #2c3e50;
   }
 }
 </style>
