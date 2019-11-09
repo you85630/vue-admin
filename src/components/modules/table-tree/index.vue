@@ -18,9 +18,7 @@
           </thead>
         </table>
       </div>
-      <div class="tree-body">
-        <tree-body :columns="columns" :data="dataList"></tree-body>
-      </div>
+      <tree-body :columns="columns" :data="dataList"></tree-body>
       <table v-if="!dataList.length">
         <tr>
           <td class="table-data-none">暂无数据</td>

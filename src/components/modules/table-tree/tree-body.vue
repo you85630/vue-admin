@@ -1,16 +1,18 @@
 <template>
-  <div>
-    <div v-for="(item,index) in data" :key="'i'+index">
+  <ul class="tree-body">
+    <li v-for="(item,index) in data" :key="'i'+index">
       <table>
         <colgroup>
           <col v-for="(li,val) in columns" :key="index+'-'+val" :width="li.width">
         </colgroup>
         <tbody v-if="treeStart">
           <tr>
-            <td :class="[li.align?'table-line-'+li.align:'',val==0?'lev-'+item.level:'']" v-for="(li,val) in columnsList" :key="index+'-'+val">
+            <td :class="[li.align ? 'table-line-' + li.align : '',val == 0 ? 'lev-' + item.level : '']" v-for="(li,val) in columnsList" :key="index+'-'+val">
               <div class="table-tr-children">
                 <table-slot v-if="li.typeKey=='slot'" :row="item" :column="li" :index="index"></table-slot>
+
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
+
                 <div class="table-tr-text" v-if="li.typeKey=='normal'">
                   <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon"
                     v-if="val==0&&item.children" @click="reversal(item)" />
@@ -22,8 +24,8 @@
         </tbody>
       </table>
       <tree-body :columns="columnsList" :data="item.children" v-if="item.expand"></tree-body>
-    </div>
-  </div>
+    </li>
+  </ul>
 </template>
 
 <script>
