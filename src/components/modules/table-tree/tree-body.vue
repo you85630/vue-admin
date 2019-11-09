@@ -63,18 +63,17 @@ export default {
       let data = this.columns
       for (let i = 0; i < data.length; i++) {
         const element = data[i]
+        element.typeKey = 'normal'
         for (const key in element) {
           if (element.hasOwnProperty(key)) {
             if (key == 'render') {
               element.typeKey = 'render'
-            } else if (key == 'slot') {
+            }
+            if (key == 'slot') {
               element.typeKey = 'slot'
-            } else {
-              element.typeKey = 'normal'
             }
           }
         }
-        console.log(element)
       }
       return data
     }
