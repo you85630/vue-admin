@@ -68,6 +68,8 @@ export default {
     color: #fff;
     border-radius: 4px;
     background-color: #585e6b;
+
+    will-change: top, left;
     &::before {
       position: absolute;
       top: -14px;
