@@ -18,7 +18,7 @@
           </thead>
         </table>
       </div>
-      <tree-body :columns="columns" :data="dataList"></tree-body>
+      <tree-body :columns="columns" :data="data"></tree-body>
     </div>
   </div>
 </template>
@@ -46,129 +46,112 @@ export default {
   },
   components: {
     treeBody: () => import('./tree-body')
-  },
-  computed: {
-    dataList: {
-      get () {
-        let list = JSON.parse(JSON.stringify(this.data))
-        let data = this.loopData(list, 0)
-        return data
-      },
-      set () {}
-    }
-  },
-  methods: {
-    loopData (data, index) {
-      for (let i = 0; i < data.length; i++) {
-        const element = data[i]
-        element.expand = true
-        element.level = index
-        if (element.children) {
-          this.loopData(element.children, index + 1)
-        }
-      }
-      return data
-    }
   }
 }
 </script>
 
 <style lang="scss">
 .table-wrap {
-  font-size: 0;
   position: relative;
-  overflow: hidden;
   border: 1px solid #dcdee2;
-  border-right: 0;
   border-bottom: 0;
-  table {
+  border-right: 0;
+  overflow: hidden;
+  font-size: 0;
+  table{
     width: 100%;
   }
-  .table-spin-box {
+  .table-spin-box{
     position: relative;
-    overflow: hidden;
     width: 100%;
     height: 100px;
     border: 1px solid #dcdee2;
     border-top: none;
     border-left: none;
+    overflow: hidden;
   }
 }
-.table-box {
-  font-size: 12px;
-  overflow: hidden;
-  box-sizing: border-box;
+.table-box{
   width: inherit;
-  max-width: 100%;
   height: 100%;
+  max-width: 100%;
+  overflow: hidden;
   color: #515a6e;
+  font-size: 12px;
   background-color: #fff;
-  table {
+  box-sizing: border-box;
+  table{
     table-layout: fixed;
     border-bottom: 1px solid #e8eaec;
-    tr {
-      &:hover {
-        background-color: #ebf7ff;
+    tr{
+      &:hover{
+        background-color: #EBF7FF;
       }
-      td ,th {
-        box-sizing: border-box;
+      td,th{
         min-width: 0;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: left;
-        vertical-align: middle;
-        text-overflow: ellipsis;
-      }
-      .table-tr-children {
+        height: 48px;
         box-sizing: border-box;
-        padding-right: 10px;
-        padding-left: 10px;
-        word-break: break-all;
+        text-align: left;
+        text-overflow: ellipsis;
+        vertical-align: middle;
       }
-      th {
+      .table-tr-children{
+        padding-left: 18px;
+        padding-right: 18px;
         overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+        word-break: break-all;
+        box-sizing: border-box;
+      }
+      th{
+        height: 40px;
         white-space: nowrap;
+        overflow: hidden;
         background-color: #f8f8f9;
-        .table-tr-children {
+        .table-tr-children{
           display: inline-block;
-          vertical-align: middle;
           word-wrap: normal;
+          vertical-align: middle;
         }
       }
-      .table-tr-children-icon {
+      .table-tr-children-icon{
         margin-right: 4px;
         cursor: pointer;
       }
-      .table-data-none {
+      .table-data-none{
         text-align: center;
       }
-      .table-tr-text {
+      .table-tr-text{
         display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
-    .table-line-left {
+    .table-line-left{
       text-align: left;
     }
-    .table-line-right {
+    .table-line-right{
       text-align: right;
     }
-    .table-line-center {
+    .table-line-center{
       text-align: center;
     }
   }
 }
-.tree-header {
+.tree-header{
   overflow: hidden;
 }
-.table-box-border {
-  td ,th {
-    border-right: 1px solid #e8eaec;
+.table-box-border{
+  td,th{
+      border-right: 1px solid #e8eaec;
   }
 }
 @for $n from 0 through 10 {
   .lev-#{$n} {
-    box-sizing: border-box;
     padding-left: 18px * $n;
+    box-sizing: border-box;
   }
 }
 </style>

@@ -17,17 +17,17 @@ const router = new Router({
     {
       path: '*',
       name: 'not-found',
-      component: () => import('views/NotFound')
+      component: () => import('views/notFound')
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('views/Login')
+      component: () => import('views/login')
     },
     {
       path: '/home',
       name: 'Home',
-      component: () => import('views/Home'),
+      component: () => import('views/home'),
       meta: { requireAuth: user },
       children: [
         {
