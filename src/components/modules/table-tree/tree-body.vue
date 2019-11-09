@@ -11,11 +11,8 @@
               <div class="table-tr-children">
                 <table-expand v-if="li.typeKey=='render'" :row="item" :column="li" :index="index" :render="li.render"></table-expand>
                 <div class="table-tr-text" v-if="li.typeKey=='normal'">
-                  <Icon
-                    :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'"
-                    class="table-tr-children-icon"
-                    v-if="val==0&&item.children"
-                    @click="reversal(item)" />
+                  <Icon :type="item.expand ?'ios-arrow-down':'ios-arrow-forward'" class="table-tr-children-icon"
+                    v-if="val==0&&item.children" @click="reversal(item)" />
                   <span :class="{'none-icon':val==0&&!item.children}">{{item[li.key]}}</span>
                 </div>
               </div>
