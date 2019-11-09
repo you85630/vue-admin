@@ -103,39 +103,39 @@ export default {
     height: 100%;
     color: #515a6e;
     background-color: #fff;
-    .table-header {
-      font-weight: bold;
-      background-color: #f8f8f9;
-    }
-    .table-tr-children {
-      box-sizing: border-box;
-      padding-right: 10px;
-      padding-left: 10px;
-      word-break: break-all;
-    }
-    .table-tr-text {
-      font-size: 14px;
-    }
-    table {
-      width: 100%;
-      table-layout: fixed;
-      border-bottom: 1px solid #e8eaec;
-      tr {
-        td ,th {
-          box-sizing: border-box;
-          min-width: 0;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          text-align: left;
-          vertical-align: middle;
-          text-overflow: ellipsis;
-        }
-      }
-    }
   }
   .table-box-border {
     td ,th {
       border-right: 1px solid #e8eaec;
+    }
+  }
+  .table-header {
+    font-weight: bold;
+    background-color: #f8f8f9;
+  }
+  .table-tr-children {
+    box-sizing: border-box;
+    padding-right: 10px;
+    padding-left: 10px;
+    word-break: break-all;
+  }
+  .table-tr-text {
+    font-size: 14px;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-bottom: 1px solid #e8eaec;
+    tr {
+      td ,th {
+        box-sizing: border-box;
+        min-width: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: left;
+        vertical-align: middle;
+        text-overflow: ellipsis;
+      }
     }
   }
   .table-line-left {
