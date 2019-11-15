@@ -1,5 +1,5 @@
 // import api from 'assets/js/api'
-// import router from 'src/router'
+import router from 'src/router'
 
 const state = {
   // 导航
@@ -11,22 +11,31 @@ const state = {
       children: [
         {
           label: '树形表格',
-          link: '/page1'
+          link: '/page1',
+          name: 'page1'
         },
         {
           label: 'Echarts类型',
-          link: '/page2'
+          link: '/page2',
+          name: 'page2'
+        },
+        {
+          label: '城市选择器',
+          link: '/page3',
+          dec: '文字文字文字文字文字文字文字文字',
+          name: 'page3'
         }
       ]
     },
     {
       label: '文章管理',
       icon: 'ios-basketball',
-      link: '/page3',
-      dec: '文字文字文字文字文字文字文字文字'
+      link: '/page/3',
+      dec: '文字文字文字文字文字文字文字文字',
+      name: 'page'
     },
     {
-      label: '统计分析',
+      label: '多嵌套导航',
       icon: 'md-baseball',
       children: [
         {
@@ -39,7 +48,8 @@ const state = {
               children: [
                 {
                   label: '新增',
-                  link: '/page/4'
+                  link: '/page/4',
+                  name: 'page'
                 },
                 {
                   label: '启动',
@@ -47,7 +57,8 @@ const state = {
                   children: [
                     {
                       label: '准备',
-                      link: '/page/5'
+                      link: '/page/5',
+                      name: 'page'
                     }
                   ]
                 }
@@ -55,11 +66,13 @@ const state = {
             },
             {
               label: '活跃分析',
-              link: '/page/6'
+              link: '/page/6',
+              name: 'page'
             },
             {
               label: '时段分析',
-              link: '/page/7'
+              link: '/page/7',
+              name: 'page'
             }
           ]
         },
@@ -69,28 +82,105 @@ const state = {
           children: [
             {
               label: '用户留存',
-              link: '/page/8'
+              link: '/page/8',
+              name: 'page'
             },
             {
               label: '流失用户',
-              link: '/page/9'
+              link: '/page/9',
+              name: 'page'
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  tabPageList: [],
+  tabPageActive: null
 }
 
 const getters = {
-  HomeMenuList: state => state.HomeMenuList
+  HomeMenuList: state => state.HomeMenuList,
+  tabPageList: state => state.tabPageList,
+  tabPageActive: state => state.tabPageActive
 }
 
 const actions = {
-
+// tab导航添加
+  addPageTab ({ commit }, key) {
+    commit('addPageTab', key)
+  },
+  // tab导航关闭
+  delPageTab ({ commit }, key) {
+    commit('delPageTab', key)
+  },
+  // 获取tab导航列表
+  getDefaultTabList ({ commit }, key) {
+    commit('getDefaultTabList', key)
+  }
 }
 
 const mutations = {
+  addPageTab (state, key) {
+    if (key.link) {
+      let list = state.tabPageList
+      if (list.length) {
+        let isBool = true
+        for (let i = 0; i < list.length; i++) {
+          const element = list[i]
+          if (element.link == key.link) {
+            isBool = false
+          }
+        }
+
+        if (isBool) {
+          list.push(key)
+        }
+      } else {
+        list = [key]
+      }
+
+      state.tabPageList = list
+      state.tabPageActive = key.link
+      this._vm.VueCookie.set('MENU', key)
+      this._vm.VueCookie.set('TABPAGELIST', JSON.stringify(list))
+      // 页面跳转
+      router.push(key.link)
+    }
+  },
+
+  delPageTab (state, key) {
+    state.tabPageList = key
+    if (key.length) {
+      let isBool = true
+      for (let i = 0; i < key.length; i++) {
+        const element = key[i]
+        if (element.link == state.tabPageActive) {
+          isBool = false
+        }
+      }
+      if (isBool) {
+        let item = key[key.length - 1]
+        this.dispatch('addPageTab', item)
+      }
+      this._vm.VueCookie.set('TABPAGELIST', JSON.stringify(state.tabPageList))
+    } else {
+      state.tabPageActive = null
+      this._vm.VueCookie.remove('TABPAGELIST')
+      this._vm.VueCookie.remove('MENU')
+
+      router.replace('/home')
+    }
+  },
+
+  getDefaultTabList (state, key) {
+    let list = key.list
+    let active = key.active
+    if (list) {
+      state.tabPageList = JSON.parse(list)
+      this.dispatch('addPageTab', active)
+    }
+  }
 
 }
 

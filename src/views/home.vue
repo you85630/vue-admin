@@ -54,7 +54,7 @@
             </ul>
           </Poptip>
         </div>
-        <!-- <label-tab :data='[]'></label-tab> -->
+        <label-tab :data="tabPageList" :active="tabPageActive" @on-click="addPageTab" @on-close="delPageTab"></label-tab>
       </Header>
 
       <Content class="Content">
@@ -83,7 +83,9 @@ export default {
   computed: {
     ...mapGetters([
       'userInfo',
-      'HomeMenuList'
+      'HomeMenuList',
+      'tabPageList',
+      'tabPageActive'
     ])
   },
   created () {
@@ -91,8 +93,11 @@ export default {
   },
   methods: {
     ...mapActions([
+      'exit',
       'getUserInfo',
-      'exit'
+      'addPageTab',
+      'delPageTab',
+      'getDefaultTabList'
     ]),
     // 默认事件
     init () {
@@ -103,6 +108,12 @@ export default {
       if (key) {
         this.HomeMenuSelect(key)
       }
+
+      // 登录后默认导航设置
+
+      let list = this.VueCookie.get('TABPAGELIST')
+      let active = this.VueCookie.get('MENU')
+      this.getDefaultTabList({ list, active })
     },
 
     // 导航选择
@@ -165,6 +176,12 @@ export default {
       this.HomeMenuOpen = open
       this.BreadcrumbList = bread
 
+      let tablen = bread.length
+      if (tablen) {
+        let key = bread[tablen - 1]
+        this.addPageTab(key)
+      }
+
       this.updatePage()
     },
 
@@ -176,6 +193,7 @@ export default {
       this.HomeMenuOpen = []
       this.BreadcrumbList = []
 
+      this.delPageTab([])
       this.updatePage()
 
       this.$router.push('/home')

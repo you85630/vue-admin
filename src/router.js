@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import VueCookie from 'vue-cookies'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 const user = [1, 2, 3]
 
-const router = new Router({
+const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -60,25 +60,37 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  let login = VueCookie.get('USER')
-
+  let user = VueCookie.get('USER')
   let requireAuth = to.meta.requireAuth
+  let isBool = true
+
   if (requireAuth) {
-    if (login) {
-      if (requireAuth.indexOf(parseInt(login.user_id)) == -1) {
-        next({
-          path: '/login',
-          query: { redirect: from.fullPath }
-        })
+    if (user) {
+      if (requireAuth.indexOf(Number(user.user_id)) == -1) {
+        isBool = false
       }
-    } else { // 未登录
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
+    } else {
+      isBool = false
     }
   }
-  next()
+
+  if (isBool) {
+    next()
+  } else {
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  }
 })
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace (location) {
+  return originalReplace.call(this, location).catch(err => err)
+}
 
 export default router
