@@ -14,7 +14,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  name: 'page1',
+  name: 'page3',
   data () {
     return {
       loading: false,

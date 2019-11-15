@@ -54,7 +54,7 @@
             </ul>
           </Poptip>
         </div>
-        <label-tab :data='[]'></label-tab>
+        <!-- <label-tab :data='[]'></label-tab> -->
       </Header>
 
       <Content class="Content">
