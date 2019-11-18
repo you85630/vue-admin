@@ -218,12 +218,15 @@ export default {
       this.closeTab([])
       this.exit()
     },
+
     // 刷新页面
     updatePage () {
-      this.$nextTick(() => {
-        this.$refs.HomeMenu.updateOpened()
-        this.$refs.HomeMenu.updateActiveName()
-      })
+      if (this.$refs.HomeMenu) {
+        this.$nextTick(() => {
+          this.$refs.HomeMenu.updateOpened()
+          this.$refs.HomeMenu.updateActiveName()
+        })
+      }
     }
   }
 }
