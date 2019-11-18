@@ -8,4 +8,3 @@ key： {
 }
 this.Utils.addPageTab(key)
 ```
-git remote add origin https://github.com/you9009/admin-vue.git
