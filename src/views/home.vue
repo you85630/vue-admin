@@ -54,7 +54,7 @@
             </ul>
           </Poptip>
         </div>
-        <label-tab :data="tabPageList" :active="tabPageActive" @on-click="addPageTab" @on-close="delPageTab"></label-tab>
+        <label-tab :data="tabPageList" :active="tabPageActive" @on-click="addPageTab" @on-close="closeTab"></label-tab>
       </Header>
 
       <Content class="Content">
@@ -183,6 +183,12 @@ export default {
       }
 
       this.updatePage()
+    },
+    closeTab (data) {
+      this.delPageTab(data)
+      if (!data.length) {
+        this.goHome()
+      }
     },
 
     // 跳转首页

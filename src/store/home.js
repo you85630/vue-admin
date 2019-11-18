@@ -145,7 +145,7 @@ const mutations = {
       this._vm.VueCookie.set('MENU', key)
       this._vm.VueCookie.set('TABPAGELIST', JSON.stringify(list))
       // 页面跳转
-      router.push(key.link)
+      router.replace(key.link)
     }
   },
 

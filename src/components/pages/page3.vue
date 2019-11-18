@@ -10,7 +10,7 @@ export default {
   name: 'page3',
   data () {
     return {
-      value: [ '上海', '县', '崇明县' ]
+      value: [ '上海', '市辖区', '普陀区' ]
     }
   }
 }
