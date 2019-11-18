@@ -53,15 +53,13 @@ const mutations = {
     state.MenuList = []
     state.tabPageList = []
     state.tabPageActive = null
-    state.PcMenu = null
 
     let list = this._vm.VueCookie.keys()
+
     if (list) {
       for (let i = 0; i < list.length; i++) {
         const element = list[i]
-        if (element != 'SJSL-PC-KEY') {
-          this._vm.VueCookie.remove(element)
-        }
+        this._vm.VueCookie.remove(element)
       }
     }
     sessionStorage.clear()

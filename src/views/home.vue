@@ -50,7 +50,7 @@
           <Poptip placement="bottom">
             <div class="Badge"><Avatar shape="square" icon="ios-person" /><span class="name">{{userInfo.name}}</span></div>
             <ul slot="content" class="user-handle">
-              <li class="red" @click="exit">退出</li>
+              <li class="red" @click="Exit">退出</li>
             </ul>
           </Poptip>
         </div>
@@ -214,6 +214,12 @@ export default {
       this.$router.push('/home')
     },
 
+    // 退出
+    Exit () {
+      this.goHome()
+      this.closeTab([])
+      this.exit()
+    },
     // 刷新页面
     updatePage () {
       this.$nextTick(() => {
