@@ -1,7 +1,7 @@
 <template>
   <div class="not-found">
     <div class="box">
-      <img src="././../assets/img/notfound.png" alt="">
+      <img :src="notfound" alt="">
       <Button size="large" type="primary" shape="circle" @click="goHome">返回首页</Button>
     </div>
   </div>
@@ -10,6 +10,11 @@
 <script>
 export default {
   name: 'not-found',
+  data () {
+    return {
+      notfound: require('assets/img/notfound.png')
+    }
+  },
   methods: {
     goHome () {
       sessionStorage.removeItem('HomeMenuActive')
