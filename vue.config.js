@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   outputDir: 'dist',
-  publicPath: process.env.NODE_ENV === 'production' ? 'https://you85630.github.io/vue-admin/dist/' : './',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : './',
   productionSourceMap: false,
   runtimeCompiler: true,
   assetsDir: 'assets',
