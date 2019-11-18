@@ -10,7 +10,7 @@ export default {
   name: 'page3',
   data () {
     return {
-      value: []
+      value: [ '上海', '县', '崇明县' ]
     }
   }
 }

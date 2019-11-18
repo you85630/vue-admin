@@ -1,5 +1,5 @@
 <template>
-  <Cascader :data="provinceList" @on-change="changeValue"></Cascader>
+  <Cascader v-model="value" :data="provinceList" @on-change="changeValue"></Cascader>
 </template>
 
 <script>
