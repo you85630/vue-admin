@@ -1,21 +1,7 @@
 const path = require('path')
 
-const ENV = 1
-
-const ENVList = [
-  {
-    api: '/', // 生产
-    dist: 'pro-dist'
-  },
-  {
-    api: '/', // 开发
-    dist: 'dev-dist'
-  }
-]
-
 module.exports = {
-  // baseURL: ENVList[ENV].api,
-  outputDir: ENVList[ENV].dist,
+  outputDir: 'dist',
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   productionSourceMap: false,
   runtimeCompiler: true,

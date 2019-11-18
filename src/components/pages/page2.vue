@@ -1,11 +1,34 @@
 <template>
   <div class="page">
-    <div class="echart-box"><echart-module :data="line"></echart-module></div>
-    <div class="echart-box"><echart-module :data="bar"></echart-module></div>
-    <div class="echart-box"><echart-module :data="barright"></echart-module></div>
-    <div class="echart-box"><echart-module :data="barmore"></echart-module></div>
-    <div class="echart-box"><echart-module :data="radar"></echart-module></div>
-    <div class="echart-box"><echart-module :data="mixture"></echart-module></div>
+    <Card>
+      <div slot="title">{{line.type}}</div>
+      <div class="echart-box"><echart-module :data="line"></echart-module></div>
+    </Card>
+
+    <Card class="marTop">
+      <div slot="title">{{bar.type}}</div>
+      <div class="echart-box"><echart-module :data="bar"></echart-module></div>
+    </Card>
+
+    <Card class="marTop">
+      <div slot="title">{{barRight.type}}</div>
+      <div class="echart-box"><echart-module :data="barRight"></echart-module></div>
+    </Card>
+
+    <Card class="marTop">
+      <div slot="title">{{barMore.type}}</div>
+      <div class="echart-box"><echart-module :data="barMore"></echart-module></div>
+    </Card>
+
+    <Card class="marTop">
+      <div slot="title">{{radar.type}}</div>
+      <div class="echart-box"><echart-module :data="radar"></echart-module></div>
+    </Card>
+
+    <Card class="marTop">
+      <div slot="title">{{mixture.type}}</div>
+      <div class="echart-box"><echart-module :data="mixture"></echart-module></div>
+    </Card>
   </div>
 </template>
 <script>
@@ -26,13 +49,13 @@ export default {
       title: ['Matcha Latte', 'Milk Tea', 'Cheese Cocoa', 'Cheese Brownie'],
       data: [100, 70, 40, 10]
     }
-    this.barright = {
-      type: 'barright',
+    this.barRight = {
+      type: 'barRight',
       title: ['Matcha Latte', 'Milk Tea', 'Cheese Cocoa', 'Cheese Brownie'],
       data: [100, 70, 40, 10]
     }
-    this.barmore = {
-      type: 'barmore',
+    this.barMore = {
+      type: 'barMore',
       title: ['2015', '2016', '2017'],
       data: [
         { key: 'Matcha Latte', value: [72.4, 53.9, 39.1] },

@@ -34,10 +34,10 @@ export default {
           }
         },
         grid: {
-          left: '2%',
-          right: '2%',
-          bottom: '2%',
-          top: '2%',
+          left: '4%',
+          right: '4%',
+          bottom: '4%',
+          top: '4%',
           containLabel: true
         },
         xAxis: {
@@ -72,10 +72,10 @@ export default {
           }
         },
         grid: {
-          left: '2%',
-          right: '2%',
-          bottom: '2%',
-          top: '2%',
+          left: '4%',
+          right: '4%',
+          bottom: '4%',
+          top: '4%',
           containLabel: true
         },
         xAxis: {
@@ -123,9 +123,9 @@ export default {
           source: data
         },
         grid: {
-          left: '2%',
-          right: '2%',
-          bottom: '2%',
+          left: '4%',
+          right: '4%',
+          bottom: '4%',
           top: '7%',
           containLabel: true
         },
@@ -193,6 +193,12 @@ export default {
       }
       for (let i = 0; i < key.title.length; i++) {
         series.push({
+          label: {
+            normal: {
+              show: true,
+              position: 'inside'
+            }
+          },
           type: 'bar'
         })
       }
@@ -210,9 +216,9 @@ export default {
           source: data
         },
         grid: {
-          left: '2%',
-          right: '2%',
-          bottom: '2%',
+          left: '4%',
+          right: '4%',
+          bottom: '4%',
           top: '7%',
           containLabel: true
         },
@@ -241,7 +247,7 @@ export default {
         },
         radar: {
           indicator: title,
-          center: ['50%', '58%'],
+          center: ['50%', '55%'],
           radius: '88%'
         },
         series: [{
@@ -273,9 +279,9 @@ export default {
           data: legend
         },
         grid: {
-          left: '2%',
-          right: '2%',
-          bottom: '2%',
+          left: '4%',
+          right: '4%',
+          bottom: '4%',
           top: '7%',
           containLabel: true
         },
@@ -304,10 +310,10 @@ export default {
         case 'bar':
           option = this.Bar
           break
-        case 'barmore':
+        case 'barMore':
           option = this.BarMore
           break
-        case 'barright':
+        case 'barRight':
           option = this.BarRight
           break
         case 'radar':

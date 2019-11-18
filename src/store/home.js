@@ -5,7 +5,7 @@ const state = {
   // 导航
   HomeMenuList: [
     {
-      label: '用户管理',
+      label: '组件管理',
       icon: 'ios-baseball',
       dec: '文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字',
       children: [
@@ -15,7 +15,7 @@ const state = {
           name: 'page1'
         },
         {
-          label: 'Echarts类型',
+          label: '自定义Echarts类型',
           link: '/page2',
           name: 'page2'
         },
