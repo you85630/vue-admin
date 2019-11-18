@@ -28,6 +28,12 @@ const routerList = [
     meta: { requireAuth: user },
     children: [
       {
+        path: '/page-index',
+        name: 'page-index',
+        component: () => import('components/pages/index'),
+        meta: { requireAuth: user }
+      },
+      {
         path: '/page1',
         name: 'page1',
         component: () => import('components/pages/page1'),

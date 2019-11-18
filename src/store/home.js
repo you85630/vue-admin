@@ -5,6 +5,13 @@ const state = {
   // 导航
   HomeMenuList: [
     {
+      label: '说明',
+      icon: 'ios-basketball',
+      link: '/page-index',
+      dec: '文字文字文字文字文字文字文字文字',
+      name: 'page'
+    },
+    {
       label: '组件管理',
       icon: 'ios-baseball',
       dec: '文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字',
@@ -22,17 +29,9 @@ const state = {
         {
           label: '城市选择器',
           link: '/page3',
-          dec: '文字文字文字文字文字文字文字文字',
           name: 'page3'
         }
       ]
-    },
-    {
-      label: '文章管理',
-      icon: 'ios-basketball',
-      link: '/page/3',
-      dec: '文字文字文字文字文字文字文字文字',
-      name: 'page'
     },
     {
       label: '多嵌套导航',

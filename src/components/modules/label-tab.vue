@@ -105,10 +105,13 @@ export default {
     closeOther () {
       let now = []
       let active = this.active
-      let list = this.list
+      let list = this.tabList
       for (const key in list) {
         if (list.hasOwnProperty(key)) {
           const element = list[key]
+          console.log(element)
+          console.log(active)
+
           if (element.link === active) {
             now[0] = element
           }
