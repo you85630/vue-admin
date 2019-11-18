@@ -103,17 +103,15 @@ export default {
     init () {
       this.getUserInfo()
 
-      let key = this.VueCookie.get('HomeMenuActive')
-
-      if (key) {
-        this.HomeMenuSelect(key)
-      }
-
       // 登录后默认导航设置
-
       let list = this.VueCookie.get('TABPAGELIST')
       let active = this.VueCookie.get('MENU')
       this.getDefaultTabList({ list, active })
+
+      let key = this.VueCookie.get('HomeMenuActive')
+      if (key) {
+        this.HomeMenuSelect(key)
+      }
     },
 
     // 导航选择
