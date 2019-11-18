@@ -185,10 +185,14 @@ export default {
 
       this.updatePage()
     },
+
+    // tab切换
     addTab (data) {
       this.addPageTab(data)
       this.HomeMenuSelect(data.active)
     },
+
+    // tab关闭
     closeTab (data) {
       this.delPageTab(data)
       if (!data.length) {
@@ -226,6 +230,7 @@ export default {
   position: relative;
   overflow: hidden;
   width: 100%;
+  min-width: 1200px;
   height: 100%;
   border: 1px solid #d7dde4;
   background: #f5f7f9;
@@ -271,7 +276,7 @@ export default {
   position: relative;
   .Header {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     padding: 0;
     background: #fff;
@@ -279,7 +284,7 @@ export default {
     .Header-box {
       display: flex;
       flex-direction: row;
-      padding-right: 64px;
+      padding-right: 30px;
       padding-left: 20px;
 
       justify-content: space-between;
@@ -295,14 +300,9 @@ export default {
       .user-handle {
         li {
           font-size: 14px;
-          padding: 6px 0;
+          padding: 2px 0;
           cursor: pointer;
           text-align: center;
-          border-bottom: 1px solid #e8eaec;
-          &:last-child {
-            padding-top: 10px;
-            border: none;
-          }
         }
       }
       .Badge {
@@ -322,6 +322,8 @@ export default {
     margin-top: 110px;
     margin-bottom: 10px;
     .content-box {
+      position: relative;
+      z-index: 1;
       box-sizing: border-box;
       min-height: 100%;
       margin: 0 10px;
