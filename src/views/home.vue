@@ -59,7 +59,9 @@
 
       <Content class="Content">
         <div class="content-box">
-          <router-view/>
+          <keep-alive :include="keepList">
+            <router-view/>
+          </keep-alive>
         </div>
       </Content>
     </Layout>
@@ -85,7 +87,8 @@ export default {
       'userInfo',
       'HomeMenuList',
       'tabPageList',
-      'tabPageActive'
+      'tabPageActive',
+      'keepList'
     ])
   },
   created () {

@@ -95,12 +95,14 @@ const state = {
       ]
     }
   ],
+  keepList: [],
   tabPageList: [],
   tabPageActive: null
 }
 
 const getters = {
   HomeMenuList: state => state.HomeMenuList,
+  keepList: state => state.keepList,
   tabPageList: state => state.tabPageList,
   tabPageActive: state => state.tabPageActive
 }
@@ -144,17 +146,28 @@ const mutations = {
       state.tabPageActive = key.link
       this._vm.VueCookie.set('MENU', key)
       this._vm.VueCookie.set('TABPAGELIST', JSON.stringify(list))
+      // 页面缓存
+      let keepList = []
+      for (let i = 0; i < list.length; i++) {
+        const element = list[i]
+        keepList.push(element.name)
+      }
+      state.keepList = keepList
+
       // 页面跳转
       router.replace(key.link)
     }
   },
 
   delPageTab (state, key) {
+    let list = []
     state.tabPageList = key
     if (key.length) {
       let isBool = true
       for (let i = 0; i < key.length; i++) {
         const element = key[i]
+        list.push(element.name)
+
         if (element.link == state.tabPageActive) {
           isBool = false
         }
@@ -171,6 +184,8 @@ const mutations = {
 
       router.replace('/home')
     }
+    // 页面缓存
+    state.keepList = list
   },
 
   getDefaultTabList (state, key) {
