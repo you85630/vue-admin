@@ -54,7 +54,7 @@
             </ul>
           </Poptip>
         </div>
-        <label-tab :data="tabPageList" :active="tabPageActive" @on-click="addPageTab" @on-close="closeTab"></label-tab>
+        <label-tab :data="tabPageList" :active="tabPageActive" @on-click="addTab" @on-close="closeTab"></label-tab>
       </Header>
 
       <Content class="Content">
@@ -179,10 +179,15 @@ export default {
       let tablen = bread.length
       if (tablen) {
         let key = bread[tablen - 1]
+        key.active = active
         this.addPageTab(key)
       }
 
       this.updatePage()
+    },
+    addTab (data) {
+      this.addPageTab(data)
+      this.HomeMenuSelect(data.active)
     },
     closeTab (data) {
       this.delPageTab(data)
